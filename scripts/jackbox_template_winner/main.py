@@ -18,7 +18,7 @@ def write_new_title():
 
 def write_template_line():
     global current_game, game_number
-    output = ["", False]  # Template line, is_game_ending
+    output = ["", False]  # template line, is_game_ending
 
     if not current_game:
         game_title = f"**{write_new_title()}:**"
@@ -39,7 +39,7 @@ def write_template_line():
                 current_game = game_title
                 break
             else:
-                console.print("Invalid Option")
+                console.print("Invalid Option", style="bold red")
 
     while True:
         option = input("Game ending? (y/n) ").lower().strip()
@@ -49,7 +49,7 @@ def write_template_line():
         elif option == "n" or option == "no":
             break
         else:
-            console.print("Invalid Option")
+            console.print("Invalid Option", style="bold red")
 
     return output
 
@@ -65,7 +65,7 @@ def main():
             lines.append("**Winners from this session:**\n")
             break
         except ValueError:
-            console.print("Invalid session number!")
+            console.print("Invalid session number!", style="bold red")
 
     while True:
         line_input, game_ending = write_template_line()
