@@ -1,4 +1,4 @@
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Controller
 from time import sleep
 
 keyboard = Controller()
