@@ -27,6 +27,7 @@ def main():
                       style=f"bold {random.choice(colors)}")
         sleep(60)
         if math.floor((x + 1) % 10) == 0:
+            sleep(1)
             keyboard.type("!dep all")
             send_message()
 
