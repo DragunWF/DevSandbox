@@ -78,7 +78,7 @@ def main():
     for line in lines:
         output += f"{line}\n"
 
-    with open("scripts/jackbox_template_winner/output.txt", "w") as file:
+    with open("scripts/discord/jackbox_template_winner/output.txt", "w") as file:
         file.write(output)
 
     return output
