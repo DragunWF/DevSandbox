@@ -6,30 +6,28 @@ from rich.console import Console
 
 keyboard = Controller()
 console = Console()
-
-# Settings
-iterations = 250
-command = "!work"
+iterations = 1000
 
 
-def send_message():
+def send_message(content):
+    keyboard.type(content)
     keyboard.press(Key.enter)
     keyboard.release(Key.enter)
 
 
 def main():
     colors = ("red", "green", "yellow", "blue",
-              "magenta", "red", "cyan", "orange3")
+              "magenta", "pink3", "cyan", "orange3")
     for x in range(iterations):
-        keyboard.type(command)
-        send_message()
+        deposited = False
+        send_message("!work")
         console.print(f"Iteration: {x + 1}",
                       style=f"bold {random.choice(colors)}")
-        sleep(60)
         if math.floor((x + 1) % 10) == 0:
-            sleep(1)
-            keyboard.type("!dep all")
-            send_message()
+            sleep(3)
+            send_message("!dep all")
+            deposited = True
+        sleep(60 if not deposited else 57)
 
 
 sleep(3)
