@@ -1,6 +1,7 @@
 import pyautogui
 import keyboard
 from time import sleep
+from rich import print
 
 
 def main():
