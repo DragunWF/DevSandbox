@@ -40,4 +40,4 @@ if __name__ == "__main__":
         console.print("Script has been executed successfully",
                       style="bold green")
     except Exception:
-        console.print(Exception, style="bold red")
+        console.print(str(Exception), style="bold red")
