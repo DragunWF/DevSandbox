@@ -14,7 +14,7 @@ def pre_open_zoom():  # This is to reduce boot-up time when opening next time
     for action in tuple([x for x in positions]):
         if action != "zoom_icon":
             pyautogui.click(positions[action])
-            sleep(0.3)
+            sleep(0.2)
         else:
             pyautogui.doubleClick(positions[action])
             sleep(3.5)
@@ -34,7 +34,7 @@ def enter_meeting(subject, meetings):
                  "enter_meeting": (686, 496), "close_zoom": (1109, 41)}
 
     for action in tuple([x for x in positions]):
-        delay = 0.75
+        delay = 0.3
         if action != "zoom_icon":
             if action in ("meeting_id", "enter_meeting"):
                 input_text_field(meetings[subject], action)
@@ -75,7 +75,8 @@ def check_day(day: str):
 
 def check_hour(hour: str):
     class_hours = (("12:00", "12:40"), ("12:55", "13:35"), ("13:55", "14:35"))
-    formatted = list(map(lambda x: [int("".join(i.split(":"))) for i in x], class_hours))
+    formatted = list(map(lambda x: [int("".join(i.split(":"))) for i in x],
+                         class_hours))
     hour = int("".join(hour.split(":")))
 
     for hours in formatted:
@@ -95,7 +96,7 @@ def main():
     meetings = (meetings_one, meetings_two)
     iteration, inside_class = 0, False
 
-    console.print(pre_open_zoom(), style="bold green")
+    console.print(pre_open_zoom(), style="bold yellow")
     while True:
         time = tuple(check_time())
         meetings_index = check_day(time[0])
@@ -106,7 +107,7 @@ def main():
             iteration = 0
             inside_class = True
             enter_meeting(subjects[subject_index], meetings[meetings_index])
-        else:
+        elif type(subject_index) == type(False):
             iteration += 1
             inside_class = False
             console.print(f"No subject yet... ({iteration})",
@@ -114,7 +115,8 @@ def main():
 
         if inside_class:
             iteration += 1
-            console.print(f"Subject: {subjects[subject_index]} ({iteration})",
+            title = " ".join(list(subjects[subject_index].split("_"))).title()
+            console.print(f"Subject: {title} ({iteration})",
                           style="bold red")
 
         sleep(10)
@@ -125,4 +127,4 @@ if __name__ == "__main__":
         sleep(1)
         main()
     except Exception:
-        console.print(str(Exception), style="bold red")
+        console.print(Exception, style="bold red")
