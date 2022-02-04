@@ -45,7 +45,7 @@ def check_time():
     return day, hour
 
 
-def check_day(day):
+def check_day(day: str):
     classes = (("monday", "wednesday"), ("tuesday", "thursday"))
 
     if day in ("sunday", "friday", "saturday"):
@@ -58,21 +58,40 @@ def check_day(day):
             return classes.index(meeting_days)
 
 
-def check_hour(hour):
-    pass
+def check_hour(hour: str):
+    class_hours = (("12:00", "12:40"), ("12:55", "13:35"), ("13:55", "14:35"))
+    formatted = list(map(lambda x: [int("".join(i.split(":"))) for i in x], class_hours))
+    hour = int("".join(hour.split(":")))
+
+    for hours in formatted:
+        if hours[0] <= hour <= hours[1]:
+            return formatted.index(hours)
+
+    return False
 
 
 def main():
-    meetings_one = {"subject1": ("id", "password"), "subject2": (
-        "id", "password"), "subject3": ("id", "password")}
-    meetings_two = {"subject1": ("id", "password"), "subject2": (
-        "id", "password"), "subject3": ("id", "password")}
-    subjects = (meetings_one, meetings_two)
+    meetings_one = {"subject1": ("id", "password"),
+                    "subject2": ("id", "password"),
+                    "subject3": ("id", "password")}
+    meetings_two = {"subject1": ("id", "password"),
+                    "subject2": ("id", "password"),
+                    "subject3": ("id", "password")}
+    meetings = (meetings_one, meetings_two)
+    inside_class = False
 
     while True:
         time = tuple(check_time())
-        check_day(time[0])
-        check_hour(time[1])
+        meetings_index = check_day(time[0])
+        subject_index = check_hour(time[1])
+
+        if type(subject_index) != type(False) and not inside_class:
+            enter_meeting(subject_index, meetings[meetings_index])
+            inside_class = True
+        else:
+            console.print("No subject yet...", style="bold cyan")
+            inside_class = False
+
         sleep(1)
 
 
@@ -80,8 +99,6 @@ if __name__ == "__main__":
     try:
         sleep(1)
         main()
-        console.print("Script has been executed successfully",
-                      style="bold green")
     except Exception:
         console.print(str(Exception), style="bold red")
         sleep(20)
