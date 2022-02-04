@@ -5,8 +5,7 @@ from datetime import datetime
 from colored import fg
 
 # This is for .exe compiling since rich has problems with pyinstaller
-red, cyan, yellow, green = fg("light_red"), fg("light_cyan"),
-fg("light_yellow"), fg("light_green")
+red, cyan, yellow, green = fg("light_red"), fg("light_cyan"), fg("light_yellow"), fg("light_green")
 
 
 def pre_open_zoom():  # This is to reduce boot-up time when opening next time
