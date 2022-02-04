@@ -1,11 +1,10 @@
 import pyautogui
+from sys import exit
 from time import sleep
 from datetime import datetime
 from rich.console import Console
 
 console = Console()
-meetings = {"subject1": ("id", "password"), "subject2": (
-    "id", "password"), "subject3": ("id", "password")}
 
 
 def input_text_field(content, input_type):
@@ -14,16 +13,16 @@ def input_text_field(content, input_type):
     pyautogui.typewrite(content_type)
 
 
-def enter_meeting():
+def enter_meeting(subject, meetings):
     positions = {"desktop": (1359, 746), "zoom_icon": (112, 289),
                  "join_meeting": (537, 313), "meeting_id": (700, 495),
                  "enter_meeting": (686, 496), "close_zoom": (1109, 41)}
 
     for action in tuple([x for x in positions]):
-        delay = 0.8
+        delay = 0.75
         if action != "zoom_icon":
             if action in ("meeting_id", "enter_meeting"):
-                input_text_field(meetings["subject"], action)
+                input_text_field(meetings[subject], action)
                 delay = 1.5
             sleep(0.1)
             pyautogui.click(positions[action])
@@ -41,24 +40,51 @@ def check_time():
     duration = now - start
 
     day = day_of_week[(duration.days - 1) % 7]
-    hour = str(now).split()[1].split(".")[0]
+    hour = str(now).split()[1].split(".")[0][0:5]
 
     return day, hour
 
 
+def check_day(day):
+    classes = (("monday", "wednesday"), ("tuesday", "thursday"))
+
+    if day in ("sunday", "friday", "saturday"):
+        console.print("You have no classes today!", style="bold green")
+        sleep(25)
+        exit()
+
+    for meeting_days in classes:
+        if day in meeting_days:
+            return classes.index(meeting_days)
+
+
+def check_hour(hour):
+    pass
+
+
 def main():
+    meetings_one = {"subject1": ("id", "password"), "subject2": (
+        "id", "password"), "subject3": ("id", "password")}
+    meetings_two = {"subject1": ("id", "password"), "subject2": (
+        "id", "password"), "subject3": ("id", "password")}
+    subjects = (meetings_one, meetings_two)
+
     while True:
-        pass
+        time = tuple(check_time())
+        check_day(time[0])
+        check_hour(time[1])
+        sleep(1)
 
 
 if __name__ == "__main__":
     try:
         sleep(1)
-        enter_meeting()
+        main()
         console.print("Script has been executed successfully",
                       style="bold green")
     except Exception:
         console.print(str(Exception), style="bold red")
+        sleep(20)
 
 # 12:00:00
 # 12:55:00
