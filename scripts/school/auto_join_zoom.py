@@ -102,7 +102,3 @@ if __name__ == "__main__":
     except Exception:
         console.print(str(Exception), style="bold red")
         sleep(20)
-
-# 12:00:00
-# 12:55:00
-# 13:55:00
