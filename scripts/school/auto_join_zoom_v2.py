@@ -5,7 +5,8 @@ from datetime import datetime
 from colored import fg
 
 # This is for .exe compiling since rich has problems with pyinstaller
-red, cyan, yellow, green = fg("light_red"), fg("light_cyan"), fg("light_yellow"), fg("light_green")
+red, cyan, yellow, green = fg("light_red"), fg(
+    "light_cyan"), fg("light_yellow"), fg("light_green")
 
 
 def pre_open_zoom():  # This is to reduce boot-up time when opening next time
@@ -66,7 +67,7 @@ def check_day(day: str):
 
     if day in ("sunday", "friday", "saturday"):
         print(green + "You have no classes today!")
-        sleep(25)
+        sleep(30)
         exit()
 
     for meeting_days in classes:
@@ -83,6 +84,11 @@ def check_hour(hour: str):
     for hours in formatted:
         if hours[0] <= hour <= hours[1]:
             return formatted.index(hours)
+
+    if hour >= 1440:
+        print(green + "Class hours are over!")
+        sleep(30)
+        exit()
 
     return False
 

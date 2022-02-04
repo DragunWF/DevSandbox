@@ -65,7 +65,7 @@ def check_day(day: str):
 
     if day in ("sunday", "friday", "saturday"):
         console.print("You have no classes today!", style="bold green")
-        sleep(25)
+        sleep(30)
         exit()
 
     for meeting_days in classes:
@@ -82,6 +82,11 @@ def check_hour(hour: str):
     for hours in formatted:
         if hours[0] <= hour <= hours[1]:
             return formatted.index(hours)
+
+    if hour >= 1440:
+        console.print("Class hours are over!", style="bold green")
+        sleep(30)
+        exit()
 
     return False
 
