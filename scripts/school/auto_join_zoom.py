@@ -128,3 +128,4 @@ if __name__ == "__main__":
         main()
     except Exception:
         console.print(Exception, style="bold red")
+        sleep(30)
