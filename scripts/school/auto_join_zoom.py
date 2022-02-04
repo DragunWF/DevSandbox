@@ -7,6 +7,21 @@ from rich.console import Console
 console = Console()
 
 
+def pre_open_zoom():  # This is to reduce boot-up time when opening next time
+    positions = {"desktop": (1359, 746), "zoom_icon": (112, 289),
+                 "close_zoom": (1109, 41)}
+
+    for action in tuple([x for x in positions]):
+        if action != "zoom_icon":
+            pyautogui.click(positions[action])
+            sleep(0.3)
+        else:
+            pyautogui.doubleClick(positions[action])
+            sleep(3.5)
+
+    return "Zoom has been Pre-Opened!"
+
+
 def input_text_field(content, input_type):
     content_type = content[0] if input_type == "meeting_id" else content[1]
     sleep(0.1)
@@ -78,21 +93,31 @@ def main():
                     "subject2": ("id", "password"),
                     "subject3": ("id", "password")}
     meetings = (meetings_one, meetings_two)
-    inside_class = False
+    iteration, inside_class = 0, False
 
+    console.print(pre_open_zoom(), style="bold green")
     while True:
         time = tuple(check_time())
         meetings_index = check_day(time[0])
+        subjects = tuple([x for x in meetings[meetings_index]])
         subject_index = check_hour(time[1])
 
         if type(subject_index) != type(False) and not inside_class:
-            enter_meeting(subject_index, meetings[meetings_index])
+            iteration = 0
             inside_class = True
+            enter_meeting(subjects[subject_index], meetings[meetings_index])
         else:
-            console.print("No subject yet...", style="bold cyan")
+            iteration += 1
             inside_class = False
+            console.print(f"No subject yet... ({iteration})",
+                          style="bold cyan")
 
-        sleep(1)
+        if inside_class:
+            iteration += 1
+            console.print(f"Subject: {subjects[subject_index]} ({iteration})",
+                          style="bold red")
+
+        sleep(10)
 
 
 if __name__ == "__main__":
@@ -101,4 +126,3 @@ if __name__ == "__main__":
         main()
     except Exception:
         console.print(str(Exception), style="bold red")
-        sleep(20)
