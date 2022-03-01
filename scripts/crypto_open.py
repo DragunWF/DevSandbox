@@ -9,12 +9,12 @@ cyan = fg("light_cyan")
 
 def execute_clicks():
     positions = {"FirstCrypto": (1310, 20), "SecondCrypto": (1311, 114),
-                 "ThirdCrypto": (1312, 203), "FirstIcon": (569, 500),
-                 "OtherIcons": (620, 469), "Desktop": (1359, 746)}
+                 "ThirdCrypto": (1312, 203), "FirstIcon": (408, 528),
+                 "OtherIcons": (479, 509), "Desktop": (1359, 746)}
     actions = ("Desktop",
                "FirstCrypto", "FirstIcon", "Desktop",
                "SecondCrypto", "OtherIcons", "Desktop",
-               "ThirdCrypto", "OtherIcons", "Desktop")
+               "ThirdCrypto", "OtherIcons", "Desktop",)
 
     for position in actions:
         pyautogui.doubleClick(positions[position])
