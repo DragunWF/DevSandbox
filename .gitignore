@@ -1,4 +1,5 @@
 dist
+dump
 build
 __pycache__
 scripts/school/personalized
