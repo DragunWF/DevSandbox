@@ -1,28 +1,26 @@
 import pyautogui
 import keyboard
 import asyncio
-from time import sleep
-from sys import exit
 
 sleep_switch = False
 sleeping = False
 
 
-def sleep_in_bed():
+async def sleep_in_bed():
     global sleeping
-    positions = {"sleep": (), "enter": ()}
     sleeping = True
+    positions = {"sleep": (), "enter": ()}
 
     pyautogui.press("e")
     for position in tuple([x for x in positions]):
         pyautogui.click(positions[position])
-        sleep(0.25)
-        
-    sleep(25)
+        await asyncio.sleep(0.25)
+
+    await asyncio.sleep(25)
     sleeping = False
 
 
-def main():
+async def main():
     global sleep_switch
     while True:
         if keyboard.is_pressed("o"):
@@ -30,12 +28,12 @@ def main():
         elif keyboard.is_pressed("p"):
             sleep_switch = False
         elif keyboard.is_pressed("l"):
-            exit()
+            break
 
-        if sleep_switch:
-            sleep_in_bed()
-        sleep(0.025)
+        if sleep_switch and not sleeping:
+            asyncio.create_task(sleep_in_bed())
+        await asyncio.sleep(0.025)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
