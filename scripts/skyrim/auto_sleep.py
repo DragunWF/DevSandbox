@@ -1,9 +1,31 @@
 import asyncio
 import pydirectinput
 import keyboard
+import pyttsx3
+from colored import fg
+
+tts = pyttsx3.init("sapi5")
+voices = tts.getProperty("voices")
+tts.setProperty("voice", voices[0].id)
 
 sleep_switch = False
 sleeping = False
+
+
+def print_controls():
+    cyan, red, green, yellow = fg("light_cyan"), fg(
+        "light_red"), fg("light_green"), fg("light_yellow")
+    lines = [{"content": "Script Controls:", "color": cyan},
+             {"content": "V -> To turn on auto-sleep", "color": green},
+             {"content": "B -> To turn off auto-sleep", "color": yellow},
+             {"content": "N -> To terminate script", "color": red}]
+    for line in lines:
+        print(line["color"] + line["content"])
+
+
+async def text_to_speech(content):
+    tts.say(content)
+    tts.runAndWait()
 
 
 async def sleep_in_bed():
@@ -24,12 +46,17 @@ async def sleep_in_bed():
 
 async def main():
     global sleep_switch
+    asyncio.create_task(text_to_speech("Script is running!"))
+
     while True:
-        if keyboard.is_pressed("o"):
+        if keyboard.is_pressed("v"):
             sleep_switch = True
-        elif keyboard.is_pressed("p"):
+            await text_to_speech("Auto-sleep has been turned on")
+        elif keyboard.is_pressed("b"):
             sleep_switch = False
-        elif keyboard.is_pressed("l"):
+            await text_to_speech("Auto-sleep has been turned off")
+        elif keyboard.is_pressed("n"):
+            await text_to_speech("Script has been terminated")
             break
 
         if sleep_switch and not sleeping:
@@ -38,6 +65,7 @@ async def main():
 
 
 if __name__ == "__main__":
+    print_controls()
     asyncio.run(main())
 
 # Dump
