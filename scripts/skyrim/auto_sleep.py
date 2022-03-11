@@ -51,10 +51,10 @@ async def main():
     while True:
         if keyboard.is_pressed("v"):
             sleep_switch = True
-            await text_to_speech("Auto-sleep has been turned on")
+            await text_to_speech("Auto-sleep on")
         elif keyboard.is_pressed("b"):
             sleep_switch = False
-            await text_to_speech("Auto-sleep has been turned off")
+            await text_to_speech("Auto-sleep off")
         elif keyboard.is_pressed("n"):
             await text_to_speech("Script has been terminated")
             break
@@ -68,9 +68,9 @@ if __name__ == "__main__":
     print_controls()
     asyncio.run(main())
 
-# Dump
+# -----------------------------------------------------------------------
 # positions = {"sleep": (679, 363), "enter": (539, 424)}
 # for position in tuple([x for x in positions]):
 #     pydirectinput.doubleClick(*positions[position])
 #     await asyncio.sleep(0.25)
-# Commented this out because pydirectinput clicks doesn't work in-game
+# commented this out because pydirectinput clicks doesn't work in-game
