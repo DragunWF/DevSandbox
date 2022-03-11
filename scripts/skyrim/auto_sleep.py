@@ -40,7 +40,7 @@ async def sleep_in_bed():
     await asyncio.sleep(0.1)
     pydirectinput.press("enter")
 
-    await asyncio.sleep(30)
+    await asyncio.sleep(26)
     sleeping = False
 
 
