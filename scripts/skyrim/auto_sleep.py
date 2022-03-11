@@ -1,6 +1,6 @@
-import pyautogui
-import keyboard
 import asyncio
+import pydirectinput
+import keyboard
 
 sleep_switch = False
 sleeping = False
@@ -9,14 +9,16 @@ sleeping = False
 async def sleep_in_bed():
     global sleeping
     sleeping = True
-    positions = {"sleep": (), "enter": ()}
 
-    pyautogui.press("e")
-    for position in tuple([x for x in positions]):
-        pyautogui.click(positions[position])
-        await asyncio.sleep(0.25)
+    pydirectinput.press("e")
+    await asyncio.sleep(0.5)
+    pydirectinput.keyDown("d")
+    await asyncio.sleep(3)
+    pydirectinput.keyUp("d")
+    await asyncio.sleep(0.1)
+    pydirectinput.press("enter")
 
-    await asyncio.sleep(25)
+    await asyncio.sleep(30)
     sleeping = False
 
 
@@ -37,3 +39,10 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+# Dump
+# positions = {"sleep": (679, 363), "enter": (539, 424)}
+# for position in tuple([x for x in positions]):
+#     pydirectinput.doubleClick(*positions[position])
+#     await asyncio.sleep(0.25)
+# Commented this out because pydirectinput clicks doesn't work in-game
