@@ -15,10 +15,10 @@ sleeping = False
 def print_controls():
     cyan, red, green, yellow = fg("light_cyan"), fg(
         "light_red"), fg("light_green"), fg("light_yellow")
-    lines = [{"content": "Script Controls:", "color": cyan},
-             {"content": "V -> To turn on auto-sleep", "color": green},
-             {"content": "B -> To turn off auto-sleep", "color": yellow},
-             {"content": "N -> To terminate script", "color": red}]
+    lines = ({"content": "Script Controls:", "color": cyan},
+             {"content": "Numpad 1 -> To turn on auto-sleep", "color": green},
+             {"content": "Numpad 2 -> To turn off auto-sleep", "color": yellow},
+             {"content": "Numpad 3 -> To terminate script", "color": red})
     for line in lines:
         print(line["color"] + line["content"])
 
@@ -40,7 +40,7 @@ async def sleep_in_bed():
     await asyncio.sleep(0.1)
     pydirectinput.press("enter")
 
-    await asyncio.sleep(26)
+    await asyncio.sleep(26.5)
     sleeping = False
 
 
@@ -49,13 +49,13 @@ async def main():
     asyncio.create_task(text_to_speech("Script is running!"))
 
     while True:
-        if keyboard.is_pressed("v"):
+        if keyboard.is_pressed("num 1"):
             sleep_switch = True
             await text_to_speech("Auto-sleep on")
-        elif keyboard.is_pressed("b"):
+        elif keyboard.is_pressed("num 2"):
             sleep_switch = False
             await text_to_speech("Auto-sleep off")
-        elif keyboard.is_pressed("n"):
+        elif keyboard.is_pressed("num 3"):
             await text_to_speech("Script has been terminated")
             break
 
