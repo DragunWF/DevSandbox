@@ -4,3 +4,4 @@ build
 __pycache__
 scripts/school/personalized
 scripts/test
+config.py
