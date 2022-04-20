@@ -3,6 +3,8 @@ import json
 import random
 from sys import exit
 
+# Cancelled Project
+
 pygame.init()
 window = pygame.display.set_mode((700, 650))
 clock = pygame.time.Clock()
