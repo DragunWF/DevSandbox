@@ -2,9 +2,11 @@ import pyautogui
 from sys import exit
 from time import sleep
 from datetime import datetime
-from rich.console import Console
+from colored import fg
 
-console = Console()
+# This is for .exe compiling since rich has problems with pyinstaller
+red, cyan, yellow, green = fg("light_red"), fg(
+    "light_cyan"), fg("light_yellow"), fg("light_green")
 
 
 def pre_open_zoom():  # This is to reduce boot-up time when opening next time
@@ -57,14 +59,14 @@ def check_time():
     day = day_of_week[(duration.days - 1) % 7]
     hour = str(now).split()[1].split(".")[0][0:5]
 
-    return day, hour
+    return {"day": day, "hour": hour}
 
 
 def check_day(day: str):
     classes = (("monday", "wednesday"), ("tuesday", "thursday"))
 
     if day in ("sunday", "friday", "saturday"):
-        console.print("You have no classes today!", style="bold green")
+        print(green + "You have no classes today!")
         sleep(30)
         exit()
 
@@ -83,8 +85,8 @@ def check_hour(hour: str):
         if hours[0] <= hour <= hours[1]:
             return formatted.index(hours)
 
-    if hour >= 1440:
-        console.print("Class hours are over!", style="bold green")
+    if hour >= 1435:
+        print(green + "Class hours are over!")
         sleep(30)
         exit()
 
@@ -101,12 +103,16 @@ def main():
     meetings = (meetings_one, meetings_two)
     iteration, inside_class = 0, False
 
-    console.print(pre_open_zoom(), style="bold yellow")
+    time = check_time()
+    check_day(time["day"])
+    if time["hour"] < 1200:
+        print(yellow + pre_open_zoom())
+
     while True:
-        time = tuple(check_time())
-        meetings_index = check_day(time[0])
+        time = check_time()
+        meetings_index = check_day(time["day"])
         subjects = tuple([x for x in meetings[meetings_index]])
-        subject_index = check_hour(time[1])
+        subject_index = check_hour(time["hour"])
 
         if type(subject_index) != type(False) and not inside_class:
             iteration = 0
@@ -115,16 +121,14 @@ def main():
         elif type(subject_index) == type(False):
             iteration += 1
             inside_class = False
-            console.print(f"No subject yet... ({iteration})",
-                          style="bold cyan")
+            print(cyan + f"No subject yet... ({iteration})")
 
         if inside_class:
             iteration += 1
             title = " ".join(list(subjects[subject_index].split("_"))).title()
-            console.print(f"Subject: {title} ({iteration})",
-                          style="bold red")
+            print(red + f"Subject: {title} ({iteration})")
 
-        sleep(10)
+        sleep(3)
 
 
 if __name__ == "__main__":
@@ -132,5 +136,5 @@ if __name__ == "__main__":
         sleep(1)
         main()
     except Exception:
-        console.print(Exception, style="bold red")
+        print(red + Exception)
         sleep(30)
