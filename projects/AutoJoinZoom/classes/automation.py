@@ -2,6 +2,7 @@ import pyautogui
 import json
 from pathlib import Path
 from time import sleep
+from sys import exit
 
 from .time_checker import TimeChecker
 from .utils import Utils
@@ -9,20 +10,19 @@ from .utils import Utils
 
 class AutomationExecutor:
     def __init__(self):
-        config = json.loads(Path(Utils.get_path()).read_text())
-
+        config = json.loads(Path(Utils.get_path()).read_text())[0]
         self.positions = {"desktop": (1359, 746), "zoom_icon": (112, 289),
                           "join_meeting": (537, 313), "meeting_id": (700, 495),
                           "enter_meeting": (686, 496), "close_zoom": (1109, 41)}
-        self.meetings = ""
-        self.meeting_days = ""
+        self.meetings = config["meetings"]
+        self.meeting_days = config["meeting_days"]
 
-    def input_text_field(self, info, info_type):
+    def __input_text_field(self, info, info_type):
         content_type = info[0] if info_type == "meeting_id" else info[1]
         sleep(0.1)
         pyautogui.typewrite(content_type)
 
-    def enter_zoom_class(self):
+    def __enter_zoom_class(self):
         automation_steps = tuple([x for x in self.positions])
 
         for action in automation_steps:
@@ -37,6 +37,21 @@ class AutomationExecutor:
                 pyautogui.doubleClick(self.positions[action])
 
         sleep(delay)
+
+    def __check_day_for_meeting(self):
+        today = TimeChecker.check_day()
+
+        if today in self.meeting_days["no_classes"] and today in self.meeting_days["classes"]:
+            Utils.tts_print("An expected error has occured!", color="red")
+            raise Exception('Check your config, you have a day that exists both classes and no classes lists in your "meeting_days" object')
+
+        if today in self.meeting_days["no_classes"]:
+            Utils.tts_print("You have no classes today!", color="green")
+            sleep(15)
+            exit()
+        else:
+            Utils.colored_print("There are classes today...", color="yellow")
+            
 
     def start_automation(self):
         pass
