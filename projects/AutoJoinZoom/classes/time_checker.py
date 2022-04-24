@@ -28,7 +28,7 @@ class TimeChecker:
 
     @staticmethod
     def get_hour() -> str:
-        return str(datetime.now()).split()[1].split(".")[0][0:5]
+        return str(datetime.now()).split(" ")[1].split(".")[0][0:5]
 
     @staticmethod
     def get_day() -> str:
