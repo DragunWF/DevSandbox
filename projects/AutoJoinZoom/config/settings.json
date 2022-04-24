@@ -44,7 +44,7 @@
         "hour_of_meeting": ""
       }
     ],
-    "days": {
+    "meeting_days": {
       "classes": ["monday", "tuesday", "wednesday", "thursday"],
       "no_classes": ["friday", "saturday", "sunday"]
     }
