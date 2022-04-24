@@ -1,17 +1,23 @@
 import pyttsx3
 from colored import fg
 
+voice_engine = pyttsx3.init("sapi5")
+voices = voice_engine.getProperty("voices")
+voice_engine.setProperty("voice", voices[0].id)
+
 
 class Utils:
     @staticmethod
-    def text_to_speech(text):
-        pass
+    def text_to_speech(text : str):
+        voice_engine.say(text)
+        voice_engine.runAndWait()
 
     @staticmethod
-    def colored_print(text, color):
-        pass
+    def colored_print(text : str, color : str):
+        formatted_color = fg(f"light_{color}") if color != "white" else fg("white")
+        print(formatted_color + text)
 
     @staticmethod
-    def tts_print(text, color):
+    def tts_print(text : str, color : str):
         Utils.text_to_speech(text)
         Utils.colored_print(text, color)
