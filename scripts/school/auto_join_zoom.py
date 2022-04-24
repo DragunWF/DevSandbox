@@ -4,6 +4,9 @@ from time import sleep
 from datetime import datetime
 from colored import fg
 
+# Note, Don't mind the dirty code hehe. I mainly just speedran coding this
+# I plan on remaking it sometime...
+
 # This is for .exe compiling since rich has problems with pyinstaller
 red, cyan, yellow, green = fg("light_red"), fg(
     "light_cyan"), fg("light_yellow"), fg("light_green")
@@ -93,6 +96,13 @@ def check_hour(hour: str):
     return False
 
 
+def on_ready_checks():
+    time = check_time()
+    check_day(time["day"])
+    if int("".join(time["hour"].split(":"))) < 1200:
+        print(yellow + pre_open_zoom())
+
+
 def main():
     meetings_one = {"subject1": ("id", "password"),
                     "subject2": ("id", "password"),
@@ -103,12 +113,9 @@ def main():
     meetings = (meetings_one, meetings_two)
     iteration, inside_class = 0, False
 
-    time = check_time()
-    check_day(time["day"])
-    if time["hour"] < 1200:
-        print(yellow + pre_open_zoom())
-
+    on_ready_checks()
     while True:
+        print("passed")
         time = check_time()
         meetings_index = check_day(time["day"])
         subjects = tuple([x for x in meetings[meetings_index]])
@@ -135,6 +142,6 @@ if __name__ == "__main__":
     try:
         sleep(1)
         main()
-    except Exception:
-        print(red + Exception)
+    except Exception as error:
+        print(error)
         sleep(30)
