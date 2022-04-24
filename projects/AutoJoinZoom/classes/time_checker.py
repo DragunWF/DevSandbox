@@ -11,16 +11,24 @@ class TimeChecker:
         return f"{formatted_hour} {mid_day}"
 
     @staticmethod
-    def extract_month(date: str) -> str:
+    def get_month() -> str:
+        date = str(datetime.now()).split(" ")[0]
         months = ("january", "february", "march",
                   "april", "may", "june", "september",
                   "october", "november", "december")
-        return months[int(date.split("-")[1])].capitalize()
+        return months[int(date.split("-")[1]) - 1].capitalize()
+    
+    @staticmethod
+    def get_year():
+        return str(datetime.now()).split(" ")[0].split("-")[0]
+
+    @staticmethod
+    def get_day_of_month():
+        return str(datetime.now()).split(" ")[0].split("-")[2]
 
     @staticmethod
     def get_hour() -> str:
-        now = datetime.now()
-        return str(now).split()[1].split(".")[0][0:5]
+        return str(datetime.now()).split()[1].split(".")[0][0:5]
 
     @staticmethod
     def get_day() -> str:
