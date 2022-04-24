@@ -1,4 +1,5 @@
 from datetime import datetime
+from .utils import Utils
 
 
 class TimeChecker:
@@ -12,23 +13,23 @@ class TimeChecker:
 
     @staticmethod
     def get_month() -> str:
-        date = str(datetime.now()).split(" ")[0]
+        date = Utils.get_date_string()[0]
         months = ("january", "february", "march",
                   "april", "may", "june", "september",
                   "october", "november", "december")
         return months[int(date.split("-")[1]) - 1].capitalize()
-    
+
     @staticmethod
     def get_year():
-        return str(datetime.now()).split(" ")[0].split("-")[0]
+        return Utils.get_date_string()[0].split("-")[0]
 
     @staticmethod
     def get_day_of_month():
-        return str(datetime.now()).split(" ")[0].split("-")[2]
+        return Utils.get_date_string()[0].split("-")[2]
 
     @staticmethod
     def get_hour() -> str:
-        return str(datetime.now()).split(" ")[1].split(".")[0][0:5]
+        return Utils.get_date_string()[1].split(".")[0][0:5]
 
     @staticmethod
     def get_day() -> str:

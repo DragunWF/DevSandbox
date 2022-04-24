@@ -1,4 +1,3 @@
-from datetime import datetime
 from time import sleep
 from classes.automation import AutomationExecutor
 from classes.time_checker import TimeChecker

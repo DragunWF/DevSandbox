@@ -1,5 +1,6 @@
 import os
 import pyttsx3
+from datetime import datetime
 from colored import fg
 
 voice_engine = pyttsx3.init("sapi5")
@@ -22,12 +23,16 @@ class Utils:
     def tts_print(text: str, color: str):
         Utils.text_to_speech(text)
         Utils.colored_print(text, color)
-    
+
     @staticmethod
     def get_path() -> str:
         root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         while "\\" in root:
             root = root.replace("\\", "/")
         root = "".join([i if i != ":" else f"{i}/" for i in root])
-        
+
         return f"{root[0].upper()}{root[1:]}"
+
+    @staticmethod
+    def get_date_string() -> str:
+        return str(datetime.now()).split(" ")
