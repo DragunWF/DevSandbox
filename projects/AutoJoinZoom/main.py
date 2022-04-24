@@ -1,12 +1,18 @@
-import pyautogui
-from sys import exit
-from time import sleep
 from datetime import datetime
-from colored import fg
+from time import sleep
+from classes.automation import AutomationExecutor
+from classes.time_checker import TimeChecker
+
+
+def startup_greeting():
+    date = datetime.now().split(" ")[0]
+    hour = TimeChecker.format_hour(TimeChecker.get_hour())
 
 
 def main():
-    pass
+    startup_greeting()
+    automation_bot = AutomationExecutor()
+    automation_bot.start_automation()
 
 
 if __name__ == "__main__":
