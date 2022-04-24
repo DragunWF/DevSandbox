@@ -115,7 +115,6 @@ def main():
 
     on_ready_checks()
     while True:
-        print("passed")
         time = check_time()
         meetings_index = check_day(time["day"])
         subjects = tuple([x for x in meetings[meetings_index]])
