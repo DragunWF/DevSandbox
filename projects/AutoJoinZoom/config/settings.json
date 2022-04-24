@@ -1,0 +1,52 @@
+[
+  {
+    "meetings": [
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      },
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      },
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      },
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      },
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      },
+      {
+        "subject_title": "title",
+        "meeting_id": "0",
+        "meeting_password": "sample",
+        "day_of_meeting": "",
+        "hour_of_meeting": ""
+      }
+    ],
+    "days": {
+      "classes": ["monday", "tuesday", "wednesday", "thursday"],
+      "no_classes": ["friday", "saturday", "sunday"]
+    }
+  }
+]
