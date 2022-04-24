@@ -39,19 +39,24 @@ class AutomationExecutor:
         sleep(delay)
 
     def __check_day_for_meeting(self):
-        today = TimeChecker.check_day()
+        today = TimeChecker.get_day()
+        class_days = self.meeting_days["classes"]
+        no_class_days = self.meeting_days["no_classes"]
 
-        if today in self.meeting_days["no_classes"] and today in self.meeting_days["classes"]:
+        if today in class_days and today in no_class_days:
             Utils.tts_print("An expected error has occured!", color="red")
-            raise Exception('Check your config, you have a day that exists both classes and no classes lists in your "meeting_days" object')
+            raise Exception(
+                'Check your config, you have a day that exists both classes and no classes lists in your "meeting_days" object')
 
-        if today in self.meeting_days["no_classes"]:
+        if today in no_class_days:
             Utils.tts_print("You have no classes today!", color="green")
             sleep(15)
             exit()
         else:
             Utils.colored_print("There are classes today...", color="yellow")
-            
+
+    def __check_hour_for_meeting(self):
+        pass
 
     def start_automation(self):
         pass
