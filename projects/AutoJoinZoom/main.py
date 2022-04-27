@@ -9,7 +9,7 @@ def startup_greeting():
     year = TimeGetter.get_year()
     month = TimeGetter.get_month()
     day_of_month = TimeGetter.get_day_of_month()
-    day_of_week = TimeGetter.get_day()
+    day_of_week = TimeGetter.get_day().capitalize()
     hour = Utils.format_hour(TimeGetter.get_hour())
 
     Utils.colored_print(f"{month} {day_of_month} {year} | {hour} {day_of_week}",
