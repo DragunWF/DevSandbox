@@ -1,4 +1,4 @@
-import pyautogui
+import webbrowser
 import json
 from pathlib import Path
 from time import sleep
@@ -10,53 +10,49 @@ from .utils import Utils
 
 class AutomationExecutor:
     def __init__(self):
-        config = json.loads(Path(Utils.get_path()).read_text())[0]
-        self.positions = {"desktop": (1359, 746), "zoom_icon": (112, 289),
-                          "join_meeting": (537, 313), "meeting_id": (700, 495),
-                          "enter_meeting": (686, 496), "close_zoom": (1109, 41)}
-        self.meetings = config["meetings"]
-        self.meeting_days = config["meeting_days"]
+        settings = json.loads(Path(Utils.get_path()).read_text())[0]
+        self.__meetings = settings["meetings"]
+        self.__meetings_today = []
+        self.__current_meeting = {}
+        self.__inside_meeting = False
 
-    def __input_text_field(self, info, info_type):
-        content_type = info[0] if info_type == "meeting_id" else info[1]
-        sleep(0.1)
-        pyautogui.typewrite(content_type)
+    def __enter_zoom_class(self, meeting: dict):
+        Utils.tts_print(f"Entering {meeting['name']}", color="yellow")
+        webbrowser.open(meeting["link"])
+        self.__inside_meeting = True
 
-    def __enter_zoom_class(self):
-        automation_steps = tuple([x for x in self.positions])
-
-        for action in automation_steps:
-            delay = 0.3
-            if action != "zoom_icon":
-                if action in ("meeting_id", "enter_meeting"):
-                    # self.input_text_field(meetings[subject], action)
-                    delay = 1.5
-                sleep(0.1)
-                pyautogui.click(self.positions[action])
-            else:
-                pyautogui.doubleClick(self.positions[action])
-
-        sleep(delay)
-
-    def __check_day_for_meeting(self):
+    def __check_day_for_meetings(self):
         today = TimeChecker.get_day()
-        class_days = self.meeting_days["classes"]
-        no_class_days = self.meeting_days["no_classes"]
 
-        if today in class_days and today in no_class_days:
-            Utils.tts_print("An expected error has occured!", color="red")
-            raise Exception(
-                'Check your config, you have a day that exists both classes and no classes lists in your "meeting_days" object')
+        class_days = []
+        for meeting in self.__meetings:
+            class_days.append(meeting["days"])
 
-        if today in no_class_days:
+        if not today in set(class_days):
             Utils.tts_print("You have no classes today!", color="green")
             sleep(15)
             exit()
-        else:
-            Utils.colored_print("There are classes today...", color="yellow")
+
+        for meeting in self.__meetings:
+            for day in meeting["days"]:
+                if today == day:
+                    self.__meetings_today.append(meeting)
+                    break
+
+        meetings_names = ", ".join([i["name"] for i in self.__meetings_today])
+        Utils.colored_print(f"Your meetings today are {meetings_names.strip()}")
 
     def __check_hour_for_meeting(self):
-        pass
+        if not self.__meetings_today:
+            raise Exception("Expected error occured: You forgot to" +
+                            " call __check_day_for_meetings() first...")
+
+        current_hour = Utils.convert_hour_to_int(TimeChecker.get_hour())
+        for meeting in self.__meetings:
+            meeting_hour = Utils.convert_hour_to_int(meeting["hour"]["start"])
 
     def start_automation(self):
-        pass
+        self.__check_day_for_meetings()
+
+        while True:
+            self.__check_hour_for_meeting()
