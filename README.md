@@ -1,5 +1,12 @@
 # Python-Mini-Projects
 
+![GitHub Repo stars](https://img.shields.io/github/stars/DragunWF/Python-Mini-Projects?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/DragunWF/Python-Mini-Projects?style=social)
+
+![GitHub top language](https://img.shields.io/github/languages/top/DragunWF/Python-Mini-Projects)
+![Lines of code](https://img.shields.io/tokei/lines/github/DragunWF/Python-Mini-Projects)
+![GitHub repo size](https://img.shields.io/github/repo-size/DragunWF/Python-Mini-Projects)
+
 ## Description
 
 Hello, this is just a repository for my mini-projects and mini-scripts in Python. I mainly just
