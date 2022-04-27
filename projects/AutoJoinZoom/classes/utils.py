@@ -34,6 +34,14 @@ class Utils:
         return f"{root[0].upper()}{root[1:]}"
 
     @staticmethod
+    def format_hour(hour: str) -> str:
+        hour_value = int(hour.split(":")[0])
+        hour_of_day = hour_value - 12 if hour_value >= 13 else hour_value
+        formatted_hour = f'{hour_of_day}:{hour.split(":")[1]}'
+        mid_day = "PM" if hour_value >= 12 else "AM"
+        return f"{formatted_hour} {mid_day}"
+
+    @staticmethod
     def get_date_string() -> str:
         return str(datetime.now()).split(" ")
     

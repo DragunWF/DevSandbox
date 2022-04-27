@@ -2,15 +2,7 @@ from datetime import datetime
 from .utils import Utils
 
 
-class TimeChecker:
-    @staticmethod
-    def format_hour(hour: str) -> str:
-        hour_value = int(hour.split(":")[0])
-        hour_of_day = hour_value - 12 if hour_value >= 13 else hour_value
-        formatted_hour = f'{hour_of_day}:{hour.split(":")[1]}'
-        mid_day = "PM" if hour_value >= 12 else "AM"
-        return f"{formatted_hour} {mid_day}"
-
+class TimeGetter:
     @staticmethod
     def get_month() -> str:
         date = Utils.get_date_string()[0]
