@@ -1,52 +1,43 @@
 [
   {
+    "chrome_profile": "",
     "meetings": [
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["monday", "wednesday"],
+        "hour": { "start": "12:00", "end": "12:40" }
       },
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["monday", "wednesday"],
+        "hour": { "start": "12:55", "end": "13:35" }
       },
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["monday", "wednesday"],
+        "hour": { "start": "13:55", "end": "14:35" }
       },
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["tuesday", "thursday"],
+        "hour": { "start": "12:00", "end": "12:40" }
       },
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["tuesday", "thursday"],
+        "hour": { "start": "12:55", "end": "13:35" }
       },
       {
-        "subject_title": "title",
-        "meeting_id": "0",
-        "meeting_password": "sample",
-        "day_of_meeting": "",
-        "hour_of_meeting": ""
+        "name": "name",
+        "link": "",
+        "days": ["tuesday", "thursday"],
+        "hour": { "start": "13:55", "end": "14:35" }
       }
-    ],
-    "meeting_days": {
-      "classes": ["monday", "tuesday", "wednesday", "thursday"],
-      "no_classes": ["friday", "saturday", "sunday"]
-    }
+    ]
   }
 ]
