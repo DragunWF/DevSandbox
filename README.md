@@ -3,7 +3,7 @@
 ## Description
 
 Hello, this is just a repository for my mini-projects and mini-scripts in Python. I mainly just
-use this repository to store my test projects and my small automation scripts.
+use this repository to store my mini projects, test projects, and my small automation scripts.
 
 ## Mini-Projects
 
