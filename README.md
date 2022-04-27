@@ -14,3 +14,7 @@ use this repository to store my test projects and my small automation scripts.
 
 - [My Website](https://dragunwf.herokuapp.com/)
 - [My Discord Server](https://discord.gg/9JdnnPN)
+
+## Contact
+
+If you have any questions, you can contact me via discord. My discord tag is **DragonWF#9321**.
