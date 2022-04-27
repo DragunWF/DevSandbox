@@ -52,7 +52,7 @@ class AutomationExecutor:
                     break
 
         meetings_names = ", ".join([i["name"] for i in self.__meetings_today])
-        Utils.colored_print(f"Your meetings today are {meetings_names.strip()}")
+        Utils.colored_print(f"Your meetings today are {meetings_names}")
 
     def __check_hour_for_meeting(self):
         if not self.__meetings_today:
