@@ -36,3 +36,7 @@ class Utils:
     @staticmethod
     def get_date_string() -> str:
         return str(datetime.now()).split(" ")
+    
+    @staticmethod
+    def hour_to_int(hour: str) -> int:
+        return int("".join(hour.split(":")))
