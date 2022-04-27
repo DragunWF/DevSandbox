@@ -37,7 +37,7 @@ class DatabaseTool:
 
         date, hour = self.__get_date_and_hour()
         with sqlite3.connect(self.__path) as db:
-            db.execute("INSERT INTO joins (meeting_id, date_joined, hour_joined) " +
+            db.execute("INSERT INTO meeting_joins (meeting_id, date_joined, hour_joined) " +
                        f'VALUES ({meeting_id}, "{date}", "{hour}")')
             db.commit()
 
