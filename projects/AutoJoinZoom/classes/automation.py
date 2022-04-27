@@ -9,13 +9,14 @@ from .utils import Utils
 
 
 class AutomationExecutor:
-    def __init__(self):
+    def __init__(self, database_tool: object):
         settings = json.loads(Path(f"{Utils.get_path()}/config/settings.json").read_text())[0]
         self.__meetings = settings["meetings"]
         self.__meetings_today = []
         self.__current_meeting = {}
         self.__inside_meeting = False
         self.__iterations = 0
+        self.__db_tool = database_tool
 
     def __enter_meeting(self, meeting: dict):
         Utils.tts_print(f"Entering {meeting['name']}", color="green")
@@ -23,6 +24,7 @@ class AutomationExecutor:
         self.__current_meeting = meeting
         self.__inside_meeting = True
         self.__iterations = 0
+        self.__db_tool.insert_meeting_join_record(meeting["name"])
 
     def __check_if_meeting_ended(self):
         current_hour = Utils.hour_to_int(TimeChecker.get_hour())
