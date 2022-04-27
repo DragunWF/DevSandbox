@@ -4,7 +4,7 @@ from pathlib import Path
 from time import sleep
 from sys import exit
 
-from .time_checker import TimeChecker
+from .time_getter import TimeGetter
 from .utils import Utils
 
 
@@ -27,7 +27,7 @@ class AutomationExecutor:
         self.__db_tool.insert_meeting_join_record(meeting["name"])
 
     def __check_if_meeting_ended(self):
-        current_hour = Utils.hour_to_int(TimeChecker.get_hour())
+        current_hour = Utils.hour_to_int(TimeGetter.get_hour())
         end_hour = Utils.hour_to_int(self.__current_meeting["hour"]["end"])
         if current_hour > end_hour:
             self.__meetings_today.pop(self.__meetings_today.index(self.__current_meeting))
@@ -36,7 +36,7 @@ class AutomationExecutor:
             self.__iterations = 0
 
     def __check_day_for_meetings(self):
-        today = TimeChecker.get_day()
+        today = TimeGetter.get_day()
 
         class_days = []
         for meeting in self.__meetings:
@@ -62,7 +62,7 @@ class AutomationExecutor:
             raise Exception("Call __check_day_for_meetings() first before this function!")
 
         meetings_left_today = []
-        current_hour = Utils.hour_to_int(TimeChecker.get_hour())
+        current_hour = Utils.hour_to_int(TimeGetter.get_hour())
         for meeting in self.__meetings_today:
             end_hour = Utils.hour_to_int(meeting["hour"]["end"])
             if end_hour > current_hour:
@@ -79,7 +79,7 @@ class AutomationExecutor:
                                 color="green")
 
     def __check_hour_for_meeting(self):
-        current_hour = Utils.hour_to_int(TimeChecker.get_hour())
+        current_hour = Utils.hour_to_int(TimeGetter.get_hour())
         for meeting in self.__meetings:
             start_hour = Utils.hour_to_int(meeting["hour"]["start"])
             end_hour = Utils.hour_to_int(meeting["hour"]["end"])

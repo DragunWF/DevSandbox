@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from .time_checker import TimeChecker
+from .time_getter import TimeGetter
 from .utils import Utils
 
 
@@ -15,7 +15,7 @@ class DatabaseTool:
         return "_".join(name.lower().split(" "))
 
     def __get_date_and_hour(self):
-        return Utils.get_date_string()[0], TimeChecker.format_hour(TimeChecker.get_hour())
+        return Utils.get_date_string()[0], Utils.format_hour(TimeGetter.get_hour())
 
     def __fill_meeting_names(self):
         with sqlite3.connect(self.__path) as db:
