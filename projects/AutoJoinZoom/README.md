@@ -6,6 +6,10 @@ Hello! I created this mainly to automatically join my own zoom classes. The code
 personalized for my own convenience but just in case if you wanna know how to get it to work
 I'll be providing the details down below.
 
+I had a script before that also auto-joins me to my zoom classes but with less features and
+less reliability which you find at [this link](https://github.com/DragunWF/Python-Mini-Projects/blob/main/scripts/school/auto_join_zoom.py). I mainly created this new one as an improved version
+of that script.
+
 ## Details
 
 - To be able to join a zoom meeting, you first have to go to `config/settings.json` and inside
@@ -43,7 +47,7 @@ I'll be providing the details down below.
 
 ![Picture of confirmation tab](img/on_browser_opened.PNG)
 
-- There's also an SQLite database in the `sql` directory that just stores the meetings you join,
+- There's also an **SQLite database** in the `sql` directory that just stores the meetings you join,
   of when you join them, and when you open the program.
 - One last note, is that I mainly use this by compiling my program to an `.exe` file with pyinstaller
   then just changing the values in `config/settings.json` to my meetings. And of course, I hid them
