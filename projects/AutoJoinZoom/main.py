@@ -1,6 +1,7 @@
 from time import sleep
 from classes.automation import AutomationExecutor
 from classes.time_checker import TimeChecker
+from classes.db_tool import DatabaseTool
 from classes.utils import Utils
 
 
@@ -17,7 +18,9 @@ def startup_greeting():
 
 def main():
     startup_greeting()
-    automation_bot = AutomationExecutor()
+    db_tool = DatabaseTool()
+    db_tool.insert_program_opened_record()
+    automation_bot = AutomationExecutor(db_tool)
     automation_bot.start_automation()
 
 
