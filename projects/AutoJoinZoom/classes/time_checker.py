@@ -20,11 +20,11 @@ class TimeChecker:
         return months[int(date.split("-")[1]) - 1].capitalize()
 
     @staticmethod
-    def get_year():
+    def get_year() -> str:
         return Utils.get_date_string()[0].split("-")[0]
 
     @staticmethod
-    def get_day_of_month():
+    def get_day_of_month() -> str:
         return Utils.get_date_string()[0].split("-")[2]
 
     @staticmethod
