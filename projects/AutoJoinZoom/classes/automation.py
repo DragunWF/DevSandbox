@@ -54,12 +54,29 @@ class AutomationExecutor:
 
         meetings_names = ", ".join([i["name"] for i in self.__meetings_today])
         Utils.colored_print(f"Your meetings today are {meetings_names}", color="yellow")
+    
+    def __check_meetings_left_today(self):
+        if not self.__meetings_today:
+            raise Exception("Call __check_day_for_meetings() first before this function!")
+
+        meetings_left_today = []
+        current_hour = Utils.hour_to_int(TimeChecker.get_hour())
+        for meeting in self.__meetings_today:
+            end_hour = Utils.hour_to_int(meeting["hour"]["end"])
+            if end_hour > current_hour:
+                meetings_left_today.append(meeting)
+        self.__meetings_today = meetings_left_today
+
+        meeting_count = len(self.__meetings_today)
+        if meeting_count:
+            meeting_string = "meetings" if meeting_count > 1 else "meeting"
+            Utils.colored_print(f"You have {meeting_count} {meeting_string} left today",
+                                color="green")
+        else:
+            Utils.colored_print("You have no more meetings left today!", 
+                                color="green")
 
     def __check_hour_for_meeting(self):
-        if not self.__meetings_today:
-            raise Exception("Expected error occured: You forgot to" +
-                            " call __check_day_for_meetings() first...")
-
         current_hour = Utils.hour_to_int(TimeChecker.get_hour())
         for meeting in self.__meetings:
             start_hour = Utils.hour_to_int(meeting["hour"]["start"])
@@ -70,22 +87,22 @@ class AutomationExecutor:
 
     def start_automation(self):
         self.__check_day_for_meetings()
+        self.__check_meetings_left_today()
 
         while True:
             self.__iterations += 1
 
+            if not self.__meetings_today:
+                Utils.tts_print("Meeting hours are over!", color="green")
+                sleep(15)
+                exit()
+
             if not self.__inside_meeting:
-                Utils.colored_print(
-                    f"No meeting ({self.__iterations})", color="yellow")
+                Utils.colored_print(f"No meeting ({self.__iterations})", color="yellow")
                 self.__check_hour_for_meeting()
             else:
                 Utils.colored_print(f"Meeting: {self.__current_meeting['name']} ({self.__iterations})",
                                     color="red")
                 self.__check_if_meeting_ended()
 
-            if not self.__meetings_today:
-                Utils.tts_print("Meeting hours are over!", color="green")
-                sleep(15)
-                exit()
-            
-            sleep(2)
+            sleep(3)
