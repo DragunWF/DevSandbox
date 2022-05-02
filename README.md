@@ -12,7 +12,7 @@ use this repository to store my mini projects, test projects, and my small autom
 ## Mini-Projects
 
 - [AutoJoinZoom](https://github.com/DragunWF/Python-Mini-Projects/tree/main/projects/AutoJoinZoom) - An
-  automation software that automatically joins me in my zoom classes.
+  automation bot that automatically joins me in my zoom classes. [(Now moved to its own repository)](https://github.com/DragunWF/AutoJoinZoom)
 
 ## Links to my other stuff:
 
