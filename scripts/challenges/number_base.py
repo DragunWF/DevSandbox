@@ -15,7 +15,6 @@ def convert_to_binary(num):
 def convert_to_hexadecimal(num):
     letters = ("A", "B", "C", "D", "E", "F")
     output = ""
-    remainder = None
 
     while num != 0:
         remainder = num % 16
