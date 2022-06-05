@@ -1,4 +1,4 @@
-# Python-Mini-Projects
+# Mini-Scripts
 
 ![GitHub top language](https://img.shields.io/github/languages/top/DragunWF/Python-Mini-Projects)
 ![Lines of code](https://img.shields.io/tokei/lines/github/DragunWF/Python-Mini-Projects)
