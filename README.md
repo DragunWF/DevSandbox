@@ -6,8 +6,9 @@
 
 ## Description
 
-Hello, this is just a repository for my mini-projects and mini-scripts in Python. I mainly just
-use this repository to store my mini projects, test projects, and my small automation scripts.
+Hello, this is just a repository for my mini-scripts and testing. This is also home to some of
+my small automation scripts used for my own needs, whether that may be automating tasks in
+video games or doing some cheeky things in the browser.
 
 ## Links to my other stuff:
 
