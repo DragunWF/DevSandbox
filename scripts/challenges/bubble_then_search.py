@@ -42,13 +42,11 @@ def stringify(array: int) -> list:
 def main():
     array = generate_random_array(10)
     sorted_array = bubble_sort([*array])
-    print(
-        f"Original Array: {' '.join(stringify(array))}\nSorted Array: {' '.join(stringify(sorted_array))}")
+    print(f"Original Array: {' '.join(stringify(array))}\nSorted Array: {' '.join(stringify(sorted_array))}")
 
     element_to_search = 15
     element_index = binary_search(sorted_array, element_to_search)
-    print(
-        f"Index of {element_to_search}: {element_index if element_index != -1 else 'None'}")
+    print(f"Index of {element_to_search}: {element_index if element_index != -1 else 'None'}")
 
 
 main()
