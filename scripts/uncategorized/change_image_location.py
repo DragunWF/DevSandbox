@@ -12,7 +12,13 @@ def main():
         print(f'Moving "{file}" to "{image_dir}"')
         move_file(f"{desktop_dir}/{file}",
                   f"{image_dir}/{file}")
-    print("\nFiles have been moved!\n")
+
+    files_moved = len(image_files)
+    if files_moved:
+        file_word = "files" if files_moved > 1 else "file"
+        print(f"\n{files_moved} {file_word} have been moved!\n")
+    else:
+        print("There are no image files to move!\n")
 
 
 def get_images(directory: str) -> list:
