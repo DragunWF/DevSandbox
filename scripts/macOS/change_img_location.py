@@ -24,7 +24,7 @@ def main():
 def get_images(directory: str) -> list:
     output = []
     files = os.listdir(directory)
-    image_extensions = ("png", "jpg", "webp")
+    image_extensions = ("png", "jpg", "webp", "jpeg")
     for file in files:
         file_extension = file.split(".")[-1].lower()
         if file_extension in image_extensions:
