@@ -11,8 +11,8 @@ def main(user_input: list):
         reversed_byte.reverse()
 
         place, sum = 1, 0
-        for i in range(len(byte)):
-            sum += int(reversed_byte[i]) * place
+        for digit in reversed_byte:
+            sum += int(digit) * place
             place *= 2
 
         output.append(chr(sum))
