@@ -5,7 +5,7 @@ from rich import print
 def main():
     while True:
         try:
-            r = round(eval(input()), 2)
+            r = round(eval(input("Equation: ")), 2)
             print(f"Result: {r}")
         except Exception:
             print("Invalid input!")
