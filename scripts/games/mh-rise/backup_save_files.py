@@ -4,7 +4,6 @@ from rich import print
 
 save_location = r"E:\Steam\userdata\240879930\1446780\remote\win64_save"
 backup_location = r"E:\Backup\Monster-Hunter-Rise\Save-Files"
-backup_count = None
 
 
 def copy_files(dir: str, files: list) -> None:
