@@ -36,7 +36,7 @@ def main() -> None:
     os.makedirs(new_backup_location)
     copy_files(new_backup_location, save_files)
     backup_place = f"{backup_count}{ordinal_place(backup_count)}"
-    print(f"\nThe {backup_place} backup has been created!\n")
+    print(f"The {backup_place} backup has been created!\n")
 
 
 if __name__ == "__main__":
