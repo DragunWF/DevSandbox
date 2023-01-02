@@ -12,7 +12,7 @@ def copy_files(dir: str, files: list) -> None:
         save_file_location = f"{save_location}\\{save_file}"
         new_backup_location = f"{dir}\\{save_file}"
         shutil.copyfile(save_file_location, new_backup_location)
-        print(f"Copying {save_file_location} to {new_backup_location}\n")
+        print(f"Copied {save_file_location} to {new_backup_location}\n")
 
 
 def ordinal_place(num: int) -> str:
