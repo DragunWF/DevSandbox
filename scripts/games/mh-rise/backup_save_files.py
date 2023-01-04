@@ -16,14 +16,9 @@ def copy_files(dir: str, files: list) -> None:
 
 
 def ordinal_place(num: int) -> str:
-    last_place = str(num)[-1]
-    if last_place == "1":
-        return "st"
-    elif last_place == "2":
-        return "nd"
-    elif last_place == "3":
-        return "rd"
-    return "th"
+    last_digit = str(num)[-1]
+    ordinals = {"1": "st", "2": "nd", "3": "rd"}
+    return ordinals[last_digit] if last_digit in ordinals else "th"
 
 
 def main() -> None:
