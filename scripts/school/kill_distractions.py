@@ -11,7 +11,7 @@ def main():
             command = f"powershell.exe ps {process} | kill"
             subprocess.run(command)
         print(f"[Command Successfully Ran]: Iteration: {iterations}")
-        sleep(15)
+        sleep(60)
 
 
 if __name__ == '__main__':
