@@ -9,7 +9,7 @@ from rich import print
 
 
 def main():
-    n = 5
+    n = 5  # 1 to 9 only
     for i in range(1, n + 1):
         print(" " * (n - i), end="")
         for j in range(1, i * 2):
