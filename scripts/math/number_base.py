@@ -28,14 +28,19 @@ def convert_to_hexadecimal(num):
     return output[::-1]
 
 
+def test(test_cases, func):
+    for i in range(len(test_cases)):
+        result = func(test_cases[i][0])
+        expected = test_cases[i][1]
+        print(f"Test Case #{i + 1}: Result: {result} | Success: {result == expected}")
+
+
 def main():
     print("Binary Tests:")
-    for case in binary_tests:
-        print(convert_to_binary(case[0]) == case[1])
+    test(binary_tests, convert_to_binary)
 
-    print("\nHexidecimal Tests")
-    for case in hexidecimal_tests:
-        print(convert_to_hexadecimal(case[0]) == case[1])
+    print("\nHexadecimal Tests")
+    test(hexidecimal_tests, convert_to_hexadecimal)
 
 
 if __name__ == '__main__':
