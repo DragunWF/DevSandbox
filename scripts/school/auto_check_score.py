@@ -67,20 +67,23 @@ MY_ANSWERS = """
 
 
 def main():
+    print()
     score = 0
     my_answers, correct_answers = convert(MY_ANSWERS), convert(CORRECT_ANSWERS)
 
     for i in range(len(correct_answers)):
         correct = get_answer(correct_answers[i])
-        if correct == "bonus":
-            score += 1
-            continue
-        if get_answer(my_answers[i]) == correct:
+        answer = get_answer(my_answers[i])
+        is_correct = answer == correct or correct == "bonus"
+
+        print(f"{i + 1}. {answer} - {is_correct}", end="")
+        if is_correct:
             score += 1
         else:
-            print(f"{i}: {correct}")
+            print(f" = {correct}", end="")
+        print()
 
-    print(f"{score}/{len(correct_answers)}")
+    print(f"\nScore: {score}/{len(correct_answers)}")
 
 
 def convert(value: str):
