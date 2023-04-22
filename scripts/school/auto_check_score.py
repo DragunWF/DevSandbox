@@ -86,11 +86,11 @@ def main():
     print(f"\nScore: {score}/{len(correct_answers)}")
 
 
-def convert(value: str):
+def convert(value: str) -> str:
     return value.strip().split("\n")
 
 
-def get_answer(value: str):
+def get_answer(value: str) -> str:
     return value.split(".")[1].strip()
 
 
