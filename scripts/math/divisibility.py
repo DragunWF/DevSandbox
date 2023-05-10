@@ -31,7 +31,7 @@ class DivisibilityGame:
         return len(str(number))
 
     def __generate_header(self) -> str:
-        output = [f"{self.__range[1] * ' '}   "]
+        output = [f"{self.__digits_len(self.__range[1]) * ' '} "]
         for i in range(self.__divisor_range[0], self.__divisor_range[1] + 1):
             output.append(str(i))
         return " | ".join(output)
