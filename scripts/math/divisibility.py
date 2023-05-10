@@ -3,7 +3,6 @@
 
 import random
 from rich import print
-from colored import fg
 
 
 class DivisibilityGame:
