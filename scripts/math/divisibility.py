@@ -68,7 +68,7 @@ class Utils:
         try:
             output = int(
                 input("Input the amount of numbers you want to solve with divisibility: "))
-        except TypeError:
+        except ValueError:
             return Utils.choose_number()
         return output
 
