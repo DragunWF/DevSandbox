@@ -45,12 +45,33 @@ class DivisibilityGame:
             output.append(f"{cell}{(self.__digits_len(i) - 1) * ' '}")
         return " | ".join(output)
 
+    def __prompt_user(self) -> None:
+        print("Numbers: ", end="")
+        for i in range(len(self.__chosen_numbers)):
+            print(self.__chosen_numbers[i],
+                  end=" " if (i + 1) % 5 != 0 else "\n")
+        input("\nEnter anything to show answers ")
+        print()
+
     def play(self) -> None:
         self.__generate_numbers()
+        self.__prompt_user()
+
         table = self.__generate_table()
         for row in table:
             print(row)
 
 
+class Utils:
+    @staticmethod
+    def choose_number() -> int:
+        try:
+            output = int(
+                input("Input the amount of numbers you want to solve with divisibility: "))
+        except TypeError:
+            return Utils.choose_number()
+        return output
+
+
 if __name__ == "__main__":
-    DivisibilityGame(100).play()
+    DivisibilityGame(Utils.choose_number()).play()
