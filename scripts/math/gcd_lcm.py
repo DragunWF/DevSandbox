@@ -1,3 +1,5 @@
+# Not Finished
+
 import random
 from rich import print
 
