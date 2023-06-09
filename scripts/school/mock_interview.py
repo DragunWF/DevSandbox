@@ -1,7 +1,7 @@
 import pyttsx3
 from random import randint
 
-voice_engine = pyttsx3.init("sapi5")
+voice_engine = pyttsx3.init("nsss")
 voices = voice_engine.getProperty("voices")
 voice_engine.setProperty("voice", voices[0].id)
 
