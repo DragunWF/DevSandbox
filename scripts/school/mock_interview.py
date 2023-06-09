@@ -46,7 +46,7 @@ def main():
     print("Welcome to the interview program!")
     while len(questions) > 0:
         question = choose_random_question()
-        print(f"Question: {question}")
+        print(f"Question {len(asked_questions)}: {question}")
         text_to_speech(question)
         input("Type anything after speaking your answer ")
     text_to_speech("The interview has concluded!")
