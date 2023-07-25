@@ -8,4 +8,9 @@ function sumNumbers(n) {
   return sum;
 }
 
+function sumNumbersConstantTime(n) {
+  return (n * (n + 1)) / 2;
+}
+
 console.log(sumNumbers(n));
+console.log(sumNumbersConstantTime(n));
