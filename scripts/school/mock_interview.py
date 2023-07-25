@@ -1,7 +1,7 @@
 import pyttsx3
 from random import randint
 
-voice_engine = pyttsx3.init("sapi5")
+voice_engine = pyttsx3.init("nsss")
 voices = voice_engine.getProperty("voices")
 voice_engine.setProperty("voice", voices[0].id)
 
@@ -49,7 +49,10 @@ def main():
         print(f"Question {len(asked_questions)}: {question}")
         text_to_speech(question)
         input("Type anything after speaking your answer ")
-    text_to_speech("The interview has concluded!")
+
+    outro_text = "The interview has concluded!"
+    print(outro_text)
+    text_to_speech(outro_text)
 
 
 if __name__ == '__main__':
