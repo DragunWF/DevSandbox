@@ -1,4 +1,4 @@
-const n = 10;
+const n = 6;
 
 function sumNumbers(n) {
   let sum = 0;
