@@ -59,7 +59,7 @@ function main() {
 
   sortByAttribute("stamina");
   displayPlayers("Sort by stamina");
-  
+
   sortByAttribute("experience");
   displayPlayers("Sort by experience");
 }
