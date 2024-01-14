@@ -10,5 +10,4 @@ def main() -> None:
         print(f"Minutes Passed: {minutes}")
 
 
-if __name__ == '__main__':
-    main()
+main()
