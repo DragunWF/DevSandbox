@@ -8,7 +8,7 @@ def main() -> None:
         sleep(60)
         minutes += 1
         hours = minutes // 60
-        print(f"Time Passed: H:{hours} :M{minutes % 60}")
+        print(f"Time Passed: H:{hours} M:{minutes % 60}")
 
 
 main()
