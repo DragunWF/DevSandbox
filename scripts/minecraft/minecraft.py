@@ -22,8 +22,8 @@ def convert_hours(value: int) -> float:
 def main() -> None:
     global minutes
     start_time = get_minutes_played()
-    print(f"Hours Played: {convert_hours(get_minutes_played())}")
     print("Program starting...")
+    print(f"Hours Played: {convert_hours(get_minutes_played())}")
     while True:
         sleep(60)
         minutes += 1
