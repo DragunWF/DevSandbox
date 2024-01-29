@@ -1,11 +1,10 @@
 import os
 import sys
 
-username = "dragunwf"
+username = os.environ.get("USERNAME")
 desktop_dir = f"/Users/{username}/Desktop"
 image_dir = f"/Users/{username}/Pictures/Images"
 mode = sys.argv[1].lower()
-print(sys.argv)
 
 
 def main() -> None:
