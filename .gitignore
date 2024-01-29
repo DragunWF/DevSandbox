@@ -7,3 +7,4 @@ scripts/school/personalized
 scripts/test
 projects/AutoJoinZoom/config/private_settings.json
 config.py
+.env
