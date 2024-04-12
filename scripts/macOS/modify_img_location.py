@@ -2,7 +2,7 @@ import os
 import sys
 from pathlib import Path
 
-username = Path("./scripts/macOS/personal/username.txt").read_text()
+username = "replace this with your username"
 desktop_dir = f"/Users/{username}/Desktop"
 image_dir = f"/Users/{username}/Pictures/Images"
 mode = sys.argv[1].lower()
