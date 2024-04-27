@@ -1,7 +1,8 @@
 import os
 import sys
+from pathlib import Path
 
-username = os.environ.get("USERNAME")
+username = "replace this with your username"
 desktop_dir = f"/Users/{username}/Desktop"
 image_dir = f"/Users/{username}/Pictures/Images"
 mode = sys.argv[1].lower()
