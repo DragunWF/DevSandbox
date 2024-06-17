@@ -13,7 +13,10 @@ def main() -> None:
         if minutes_passed < 60:
             print(f"Time Passed: {minutes_passed} Minute(s)")
         else:
-            print(f"Time Passed: {minutes_passed // 60} Hours(s) and {minutes_passed % 60} Minute(s)")
+            log = f"Time Passed: {minutes_passed // 60} Hours(s)"
+            if minutes_passed % 60 != 0:
+                log += f" and {minutes_passed % 60} Minute(s)"
+            print(log)
 
         for program in programs:
             command = f"ps {program} | kill"
