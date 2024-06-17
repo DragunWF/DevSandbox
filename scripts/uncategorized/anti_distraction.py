@@ -4,7 +4,8 @@ import subprocess
 
 def main() -> None:
     # Distracting programs to eliminate
-    programs = ("spotify", "discord")  # Name of process in the 'ps' command
+    # Name of process within the output of the 'ps' command
+    programs = ("spotify", "discord")
     INTERVAL = 60
     minutes_passed = 0
 
