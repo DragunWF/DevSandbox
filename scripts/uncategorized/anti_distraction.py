@@ -10,7 +10,9 @@ def main() -> None:
     minutes_passed = 0
 
     while True:
-        minutes_passed += 1
+        if minutes_passed == 0:
+            print("Anti-Distraction has now begun. Have a good deep work session!")
+
         if minutes_passed < 60:
             print(f"Time Passed: {minutes_passed} Minute(s)")
         else:
@@ -25,6 +27,7 @@ def main() -> None:
                            capture_output=True, text=True)
 
         sleep(INTERVAL)
+        minutes_passed += 1
 
 
 if __name__ == "__main__":
