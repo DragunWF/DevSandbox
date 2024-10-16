@@ -34,7 +34,7 @@ def main():
     current_semester = current_term()
     all_semesters = overall()
     print(f"Current Term: {current_semester}")
-    print(f"Overall: {average(overall())}")
+    print(f"Overall: {average(all_semesters)}")
     all_semesters.append(current_semester)
     print(f"Overall with current term: {average(all_semesters)}")
 
