@@ -2,7 +2,7 @@ from rich import print
 
 # Just prediction, grades not complete yet
 # I just needed to find out what the bare minimum grade is to not drop below 1.30
-# Below 1.30 is not Magna Cum Laude anymore
+# Below 1.30 (Cumulative GWA - All Semesters) is not Magna Cum Laude anymore
 
 
 def current_term() -> float:
