@@ -33,16 +33,16 @@ def main():
     # Current Term Predictions
     current_semester = current_term()
     all_semesters = overall()
-    print(f"Current Term: {current_semester}")
-    print(f"Overall: {average(all_semesters)}")
+    print(f"Current Term GWA: {current_semester}")
+    print(f"Current Cumulative GWA: {average(all_semesters)}")
     all_semesters.append(current_semester)
-    print(f"Overall with current term: {average(all_semesters)}")
+    print(f"Cumulative GWA with Current Term: {average(all_semesters)}")
 
     # Future Term Predictions
     # Bare minimum if you don't want to drop below Magna Cum Laude
     all_semesters.append(1.44)  # Don't drop below 1.44 in 3rd Year 2nd Sem
     all_semesters.append(1.43)  # Don't drop below 1.43 in 4th Year 1st Sem
-    print(f"Graduation prediction: {average(all_semesters)}")
+    print(f"Graduation Prediction: {average(all_semesters)}")
 
 
 if __name__ == "__main__":
