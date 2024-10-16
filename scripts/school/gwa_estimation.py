@@ -30,17 +30,19 @@ def average(grades: list[float]) -> float:
 
 
 def main():
-    current = current_term()
-    all_sems = overall()
-    print(f"Current Term: {current}")
+    # Current Term Predictions
+    current_semester = current_term()
+    all_semesters = overall()
+    print(f"Current Term: {current_semester}")
     print(f"Overall: {average(overall())}")
-    all_sems.append(current)
-    print(f"Overall with current term: {average(all_sems)}")
+    all_semesters.append(current_semester)
+    print(f"Overall with current term: {average(all_semesters)}")
 
+    # Future Term Predictions
     # Bare minimum if you don't want to drop below Magna Cum Laude
-    all_sems.append(1.44)
-    all_sems.append(1.43)
-    print(f"Graduation prediction: {average(all_sems)}")
+    all_semesters.append(1.44)  # Don't drop below 1.44 in 3rd Year 2nd Sem
+    all_semesters.append(1.43)  # Don't drop below 1.43 in 4th Year 1st Sem
+    print(f"Graduation prediction: {average(all_semesters)}")
 
 
 if __name__ == "__main__":
