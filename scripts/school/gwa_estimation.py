@@ -18,11 +18,11 @@ def current_term() -> float:
 
 
 def overall() -> list[float]:
-    first = 1.32
-    second = 1.12
-    third = 1.16
-    fourth = 1.34
-    return [first, second, third, fourth]
+    first_semester = 1.32
+    second_semester = 1.12
+    third_semester = 1.16
+    fourth_semester = 1.34
+    return [first_semester, second_semester, third_semester, fourth_semester]
 
 
 def average(grades: list[float]) -> float:
