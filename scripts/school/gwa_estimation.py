@@ -7,12 +7,12 @@ from rich import print
 
 def current_term() -> float:
     # Prediction of final GWA
-    app_dev = 1.25
+    app_dev = 1
     event_driv = 1
     sia = 1.25
     prof_issues = 1.5
     enterprise = 1.5
-    db = 1.5
+    db = 1.75
     data_digital_com = 1.25
     return average([app_dev, event_driv, sia, prof_issues, enterprise, db, data_digital_com])
 
