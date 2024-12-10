@@ -23,7 +23,7 @@ def print_min_required(subject: str, grades: list[int], target_key: str) -> None
         print(f"Invalid target key for {subject}")
         return
 
-    min_grade = 100
+    min_grade = 100 # Base value (Will get subtracted)
     get_avg = lambda finals_grade: (sum(grades) + finals_grade * 2) / 5
     threshold_grade = gwa_standings[target_key]
     average = get_avg(min_grade)
