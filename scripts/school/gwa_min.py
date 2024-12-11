@@ -1,18 +1,17 @@
 from rich import print
 
-class Subject:
-    def __init__(self, name: str, grades: list[int], target_key: str):
-        self.name = name
-        self.grades = grades
-        self.target_key = target_key
-
-
 gwa_standings = {
     "1.00": 97.5,
     "1.25": 94.5,
     "1.50": 91.5,
     "1.75": 88.5
 }
+
+class Subject:
+    def __init__(self, name: str, grades: list[int], target_key: str):
+        self.name = name
+        self.grades = grades
+        self.target_key = target_key
 
 
 def print_min_required(subject: str, grades: list[int], target_key: str) -> None:
@@ -65,7 +64,7 @@ def print_wall(is_start: bool) -> None:
 
 
 def main() -> None:
-    subjects: Subject = [
+    subjects: list[Subject] = [
         Subject("Data & Digital Communications", [99, 91, 99], "1.25"),
         Subject("Event-Driven Programming", [100, 100, 100], "1.00"),
         Subject("Advanced Database Systems", [91.37, 89.2, 97.41], "1.50"),
