@@ -16,6 +16,9 @@ gwa_standings = {
 
 
 def print_min_required(subject: str, grades: list[int], target_key: str) -> None:
+    """
+    This function calculates the minimum grade required to get your desired GWA
+    """
     if any([grade > 100 or grade < 0 for grade in grades]) or len(grades) != 3:
         print(f"Invalid grade input for {subject}")
         return
@@ -48,6 +51,9 @@ def print_avg_gwa(subjects: list[Subject]) -> None:
 
 
 def print_wall(is_start: bool) -> None:
+    """
+    This function is primarily used for formatting the output
+    """
     wall = "=" * 50
     if is_start:
         print(f"\n{wall}\n\n")
