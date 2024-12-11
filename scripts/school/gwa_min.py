@@ -32,7 +32,7 @@ def print_min_required(subject: str, grades: list[int], target_key: str) -> None
     average = get_avg(min_grade)
 
     if average < threshold_grade:
-        print(f"{subject} (Target GWA: {target_key}): Can't be reached")
+        print(f"Target GWA ({target_key}) can't be reached for {subject}")
         return
     
     while average > threshold_grade:
