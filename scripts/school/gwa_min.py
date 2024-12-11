@@ -46,6 +46,9 @@ def print_min_required(subject: str, grades: list[int], target_key: str) -> None
 
 
 def print_avg_gwa(subjects: list[Subject]) -> None:
+    """
+    Calculates your average GWA for the current term
+    """
     total = sum(float(subject.target_key) for subject in subjects)
     print(f"Average GWA: {round(total / len(subjects), 2)}\n")
 
@@ -73,7 +76,7 @@ def main() -> None:
     ]
     print_wall(True)
 
-    print("Don't drop below these grades to get your desired GWA:\n")
+    print("Don't drop below these grades in the finals to get your desired GWA:\n")
     for subject in subjects:
         print_min_required(subject.name, subject.grades, subject.target_key)
     print_avg_gwa(subjects)
