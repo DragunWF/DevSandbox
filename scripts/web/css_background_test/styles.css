@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100%;
+} /* just to be sure these are full screen*/
+
+canvas {
+  overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  background-color: black;
+}
