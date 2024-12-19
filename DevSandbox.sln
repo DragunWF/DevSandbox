@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{130BDD96-E994-480F-A311-0669249B1B5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csharp", "csharp", "{EE19BCF9-D077-4A9E-AA28-8ADFF17763F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Streams", "scripts\csharp\Streams\Streams.csproj", "{87215105-E57A-476D-BDC5-66B42154185A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87215105-E57A-476D-BDC5-66B42154185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87215105-E57A-476D-BDC5-66B42154185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87215105-E57A-476D-BDC5-66B42154185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87215105-E57A-476D-BDC5-66B42154185A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE19BCF9-D077-4A9E-AA28-8ADFF17763F9} = {130BDD96-E994-480F-A311-0669249B1B5E}
+		{87215105-E57A-476D-BDC5-66B42154185A} = {EE19BCF9-D077-4A9E-AA28-8ADFF17763F9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCD490B3-7896-4CBA-8A25-D59DDFF08F09}
+	EndGlobalSection
+EndGlobal
