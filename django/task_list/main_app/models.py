@@ -6,6 +6,13 @@ class Account(models.Model):
     password = models.CharField(max_length=36)
     email = models.EmailField(default="test@example.com")
 
+    # Classifies the meta data of the model
+    class Meta:
+        # db_table = 'accounts'
+        indexes = [
+            models.Index(fields=['username'])
+        ]
+
 
 class Task(models.Model):
     title = models.CharField(max_length=50)
