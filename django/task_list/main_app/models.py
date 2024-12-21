@@ -8,7 +8,7 @@ class Account(models.Model):
 
     # Classifies the meta data of the model
     class Meta:
-        # db_table = 'accounts'
+        db_table = 'accounts'
         indexes = [
             models.Index(fields=['username'])
         ]
@@ -20,3 +20,9 @@ class Task(models.Model):
     is_done = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     owned_by = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'tasks'
+        indexes = [
+            models.Index(fields=['title', 'description'])
+        ]
