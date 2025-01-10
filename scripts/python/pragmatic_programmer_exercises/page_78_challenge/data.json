@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Sicily",
+    "phone_number": "0963 812 5123",
+    "directions": "Right"
+  },
+  {
+    "name": "Manila",
+    "phone_number": "0923 142 2524",
+    "directions": "Left"
+  },
+  {
+    "name": "Antipolo",
+    "phone_number": "0847 441 9501",
+    "directions": "Middle"
+  }
+]
