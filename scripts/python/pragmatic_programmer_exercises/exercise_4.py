@@ -65,6 +65,7 @@ class ArgumentCommand(Command):
 class DrawCommand(Command):
     def __init__(self, command: str, prompt: str, alternate_prompt: str):
         super().__init__(command, prompt)
+        # Alternate prompt to be used when a turtle is already in the middle of drawing
         self.alternate_prompt = alternate_prompt
 
     def execute(self) -> None:
