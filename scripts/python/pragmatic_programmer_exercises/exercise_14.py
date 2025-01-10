@@ -1,3 +1,4 @@
+# Implement Design by Contract (DBC)
 # Design an interface to a kitchen blender. It will eventually be a web-based
 # IoT-enabled blender, but for now we just need the interface to control it. It
 # has ten speed settings (0 means off). You can't operate it empty, and you can
