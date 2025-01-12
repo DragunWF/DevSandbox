@@ -97,9 +97,9 @@ function remove_item()
         print("Please enter a number within the range of [" .. 1 .. "-" .. #todo_list .. "]")
         remove_item()
     else
-        local itemNameToBeRemoved = todo_list[item_id]
+        local removed_item = todo_list[item_id]
         table.remove(todo_list, item_id)
-        print("\"" .. itemNameToBeRemoved .. "\"" .. " has been removed from the list!")
+        print("\"" .. removed_item .. "\"" .. " has been removed from the list!")
     end
 end
 
