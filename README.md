@@ -9,11 +9,11 @@ Welcome to **DevSandbox**, a collection of experiments, small projects, and snip
 This repository contains:
 
 - **Python Scripts**: Small programs solving specific problems, automating stuff, or exploring Python libraries.
+- **Lua Scripts**: Simple scripts and projects to practice and explore the Lua scripting language.
 - **Java Projects**: Mini projects, design pattern implementations, and experiments in Java.
 - **C# Projects**: Includes WinForms applications and other small C# experiments.
 - **Web Projects**: Random web pages built with HTML, CSS, and JavaScript.
 - **Django Apps**: Minor Django projects used to learn and explore the framework.
-- **Lua Projects**: Simple scripts and projects to practice and explore the Lua scripting language.
 - **Miscellaneous**: Other coding experiments and ideas that don’t fit neatly into a category.
 
 ## 🛠️ Tech Stack
