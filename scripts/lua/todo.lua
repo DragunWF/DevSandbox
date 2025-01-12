@@ -15,6 +15,8 @@ end
 
 function simulate_todo_menu()
     display_todo_list()
+
+    -- TODO: Turn this to key value pairs
     local command_list = {
         "add : Adds an item to the list.",
         "remove : Removes an item from the list.",
