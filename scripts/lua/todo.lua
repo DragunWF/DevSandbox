@@ -9,34 +9,54 @@ function main()
 end
 
 function greet_user()
-    io.write("Welcome! What is your username: ")
-    username = io.read()
-    if username == "" then
-        print("Please enter a username!")
-        greet_user()
-        return
-    end
+    username = input("Welcome! What is your username")
     print("Greetings! " .. username .. ", welcome to Dragun's practice project for the Lua scripting language.\n")
 end
 
 function simulate_todo_menu()
     display_todo_list()
+    local command_list = {
+        "add : Adds an item to the list.",
+        "remove : Removes an item from the list.",
+        "update : Removes an item from the list.",
+        "view : View the list."
+    }
 
-    while bool_input("Do you want to add an item to your list? ") do
-        add_item()
-        display_todo_list()
-    end
-
-    while bool_input("Do you want to remove an item from your list? ") do
-        remove_item()
-        display_todo_list()
-        if #todo_list <= 0 then
-            print("There are no more items in the list!")
-            break
-        end
+    print("Commands:")
+    for i = 1, #command_list do
+        print("- " .. command_list[i])
     end
 
     print("\nThank you, " .. username .. "!" .. " For trying out Dragun's practice program for Lua")
+end
+
+function simulate_add_menu()
+    add_item()
+    while bool_input("Do you want to add more items to your list?") do
+        add_item()
+        display_todo_list()
+    end
+end
+
+function simulate_remove_menu()
+    if #todo_list <= 0 then
+        print("There are no items to remove in the list!")
+        return
+    end
+
+    remove_item()
+    while bool_input("Do you want to remove more items from your list?") do
+        remove_item()
+        display_todo_list()
+        if #todo_list <= 0 then
+            print("There are no more items to remove in the list!")
+            break
+        end
+    end
+end
+
+function simulate_update_menu()
+
 end
 
 function display_todo_list()
@@ -54,7 +74,7 @@ end
 function bool_input(prompt)
     local valid_choices = {"y", "yes", "no", "n"}
 
-    io.write(prompt .. "(yes/no): ")
+    io.write(prompt .. " (yes/no): ")
     local choice = string.lower(io.read())
     if contains(valid_choices, choice) then
         return choice == "y" or choice == "yes"
@@ -74,33 +94,53 @@ function contains(table, target)
 end
 
 function add_item()
-    io.write("Enter item: ")
-    local item = io.read()
-    if item == "" then
-        print("Enter an item name!")
-        add_item()
-        return
-    end
-
+    local item = input("Enter an item name")
     todo_list[#todo_list + 1] = item
     print("\"" .. item .. "\"" .. " has been added to the list!")
 end
 
 function remove_item()
-    io.write("Remove item by ID [Enter Number]: ")
-    local item_id = tonumber(io.read())
+    local item_id = input_id("Remove item by ID")
+    local removed_item = todo_list[item_id]
+    table.remove(todo_list, item_id)
+    print("\"" .. removed_item .. "\"" .. " has been removed from the list!")
+end
 
-    if not item_id then
+function update_item()
+    local item_id = input_id("Update item by ID")
+    local item_before_update = todo_list[item_id]
+    
+    local updated_item = input("Enter a new name for the item \"" .. item_before_update "\"")
+    todo_list[item_id] = updated_item
+    print("\"" .. item_before_update .. "\"" .. " has been updated to " .. "\"" .. updated_item .. "\"")
+end
+
+function input_id(prompt)
+    io.write(prompt .. "[Enter Number]: ")
+    local id = tonumber(io.read())
+
+    if not id then
         print("Invalid input! Please make sure to enter a number.")
-        remove_item()
-    elseif item_id <= 0 or item_id > #todo_list then
-        print("Please enter a number within the range of [" .. 1 .. "-" .. #todo_list .. "]")
-        remove_item()
-    else
-        local removed_item = todo_list[item_id]
-        table.remove(todo_list, item_id)
-        print("\"" .. removed_item .. "\"" .. " has been removed from the list!")
+        return input_id(prompt)
     end
+    if id <= 0 or id > #todo_list then
+        print("Please enter a number within the range of [" .. 1 .. "-" .. #todo_list .. "]")
+        return input_id(prompt)
+    end
+
+    return id
+end
+
+function input(prompt)
+    io.write(prompt .. ": ")
+    local output = io.read()
+
+    if output == "" then
+        print("Input must not be empty!")
+        return input(prompt)
+    end
+
+    return output
 end
 
 main()
