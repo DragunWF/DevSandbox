@@ -69,6 +69,7 @@ def is_valid_time(time: str) -> bool:
             print("Time given is in military time format!")
             return True
 
+        print("Time is invalid!")
         return False
     except Exception:
         print(traceback.format_exc())
