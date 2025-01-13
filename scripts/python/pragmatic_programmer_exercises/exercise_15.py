@@ -1,3 +1,5 @@
+# The Pragmatic Programmer 20th Anniversary Edition - Page 112
+
 def main() -> None:
     series = []
     current_num = 0
