@@ -1,0 +1,15 @@
+The Pragmatic Programmer 20th Anniversary Edition - Page 65
+
+Design a BNF grammar to parse a time specification. All of the following
+examples should be accepted:
+4pm, 7:38pm. 23:42. 3:16, 3:16am
+
+Note: I'm using EBNF here to simplify the code
+
+<time of day> :== "am" | "pm" | "AM" | "PM"
+<24-hour format> :== "0".."9" | "1".."9" | "10".."23"
+<12-hour format> :== "1".."9" | "10".."12"
+<minutes> :== "0".."9" | "10".."59"
+<military time> :== <24-hour format>:<minutes>
+<normal time> :== <12-hour format>:<minutes><time of day>
+<time specification> :== <normal time> | <military time>
