@@ -1,0 +1,15 @@
+The Pragmatic Programmer 20th Anniversary Edition - Page 158
+
+You've identified the need to validate and convert an input field from a string
+into an integer between 18 and 150. The overall transformation is described by
+
+field contents as string
+    -> {validate & convert}
+    -> { :ok, value } | { :error, reason }
+
+field contents as string
+    -> { string -> convert }
+    -> { if value >= 18 & value <= 150 then }
+        -> { :ok, value }
+    -> { else }
+        -> { :error, reason }
