@@ -1,0 +1,25 @@
+The Pragmatic Programmer 20th Anniversary Edition - Page 157
+
+Can you express the following requirements as a top-level transformation?
+That is, for each, identify the input and the output
+
+1. Shipping and sales tax are added to an order
+Input: Shipping and Sales Tax (Basic order)
+Output: Finalized Order
+
+2. Your application loads configuration information from a named file
+Input: Named file
+Output: Configuration Information
+
+3. Someone logs in to a web application
+Input: Username and password
+Output: User information and access
+
+
+Official Answers: 
+
+1. basic order -> finalized order
+2. file name -> configuration information
+3. user credentials -> user session
+
+Comment: Got all of them correct, just worded slightly but mean the same thing.
