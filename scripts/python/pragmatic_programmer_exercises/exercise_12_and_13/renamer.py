@@ -16,7 +16,8 @@ def main() -> None:
 
     for file in source_files:
         new_file_name = camel_case_to_snake_case(file.name)
-        file.rename(f"{SOURCE_PATH}/{new_file_name}")
+        new_path = file.with_name(new_file_name)
+        file.rename(new_path)
     print("Files have been renamed!")
 
 
@@ -24,7 +25,7 @@ def camel_case_to_snake_case(name: str) -> str:
     output = ""
     for char in name:
         output += f"_{char.lower()}" if char.isupper() else char
-    return char
+    return output
 
 
 if __name__ == '__main__':
