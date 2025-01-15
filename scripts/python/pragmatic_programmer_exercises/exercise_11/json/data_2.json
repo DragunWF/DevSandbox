@@ -1,0 +1,40 @@
+{
+    "name": "John Doe",
+    "age": 30,
+    "height": 5.9,
+    "is_student": false,
+    "nickname": null,
+    "address": {
+        "street": "123 Elm Street",
+        "city": "Springfield",
+        "zip_code": 12345
+    },
+    "hobbies": [
+        "Reading",
+        "Hiking",
+        "Coding"
+    ],
+    "education": {
+        "degrees": [
+            {
+                "type": "Bachelor's",
+                "field": "Computer Science",
+                "year_completed": 2015
+            },
+            {
+                "type": "Master's",
+                "field": "Data Science",
+                "year_completed": 2018
+            }
+        ]
+    },
+    "bio": "John Doe is a software engineer with over a decade of experience.\nHe specializes in backend development and data engineering.\n",
+    "quote_of_the_day": "Keep your face always toward the sunshine, and shadows will fall behind you.\n",
+    "default_settings": {
+        "theme_color": "blue",
+        "font_size": "medium"
+    },
+    "explicit_types": {
+        "int_as_string": "42"
+    }
+}

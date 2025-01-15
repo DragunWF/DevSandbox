@@ -1,0 +1,20 @@
+{
+    "username": "Dragun",
+    "name": "Marc",
+    "bio": "Growth happens when you step out of your comfort zone\n",
+    "motto": "Habits\nDefine\nThe\nPerson\n",
+    "age": 22,
+    "hobbies": {
+        "current": [
+            "Programming",
+            "Reading",
+            "Writing Journals"
+        ],
+        "former": [
+            "Chess",
+            "Animation",
+            "YouTube"
+        ]
+    },
+    "is_active": true
+}

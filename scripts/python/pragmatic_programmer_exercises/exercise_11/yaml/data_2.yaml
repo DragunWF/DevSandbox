@@ -1,0 +1,45 @@
+# Scalars: Strings, Numbers, Booleans, Nulls
+name: "John Doe"              # String
+age: 30                       # Integer
+height: 5.9                   # Float
+is_student: false             # Boolean
+nickname: ~                   # Null value (can also use 'null' or leave blank)
+
+# Mappings (Dictionaries)
+address:
+  street: "123 Elm Street"
+  city: "Springfield"
+  zip_code: 12345
+
+# Sequences (Lists/Arrays)
+hobbies:
+  - Reading
+  - Hiking
+  - Coding
+
+# Nested Structures Combining Mappings and Sequences
+education:
+  degrees:
+    - type: "Bachelor's"
+      field: "Computer Science"
+      year_completed: 2015
+    - type: "Master's"
+      field: "Data Science"
+      year_completed: 2018
+
+# Multi-line Strings (Block Scalars)
+bio: |
+  John Doe is a software engineer with over a decade of experience.
+  He specializes in backend development and data engineering.
+  
+quote_of_the_day: >
+  Keep your face always toward the sunshine,
+  and shadows will fall behind you.
+
+default_settings:
+  theme_color: blue
+  font_size: medium
+  
+# Explicit Typing with Tags
+explicit_types:
+  int_as_string: !!str "42"   # Force integer to be treated as string

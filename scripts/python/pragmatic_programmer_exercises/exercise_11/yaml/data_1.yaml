@@ -1,0 +1,21 @@
+username: Dragun
+name: Marc
+bio: >
+  Growth happens when you step out of
+  your comfort zone
+motto: |
+  Habits
+  Define
+  The
+  Person
+age: 22
+hobbies:
+  current:
+    - Programming
+    - Reading
+    - Writing Journals
+  former:
+    - Chess
+    - Animation
+    - YouTube
+is_active: true
