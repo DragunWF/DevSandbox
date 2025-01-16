@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greetings Dragun doing pure React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <script>
+      function App() {
+        function getDateString() {
+          return new Date().toLocaleTimeString();
+        }
+
+        // Vanilla
+        const time_components = getDateString().split(":");
+        const time_of_day =
+          time_components[time_components.length - 1].split(" ")[1];
+        time_components.pop(); // Removes the seconds
+        const time = time_components.join(":") + ` ${time_of_day}`;
+
+        // With React Implementation
+        const [recentTime, setRecentTime] = React.useState(getDateString());
+
+        React.useEffect(function () {
+          setInterval(function () {
+            setTime(getDateString());
+          }, 1000); // Every one second
+        }, []);
+
+        // Rendering
+        return React.createElement(
+          "h1",
+          null,
+          `This web page was loaded at ${time}.
+          Current time now is ${recentTime}`
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
