@@ -23,14 +23,14 @@
           return new Date().toLocaleTimeString();
         }
 
-        // Vanilla
+        // Static Time
         const time_components = getDateString().split(":");
         const time_of_day =
           time_components[time_components.length - 1].split(" ")[1];
         time_components.pop(); // Removes the seconds
         const time = time_components.join(":") + ` ${time_of_day}`;
 
-        // With React Implementation
+        // Dynamic Time
         const [recentTime, setRecentTime] = React.useState(getDateString());
 
         React.useEffect(function () {
