@@ -2,19 +2,49 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-// Note for improvement: You should have made a skill as
-// an individual component instead of putting it all as
-// a bunch of list tags in the SkillList component.
-
-// Example:
-// function Skill(props) {
-//   return (
-//     <div className="skill" style={{ backgroundColor: props.color }}>
-//       <span>{props.skill}</span>
-//       <span>{props.emoji}</span>
-//     </div>
-//   );
-// }
+{
+  /* <div className="skill-list">
+      <li className="skill" style={{ backgroundColor: "#80DEEA" }}>
+        Python 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#FFEB3B" }}>
+        JavaScript 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#FF5722" }}>
+        HTML 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#42A5F5" }}>
+        CSS 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#90CAF9" }}>
+        React 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#FFC107" }}>
+        Django 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#FF8A80" }}>
+        Java 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#A5D6A7" }}>
+        C# 💻
+      </li>
+      <li className="skill" style={{ backgroundColor: "#FFD700" }}>
+        Unity 💻
+      </li>
+</div> */
+}
+// I have more skills but for now I'll only display these
+const skillList = [
+  { name: "Python", level: "advanced", color: "#80DEEA" },
+  { name: "JavaScript", level: "advanced", color: "#FFEB3B" },
+  { name: "HTML", level: "intermediate", color: "#FF5722" },
+  { name: "CSS", level: "intermediate", color: "#42A5F5" },
+  { name: "React", level: "beginner", color: "#90CAF9" },
+  { name: "Django", level: "beginner", color: "#FFC107" },
+  { name: "Java", level: "intermediate", color: "#FF8A80" },
+  { name: "C#", level: "intermediate", color: "#A5D6A7" },
+  { name: "Unity", level: "beginner", color: "#FFD700" },
+];
 
 function App() {
   return (
@@ -55,35 +85,22 @@ function Intro() {
 function SkillList() {
   // I have more skills but I'll only list this for now...
   return (
-    <div className="skill-list">
-      <li className="skill" style={{ backgroundColor: "#80DEEA" }}>
-        Python 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFEB3B" }}>
-        JavaScript 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FF5722" }}>
-        HTML 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#42A5F5" }}>
-        CSS 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#90CAF9" }}>
-        React 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFC107" }}>
-        Django 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FF8A80" }}>
-        Java 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#A5D6A7" }}>
-        C# 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFD700" }}>
-        Unity Game Engine 💻
-      </li>
-    </div>
+    <ul class="skill-list">
+      {skillList.map((skill) => (
+        <Skill skillObj={skill} />
+      ))}
+    </ul>
+  );
+}
+
+function Skill({ skillObj }) {
+  const emojiLevels = { beginner: "👶", intermediate: "👍", advanced: "💪" };
+  const emoji = emojiLevels[skillObj.level];
+
+  return (
+    <li class="skill" style={{ backgroundColor: skillObj.color }}>
+      {skillObj.name} {emoji}
+    </li>
   );
 }
 
