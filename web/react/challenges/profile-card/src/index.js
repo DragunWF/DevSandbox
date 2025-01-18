@@ -2,38 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-{
-  /* <div className="skill-list">
-      <li className="skill" style={{ backgroundColor: "#80DEEA" }}>
-        Python 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFEB3B" }}>
-        JavaScript 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FF5722" }}>
-        HTML 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#42A5F5" }}>
-        CSS 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#90CAF9" }}>
-        React 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFC107" }}>
-        Django 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FF8A80" }}>
-        Java 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#A5D6A7" }}>
-        C# 💻
-      </li>
-      <li className="skill" style={{ backgroundColor: "#FFD700" }}>
-        Unity 💻
-      </li>
-</div> */
-}
-// I have more skills but for now I'll only display these
+// Sample data
 const skillList = [
   { name: "Python", level: "advanced", color: "#80DEEA" },
   { name: "JavaScript", level: "advanced", color: "#FFEB3B" },
