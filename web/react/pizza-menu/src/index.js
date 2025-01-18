@@ -69,35 +69,36 @@ function Header() {
 }
 
 function Menu() {
+  // Note: The map method is used instead of the forEach method
+  // here because JSX needs an array to render the pizza components
+  // and the map method returns an array while forEach does not
+  const pizzas = pizzaData;
+
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza
-        name="Pizza Prosciutto"
-        ingredient="Tomato, mozarella, ham, aragula, and burrata cheese"
-        photoSrc="pizzas/prosciutto.jpg"
-        price={15}
-      />
-      <Pizza
-        name="Pizza Salamino"
-        ingredient="Tomato, mozarella, and pepperoni"
-        photoSrc="pizzas/salamino.jpg"
-        price={20}
-      />
+
+      {Boolean(pizzas.length) && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
 
 function Pizza(props) {
   return (
-    <div className="pizza">
-      <img src={props.photoSrc} alt={props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredient}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -117,7 +118,14 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleDateString()} - Dragun Pizza Shop is currently open!
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open until {closeHour}:00. Come visit Dragun or order online.
+          </p>
+          <button className="btn">Order Now!</button>
+        </div>
+      )}
     </footer>
   );
 
