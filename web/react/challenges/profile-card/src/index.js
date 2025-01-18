@@ -2,6 +2,20 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+// Note for improvement: You should have made a skill as
+// an individual component instead of putting it all as
+// a bunch of list tags in the SkillList component.
+
+// Example:
+// function Skill(props) {
+//   return (
+//     <div className="skill" style={{ backgroundColor: props.color }}>
+//       <span>{props.skill}</span>
+//       <span>{props.emoji}</span>
+//     </div>
+//   );
+// }
+
 function App() {
   return (
     <div className="card">
