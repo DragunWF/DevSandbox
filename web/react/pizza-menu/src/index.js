@@ -71,32 +71,38 @@ function Header() {
 function Menu() {
   // Note: The map method is used instead of the forEach method
   // here because JSX needs an array to render the pizza components
-  // and the map method returns an array while forEach does not
+  // and the map method returns an array while forEach does not.
   const pizzas = pizzaData;
 
   return (
     <main className="menu">
       <h2>Our menu</h2>
 
-      {Boolean(pizzas.length) && (
+      {Boolean(pizzas.length) ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>Menu is empty!</p>
       )}
     </main>
   );
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
+  if (pizzaObj.soldOut) {
+    return;
+  }
+
   return (
     <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -118,22 +124,27 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
-        <div className="order">
-          <p>
-            We're open until {closeHour}:00. Come visit Dragun or order online.
-          </p>
-          <button className="btn">Order Now!</button>
-        </div>
+      {isOpen ? (
+        <Order openHour={openHour} closeHour={closeHour} />
+      ) : (
+        <p>
+          We'll be open starting from {openHour}:00 to {closeHour}:00.
+        </p>
       )}
     </footer>
   );
+}
 
-  // return React.createElement(
-  //   "footer",
-  //   null,
-  //   "Dragun Pizza Shop is currently open!"
-  // );
+function Order({ openHour, closeHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour} to {closeHour}:00. Come visit Dragun or order
+        online.
+      </p>
+      <button className="btn">Order Now!</button>
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
