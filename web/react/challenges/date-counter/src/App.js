@@ -17,7 +17,7 @@ function Counter() {
     if (count === 0) {
       return "Today is";
     } else if (count > 0) {
-      return `${count} from today is`;
+      return `${count} days from today is`;
     } else {
       return `${Math.abs(count)} days ago was`;
     }
