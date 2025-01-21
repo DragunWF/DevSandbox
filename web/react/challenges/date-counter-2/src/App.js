@@ -58,7 +58,9 @@ function Counter() {
       <p>
         {getDaysCalculation()} {getDateCalculation()}
       </p>
-      {count !== 0 && <input type="button" onClick={reset} value="Reset" />}
+      {(count !== 0 || step !== 1) && (
+        <input type="button" onClick={reset} value="Reset" />
+      )}
     </div>
   );
 }
