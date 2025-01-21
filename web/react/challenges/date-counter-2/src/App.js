@@ -17,7 +17,7 @@ function Counter() {
     if (count === 0) {
       return "Today is";
     } else if (count > 0) {
-      return `${count} from today is`;
+      return `${count} days from today is`;
     } else {
       return `${Math.abs(count)} days ago was`;
     }
@@ -29,21 +29,36 @@ function Counter() {
     return currentDate.toDateString();
   }
 
+  function reset() {
+    setStep(1);
+    setCount(0);
+  }
+
   return (
     <div>
       <div>
-        <button onClick={() => setStep((step) => --step)}>-</button>
-        <span>Step: {step}</span>
-        <button onClick={() => setStep((step) => ++step)}>+</button>
+        <input
+          type="range"
+          value={step}
+          min="0"
+          max="10"
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        {step}
       </div>
       <div>
         <button onClick={() => setCount((count) => count - step)}>-</button>
-        <span>Count: {count}</span>
+        <input
+          type="number"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
         <button onClick={() => setCount((count) => count + step)}>+</button>
       </div>
       <p>
         {getDaysCalculation()} {getDateCalculation()}
       </p>
+      {count !== 0 && <input type="button" onClick={reset} value="Reset" />}
     </div>
   );
 }
