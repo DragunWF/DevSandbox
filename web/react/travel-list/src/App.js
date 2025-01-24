@@ -126,6 +126,14 @@ function Stats({ items }) {
   const percentage =
     numPacked > 0 ? Math.round((numPacked / numItems) * 100) : 0;
 
+  if (percentage === 0) {
+    return (
+      <p className="stats">
+        <em>Start adding some items to your packing list 🚀</em>
+      </p>
+    );
+  }
+
   return (
     <footer className="stats">
       <em>
