@@ -50,7 +50,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=11)
+    phone = models.CharField(max_length=34)
     birth_date = models.DateTimeField(null=True)
 
     # choices=<value> : indicates the only values that the field can accept
