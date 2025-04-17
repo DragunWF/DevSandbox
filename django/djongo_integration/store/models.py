@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class Collection(models.Model):
+    title = models.CharField(max_length=255)
+
+
 class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -10,6 +14,8 @@ class Product(models.Model):
     # auto_now=True : means everytime we update this data model, it automatically stores the date in this field
     # auto_now_add=True : the date is generated only when the first time the product object is created
     last_update = models.DateTimeField(auto_now=True)
+
+    collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
 
 
 class Customer(models.Model):
@@ -53,6 +59,21 @@ class Order(models.Model):
     payment_status = models.CharField(max_length=1,
                                       choices=PAYMENT_STATUSES,
                                       default=PAYMENT_STATUS_PENDING)
+
+    customer = models.ForeignKey(Customer,
+                                 on_delete=models.PROTECT,
+                                 primary_key=True)
+
+
+class Cart(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL)
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL)
+    quantity = models.PositiveSmallIntegerField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
 
 
 class Address(models.Model):
