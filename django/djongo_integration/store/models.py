@@ -61,6 +61,13 @@ class Customer(models.Model):
                                   choices=MEMBERSHIP_CHOICES,
                                   default="B")
 
+    # Meta data about the collection/table
+    class Meta:
+        db_table = "store_customer"
+        indexes = [
+            models.Index(fields=["last_name", "first_name"])
+        ]
+
 
 class Order(models.Model):
     PAYMENT_STATUS_PENDING = "P"
