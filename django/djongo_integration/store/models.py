@@ -97,6 +97,7 @@ class OrderItem(models.Model):
 class Address(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
+    zip_code = models.CharField(max_length=4, default="0000")
 
     # ========= on_delete =========
     # on_delete=<option> : Executes when the parent of the data model (Customer) is deleted.
