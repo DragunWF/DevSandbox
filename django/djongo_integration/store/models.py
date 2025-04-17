@@ -9,6 +9,15 @@ class Promotion(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=255)
 
+    # An alternate way to pass in a reference is to supply the name of the class
+    # as a string instead of a class which allows you to pass in classes that get
+    # get declared much later than this class (Collection)
+    # Adding in "+" to related_name tells Django to not create a reverse relationship
+    featured_product = models.ForeignKey("Product",
+                                         on_delete=models.SET_NULL,
+                                         null=True,
+                                         related_name="+")
+
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -63,7 +72,7 @@ class Order(models.Model):
         (PAYMENT_STATUS_FAILED, "Failed")
     ]
 
-    placed_at = models.DateField(auto_add_now=True)
+    placed_at = models.DateField(auto_now_add=True)
     payment_status = models.CharField(max_length=1,
                                       choices=PAYMENT_STATUSES,
                                       default=PAYMENT_STATUS_PENDING)
@@ -78,8 +87,8 @@ class Cart(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL)
-    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveSmallIntegerField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
 
