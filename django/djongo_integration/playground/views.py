@@ -8,20 +8,7 @@ from store.models import Product, Collection, OrderItem
 
 
 def say_hello(request):
-    order_items = [item[0]
-                   for item in OrderItem.objects.values_list("product")]
-    products = list(Product.objects.values())
-    ordered_products = []
-    assign_ids(products)
-    for product in products:
-        if product["id"] in order_items:
-            ordered_products.append(product)
-    ordered_products.sort(key=lambda product: product["title"])
+    data = Product.objects.all()
 
     return render(request, "hello.jinja",
-                  {'name': "Marc", "products": ordered_products})
-
-
-def assign_ids(data_set):
-    for i, item in enumerate(data_set):
-        item["id"] = i + 1
+                  {'name': "Marc", "products": data})
