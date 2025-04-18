@@ -5,10 +5,16 @@
     {% else %}
     <h1>Hello World</h1>
     {% endif %}
-    <h2>Record Count: {{ result }}</h2>
+    <h2>Product Count: {{ product_count }}</h2>
     <ul>
       {% for product in products %}
       <li>{{ product }}</li>
+      {% endfor %}
+    </ul>
+    <h2>Tags</h2>
+    <ul>
+      {% for tag in tags %}
+      <li>{{ tag }}</li>
       {% endfor %}
     </ul>
   </body>
