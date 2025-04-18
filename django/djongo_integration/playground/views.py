@@ -1,14 +1,26 @@
 from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from django.conf import settings
+
 from store.models import Product
 
 
+import pymongo
+
+
 def say_hello(request):
-    # This returns a manager object which acts as an interface to the database
-    # Calling the .all() method will return a query set
+    # Your existing code
     query_set = Product.objects.all()
+    print(list(query_set))
 
-    for product in query_set:
-        print(product)
+    # Direct MongoDB query
+    client = pymongo.MongoClient(
+        settings.DATABASES['default']['CLIENT']['host'])
+    db = client[settings.DATABASES['default']['NAME']]
+    # Adjust collection name based on actual naming
+    collection = db['store_product']
+    print("Direct MongoDB query:", list(collection.find()))
 
-    return render(request, "hello.html", {'name': "Marc"})
+    return render(request, "hello.jinja",
+                  {'name': "Marc", "products": list(query_set)})
