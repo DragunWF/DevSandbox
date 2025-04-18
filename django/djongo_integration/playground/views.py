@@ -12,8 +12,6 @@ from tags.models import TaggedItem
 
 
 def say_hello(request):
-    
-
     products = Product.objects.values()[:25]
     product_count = Product.objects.aggregate(
         count=Count("description"),
@@ -23,4 +21,21 @@ def say_hello(request):
                   {'name': "Marc",
                    "products": products,
                    'product_count': product_count,
-                   'tags': list(tags)})
+                   'tags': []})
+
+
+def create_object(request):
+    collection = Collection()
+    collection.title = "Dragun Video Games"
+    collection.featured_product = Product(pk=1)
+    collection.save()
+
+    return HttpResponse(f"{collection.title} has been created")
+
+
+def update_object(request):
+    pass
+
+
+def delete_object(request):
+    pass
