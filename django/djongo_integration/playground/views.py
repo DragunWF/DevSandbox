@@ -30,12 +30,14 @@ def create_object(request):
     collection.featured_product = Product(pk=1)
     collection.save()
 
-    return HttpResponse(f"{collection.title} has been created")
+    return HttpResponse(f"{collection.title} has been created!")
 
 
 def update_object(request):
-    pass
+    Collection.objects.filter(pk=11).update(featured_product=None)
+    return HttpResponse("Collections have been updated!")
 
 
 def delete_object(request):
-    pass
+    Collection.objects.filter(id__gt=5).delete()
+    return HttpResponse("Object has been deleted!")
