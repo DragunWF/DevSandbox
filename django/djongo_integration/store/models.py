@@ -18,6 +18,13 @@ class Collection(models.Model):
                                          null=True,
                                          related_name="+")
 
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        # This sorts the list when viewed on the admin panel
+        ordering = ["title"]
+
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -34,6 +41,12 @@ class Product(models.Model):
 
     # related_name=<name> : sets the name of the field or column on the parent (Promotion) class
     promotions = models.ManyToManyField(Promotion, related_name="products")
+
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        ordering = ["title"]
 
 
 class Customer(models.Model):
