@@ -74,8 +74,12 @@ class Customer(models.Model):
                                   choices=MEMBERSHIP_CHOICES,
                                   default="B")
 
+    def __str__(self) -> str:
+        return self.first_name
+
     # Meta data about the collection/table
     class Meta:
+        ordering = ["first_name"]
         db_table = "store_customer"
         indexes = [
             models.Index(fields=["last_name", "first_name"])
