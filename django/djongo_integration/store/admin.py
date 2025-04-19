@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django.contrib.contenttypes.admin import GenericTabularInline
 from django.db.models.aggregates import Count
 from django.urls import reverse
 from django.utils.http import urlencode
@@ -48,12 +47,6 @@ class InventoryFilter(admin.SimpleListFilter):
             return queryset.filter(inventory__lt=10)
 
 
-class TagInline(GenericTabularInline):
-    autocomplete_fields = ["tag"]
-    model = TaggedItem
-    extra = 0
-
-
 class ProductAdmin(admin.ModelAdmin):
     # fields = ["title", "slug"]
     # readonly_fields = ["title"]
@@ -63,7 +56,6 @@ class ProductAdmin(admin.ModelAdmin):
     }
     # exclude = ["promotions"]
     actions = ["clear_inventory"]
-    inlines = [TagInline]
     search_fields = ["first_name", "last_name"]
 
     # Shows the fields that are displayed on the admin list panel
