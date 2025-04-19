@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.db.models.aggregates import Count
 from django.urls import reverse
 from django.utils.http import urlencode
@@ -9,6 +9,7 @@ from . import models
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ["title", "products_count"]
+    search_fields = ["title"]
 
     def products_count(self, collection):
         url = (
@@ -31,13 +32,40 @@ class CollectionAdmin(admin.ModelAdmin):
     # products_count.admin_order_field = "products_count"
 
 
+class InventoryFilter(admin.SimpleListFilter):
+    title = "inventory"
+    parameter_name = "inventory"
+
+    def lookups(self, request, model_admin):
+        return [
+            ("<10", "Low"),
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value() == "<10":
+            return queryset.filter(inventory__lt=10)
+
+
 class ProductAdmin(admin.ModelAdmin):
+    # fields = ["title", "slug"]
+    # readonly_fields = ["title"]
+    autocomplete_fields = ["collection"]
+    prepopulated_fields = {
+        "slug": ["title"]
+    }
+    exclude = ["promotions"]
+    actions = ["clear_inventory"]
+    search_fields = ["first_name", "last_name"]
+
     # Shows the fields that are displayed on the admin list panel
     list_display = ["title", "unit_price",
                     "inventory_status", "collection_title"]
 
     # Declares the fields that can be editable in the admin list panel
     list_editable = ["unit_price"]
+
+    # Implements filtering options in the admin page
+    list_filter = ["collection", "last_update", InventoryFilter]
 
     # Declares the number of objects visible per page
     list_per_page = 10
@@ -55,6 +83,16 @@ class ProductAdmin(admin.ModelAdmin):
 
     inventory_status.short_description = "Inventory Status"
     inventory_status.admin_order_field = "inventory"
+
+    def clear_inventory(self, request, queryset):
+        updated_count = queryset.update(inventory=0)
+        self.message_user(
+            request,
+            f"{updated_count} products were successfully updated!",
+            messages.SUCCESS
+        )
+
+    clear_inventory.short_description = "Clear Inventory"
 
 
 class CustomerAdmin(admin.ModelAdmin):
@@ -76,6 +114,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    autocomplete_fields = ["customer"]
     list_display = ["customer", "placed_at", "payment_status"]
     list_editable = ["payment_status"]
 
