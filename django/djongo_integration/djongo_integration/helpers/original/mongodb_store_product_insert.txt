@@ -21,13 +21,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 3,
-    "title": "'Shrimp - 21/25",
-    "description": "Peel And Deviened'",
-    "unit_price": "nisi volutpat eleifend donec ut dolor morbi vel lectus in quam",
-    "inventory": 11.52,
-    "last_update": 29,
-    "collection_id": "2021-04-05 00:00:00",
-    "slug": 3
+    "title": "Shrimp - 21/25, Peel And Deviened",
+    "description": "nisi volutpat eleifend donec ut dolor morbi vel lectus in quam",
+    "unit_price": 11.52,
+    "inventory": 29,
+    "last_update": "2021-04-05 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 4,
@@ -41,13 +41,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 5,
-    "title": "'Lettuce - Mini Greens",
-    "description": "Whole'",
-    "unit_price": "lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc",
-    "inventory": 60.21,
-    "last_update": 56,
-    "collection_id": "2020-08-18 00:00:00",
-    "slug": 5
+    "title": "Lettuce - Mini Greens, Whole",
+    "description": "lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc",
+    "unit_price": 60.21,
+    "inventory": 56,
+    "last_update": "2020-08-18 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 6,
@@ -81,13 +81,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 9,
-    "title": "'Tomatoes - Cherry",
-    "description": "Yellow'",
-    "unit_price": "sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing",
-    "inventory": 30.81,
-    "last_update": 45,
-    "collection_id": "2021-03-03 00:00:00",
-    "slug": 5
+    "title": "Tomatoes - Cherry, Yellow",
+    "description": "sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing",
+    "unit_price": 30.81,
+    "inventory": 45,
+    "last_update": "2021-03-03 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 10,
@@ -111,13 +111,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 12,
-    "title": "'Beer - Alexander Kieths",
-    "description": "Pale Ale'",
-    "unit_price": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa",
-    "inventory": 92.74,
-    "last_update": 55,
-    "collection_id": "2020-12-28 00:00:00",
-    "slug": 3
+    "title": "Beer - Alexander Kieths, Pale Ale",
+    "description": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa",
+    "unit_price": 92.74,
+    "inventory": 55,
+    "last_update": "2020-12-28 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 13,
@@ -161,33 +161,33 @@ db.store_product.insertMany([
   },
   {
     "_id": 17,
-    "title": "'Salt - Rock",
-    "description": "Course'",
-    "unit_price": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut",
-    "inventory": 41.53,
-    "last_update": 60,
-    "collection_id": "2021-03-05 00:00:00",
-    "slug": 3
+    "title": "Salt - Rock, Course",
+    "description": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut",
+    "unit_price": 41.53,
+    "inventory": 60,
+    "last_update": "2021-03-05 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 18,
-    "title": "'Beef - Ox Tail",
-    "description": "Frozen'",
-    "unit_price": "donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien",
-    "inventory": 80.97,
-    "last_update": 85,
-    "collection_id": "2020-07-26 00:00:00",
-    "slug": 4
+    "title": "Beef - Ox Tail, Frozen",
+    "description": "donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien",
+    "unit_price": 80.97,
+    "inventory": 85,
+    "last_update": "2020-07-26 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 19,
-    "title": "'Schnappes - Peach",
-    "description": "Walkers'",
-    "unit_price": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
-    "inventory": 81.97,
-    "last_update": 10,
-    "collection_id": "2021-05-14 00:00:00",
-    "slug": 5
+    "title": "Schnappes - Peach, Walkers",
+    "description": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
+    "unit_price": 81.97,
+    "inventory": 10,
+    "last_update": "2021-05-14 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 20,
@@ -251,13 +251,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 26,
-    "title": "'Tendrils - Baby Pea",
-    "description": "Organic'",
-    "unit_price": "lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat",
-    "inventory": 18.18,
-    "last_update": 0,
-    "collection_id": "2021-03-24 00:00:00",
-    "slug": 3
+    "title": "Tendrils - Baby Pea, Organic",
+    "description": "lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat",
+    "unit_price": 18.18,
+    "inventory": 0,
+    "last_update": "2021-03-24 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 27,
@@ -281,13 +281,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 29,
-    "title": "'Beef - Tongue",
-    "description": "Cooked'",
-    "unit_price": "sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo",
-    "inventory": 73.48,
-    "last_update": 82,
-    "collection_id": "2021-02-07 00:00:00",
-    "slug": 6
+    "title": "Beef - Tongue, Cooked",
+    "description": "sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo",
+    "unit_price": 73.48,
+    "inventory": 82,
+    "last_update": "2021-02-07 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 30,
@@ -511,13 +511,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 52,
-    "title": "'Veal - Tenderloin",
-    "description": "Untrimmed'",
-    "unit_price": "cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien",
-    "inventory": 89.46,
-    "last_update": 44,
-    "collection_id": "2020-06-14 00:00:00",
-    "slug": 4
+    "title": "Veal - Tenderloin, Untrimmed",
+    "description": "cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien",
+    "unit_price": 89.46,
+    "inventory": 44,
+    "last_update": "2020-06-14 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 53,
@@ -731,13 +731,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 74,
-    "title": "'Club Soda - Schweppes",
-    "description": "355 Ml'",
-    "unit_price": "duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at",
-    "inventory": 90.39,
-    "last_update": 72,
-    "collection_id": "2021-04-13 00:00:00",
-    "slug": 3
+    "title": "Club Soda - Schweppes, 355 Ml",
+    "description": "duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at",
+    "unit_price": 90.39,
+    "inventory": 72,
+    "last_update": "2021-04-13 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 75,
@@ -781,13 +781,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 79,
-    "title": "'Corn - Cream",
-    "description": "Canned'",
-    "unit_price": "in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque",
-    "inventory": 85.46,
-    "last_update": 24,
-    "collection_id": "2021-05-13 00:00:00",
-    "slug": 3
+    "title": "Corn - Cream, Canned",
+    "description": "in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque",
+    "unit_price": 85.46,
+    "inventory": 24,
+    "last_update": "2021-05-13 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 80,
@@ -821,13 +821,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 83,
-    "title": "'Asparagus - White",
-    "description": "Canned'",
-    "unit_price": "in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst",
-    "inventory": 71.01,
-    "last_update": 17,
-    "collection_id": "2020-07-27 00:00:00",
-    "slug": 3
+    "title": "Asparagus - White, Canned",
+    "description": "in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst",
+    "unit_price": 71.01,
+    "inventory": 17,
+    "last_update": "2020-07-27 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 84,
@@ -841,23 +841,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 85,
-    "title": "'Shrimp - 16/20",
-    "description": "Peeled Deviened'",
-    "unit_price": "parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor",
-    "inventory": 1.08,
-    "last_update": 58,
-    "collection_id": "2021-06-07 00:00:00",
-    "slug": 5
+    "title": "Shrimp - 16/20, Peeled Deviened",
+    "description": "parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor",
+    "unit_price": 1.08,
+    "inventory": 58,
+    "last_update": "2021-06-07 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 86,
-    "title": "'Soda Water - Club Soda",
-    "description": "355 Ml'",
-    "unit_price": "faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus",
-    "inventory": 90.06,
-    "last_update": 88,
-    "collection_id": "2021-05-04 00:00:00",
-    "slug": 3
+    "title": "Soda Water - Club Soda, 355 Ml",
+    "description": "faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus",
+    "unit_price": 90.06,
+    "inventory": 88,
+    "last_update": "2021-05-04 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 87,
@@ -911,13 +911,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 92,
-    "title": "'Juice - Grapefruit",
-    "description": "341 Ml'",
-    "unit_price": "vestibulum proin eu mi nulla ac enim in tempor turpis nec",
-    "inventory": 33.37,
-    "last_update": 26,
-    "collection_id": "2020-07-16 00:00:00",
-    "slug": 5
+    "title": "Juice - Grapefruit, 341 Ml",
+    "description": "vestibulum proin eu mi nulla ac enim in tempor turpis nec",
+    "unit_price": 33.37,
+    "inventory": 26,
+    "last_update": "2020-07-16 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 93,
@@ -931,23 +931,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 94,
-    "title": "'Water - Mineral",
-    "description": "Natural'",
-    "unit_price": "pretium quis lectus suspendisse potenti in eleifend quam a odio in hac",
-    "inventory": 61.59,
-    "last_update": 71,
-    "collection_id": "2020-07-16 00:00:00",
-    "slug": 5
+    "title": "Water - Mineral, Natural",
+    "description": "pretium quis lectus suspendisse potenti in eleifend quam a odio in hac",
+    "unit_price": 61.59,
+    "inventory": 71,
+    "last_update": "2020-07-16 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 95,
-    "title": "'Chicken - Leg",
-    "description": "Boneless'",
-    "unit_price": "eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin",
-    "inventory": 84.83,
-    "last_update": 15,
-    "collection_id": "2020-06-21 00:00:00",
-    "slug": 3
+    "title": "Chicken - Leg, Boneless",
+    "description": "eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin",
+    "unit_price": 84.83,
+    "inventory": 15,
+    "last_update": "2020-06-21 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 96,
@@ -971,13 +971,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 98,
-    "title": "'Tarragon - Primerba",
-    "description": "Paste'",
-    "unit_price": "non quam nec dui luctus rutrum nulla tellus in sagittis",
-    "inventory": 20.87,
-    "last_update": 38,
-    "collection_id": "2020-08-11 00:00:00",
-    "slug": 3
+    "title": "Tarragon - Primerba, Paste",
+    "description": "non quam nec dui luctus rutrum nulla tellus in sagittis",
+    "unit_price": 20.87,
+    "inventory": 38,
+    "last_update": "2020-08-11 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 99,
@@ -1051,13 +1051,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 106,
-    "title": "'Soup - Knorr",
-    "description": "Ministrone'",
-    "unit_price": "rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia",
-    "inventory": 4.88,
-    "last_update": 22,
-    "collection_id": "2020-07-30 00:00:00",
-    "slug": 5
+    "title": "Soup - Knorr, Ministrone",
+    "description": "rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia",
+    "unit_price": 4.88,
+    "inventory": 22,
+    "last_update": "2020-07-30 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 107,
@@ -1121,23 +1121,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 113,
-    "title": "'Seedlings - Buckwheat",
-    "description": "Organic'",
-    "unit_price": "vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus",
-    "inventory": 44.29,
-    "last_update": 80,
-    "collection_id": "2020-08-14 00:00:00",
-    "slug": 5
+    "title": "Seedlings - Buckwheat, Organic",
+    "description": "vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus",
+    "unit_price": 44.29,
+    "inventory": 80,
+    "last_update": "2020-08-14 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 114,
-    "title": "'Cheese - Brie",
-    "description": "Triple Creme'",
-    "unit_price": "sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus",
-    "inventory": 46.6,
-    "last_update": 66,
-    "collection_id": "2020-08-06 00:00:00",
-    "slug": 3
+    "title": "Cheese - Brie, Triple Creme",
+    "description": "sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus",
+    "unit_price": 46.6,
+    "inventory": 66,
+    "last_update": "2020-08-06 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 115,
@@ -1231,33 +1231,33 @@ db.store_product.insertMany([
   },
   {
     "_id": 124,
-    "title": "'Dill - Primerba",
-    "description": "Paste'",
-    "unit_price": "ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl",
-    "inventory": 97.81,
-    "last_update": 72,
-    "collection_id": "2020-11-11 00:00:00",
-    "slug": 6
+    "title": "Dill - Primerba, Paste",
+    "description": "ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl",
+    "unit_price": 97.81,
+    "inventory": 72,
+    "last_update": "2020-11-11 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 125,
-    "title": "'Pork - Ham",
-    "description": "Virginia'",
-    "unit_price": "sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus",
-    "inventory": 97.58,
-    "last_update": 74,
-    "collection_id": "2021-03-06 00:00:00",
-    "slug": 3
+    "title": "Pork - Ham, Virginia",
+    "description": "sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus",
+    "unit_price": 97.58,
+    "inventory": 74,
+    "last_update": "2021-03-06 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 126,
-    "title": "'Pasta - Cannelloni",
-    "description": "Sheets",
-    "unit_price": "Fresh'",
-    "inventory": "mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis",
-    "last_update": 86.27,
-    "collection_id": 5,
-    "slug": "2021-01-20 00:00:00"
+    "title": "Pasta - Cannelloni, Sheets, Fresh",
+    "description": "mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis",
+    "unit_price": 86.27,
+    "inventory": 5,
+    "last_update": "2021-01-20 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 127,
@@ -1311,13 +1311,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 132,
-    "title": "'Doilies - 8",
-    "description": "Paper'",
-    "unit_price": "maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros",
-    "inventory": 46.59,
-    "last_update": 79,
-    "collection_id": "2020-09-09 00:00:00",
-    "slug": 6
+    "title": "Doilies - 8, Paper",
+    "description": "maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros",
+    "unit_price": 46.59,
+    "inventory": 79,
+    "last_update": "2020-09-09 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 133,
@@ -1341,13 +1341,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 135,
-    "title": "'Water - Mineral",
-    "description": "Natural'",
-    "unit_price": "morbi odio odio elementum eu interdum eu tincidunt in leo",
-    "inventory": 58.27,
-    "last_update": 17,
-    "collection_id": "2021-05-13 00:00:00",
-    "slug": 3
+    "title": "Water - Mineral, Natural",
+    "description": "morbi odio odio elementum eu interdum eu tincidunt in leo",
+    "unit_price": 58.27,
+    "inventory": 17,
+    "last_update": "2021-05-13 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 136,
@@ -1421,13 +1421,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 143,
-    "title": "'Soup - Campbells",
-    "description": "Spinach Crm'",
-    "unit_price": "diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat",
-    "inventory": 15.47,
-    "last_update": 18,
-    "collection_id": "2021-01-03 00:00:00",
-    "slug": 3
+    "title": "Soup - Campbells, Spinach Crm",
+    "description": "diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat",
+    "unit_price": 15.47,
+    "inventory": 18,
+    "last_update": "2021-01-03 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 144,
@@ -1441,13 +1441,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 145,
-    "title": "'Juice - Pineapple",
-    "description": "48 Oz'",
-    "unit_price": "accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in",
-    "inventory": 73.24,
-    "last_update": 31,
-    "collection_id": "2020-09-08 00:00:00",
-    "slug": 4
+    "title": "Juice - Pineapple, 48 Oz",
+    "description": "accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in",
+    "unit_price": 73.24,
+    "inventory": 31,
+    "last_update": "2020-09-08 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 146,
@@ -1531,13 +1531,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 154,
-    "title": "'Tomatoes - Diced",
-    "description": "Canned'",
-    "unit_price": "justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum",
-    "inventory": 47.43,
-    "last_update": 41,
-    "collection_id": "2020-07-31 00:00:00",
-    "slug": 4
+    "title": "Tomatoes - Diced, Canned",
+    "description": "justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum",
+    "unit_price": 47.43,
+    "inventory": 41,
+    "last_update": "2020-07-31 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 155,
@@ -1551,13 +1551,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 156,
-    "title": "'Yogurt - Cherry",
-    "description": "175 Gr'",
-    "unit_price": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in",
-    "inventory": 27.78,
-    "last_update": 86,
-    "collection_id": "2020-08-18 00:00:00",
-    "slug": 6
+    "title": "Yogurt - Cherry, 175 Gr",
+    "description": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in",
+    "unit_price": 27.78,
+    "inventory": 86,
+    "last_update": "2020-08-18 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 157,
@@ -1581,43 +1581,43 @@ db.store_product.insertMany([
   },
   {
     "_id": 159,
-    "title": "'Lemonade - Strawberry",
-    "description": "591 Ml'",
-    "unit_price": "justo in hac habitasse platea dictumst etiam faucibus cursus urna",
-    "inventory": 7.04,
-    "last_update": 7,
-    "collection_id": "2020-10-02 00:00:00",
-    "slug": 6
+    "title": "Lemonade - Strawberry, 591 Ml",
+    "description": "justo in hac habitasse platea dictumst etiam faucibus cursus urna",
+    "unit_price": 7.04,
+    "inventory": 7,
+    "last_update": "2020-10-02 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 160,
-    "title": "'Cod - Salted",
-    "description": "Boneless'",
-    "unit_price": "magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien",
-    "inventory": 37.31,
-    "last_update": 91,
-    "collection_id": "2021-01-25 00:00:00",
-    "slug": 4
+    "title": "Cod - Salted, Boneless",
+    "description": "magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien",
+    "unit_price": 37.31,
+    "inventory": 91,
+    "last_update": "2021-01-25 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 161,
-    "title": "'Jam - Strawberry",
-    "description": "20 Ml Jar'",
-    "unit_price": "elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy",
-    "inventory": 25.74,
-    "last_update": 10,
-    "collection_id": "2020-08-10 00:00:00",
-    "slug": 3
+    "title": "Jam - Strawberry, 20 Ml Jar",
+    "description": "elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy",
+    "unit_price": 25.74,
+    "inventory": 10,
+    "last_update": "2020-08-10 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 162,
-    "title": "'Veal - Inside Round / Top",
-    "description": "Lean'",
-    "unit_price": "ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et",
-    "inventory": 72.51,
-    "last_update": 85,
-    "collection_id": "2021-05-19 00:00:00",
-    "slug": 6
+    "title": "Veal - Inside Round / Top, Lean",
+    "description": "ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et",
+    "unit_price": 72.51,
+    "inventory": 85,
+    "last_update": "2021-05-19 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 163,
@@ -1671,23 +1671,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 168,
-    "title": "'Sparkling Wine - Rose",
-    "description": "Freixenet'",
-    "unit_price": "augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed",
-    "inventory": 73.38,
-    "last_update": 45,
-    "collection_id": "2020-11-28 00:00:00",
-    "slug": 4
+    "title": "Sparkling Wine - Rose, Freixenet",
+    "description": "augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed",
+    "unit_price": 73.38,
+    "inventory": 45,
+    "last_update": "2020-11-28 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 169,
-    "title": "'Cheese - Cheddar",
-    "description": "Medium'",
-    "unit_price": "tempus sit amet sem fusce consequat nulla nisl nunc nisl duis",
-    "inventory": 80.33,
-    "last_update": 95,
-    "collection_id": "2020-11-09 00:00:00",
-    "slug": 3
+    "title": "Cheese - Cheddar, Medium",
+    "description": "tempus sit amet sem fusce consequat nulla nisl nunc nisl duis",
+    "unit_price": 80.33,
+    "inventory": 95,
+    "last_update": "2020-11-09 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 170,
@@ -1721,13 +1721,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 173,
-    "title": "'Coke - Diet",
-    "description": "355 Ml'",
-    "unit_price": "eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis",
-    "inventory": 89.46,
-    "last_update": 52,
-    "collection_id": "2020-07-20 00:00:00",
-    "slug": 3
+    "title": "Coke - Diet, 355 Ml",
+    "description": "eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis",
+    "unit_price": 89.46,
+    "inventory": 52,
+    "last_update": "2020-07-20 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 174,
@@ -1831,13 +1831,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 184,
-    "title": "'Doilies - 7",
-    "description": "Paper'",
-    "unit_price": "nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
-    "inventory": 6.42,
-    "last_update": 9,
-    "collection_id": "2021-05-09 00:00:00",
-    "slug": 4
+    "title": "Doilies - 7, Paper",
+    "description": "nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
+    "unit_price": 6.42,
+    "inventory": 9,
+    "last_update": "2021-05-09 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 185,
@@ -1881,13 +1881,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 189,
-    "title": "'Wine - Red",
-    "description": "Concha Y Toro'",
-    "unit_price": "tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus",
-    "inventory": 65.45,
-    "last_update": 24,
-    "collection_id": "2020-11-01 00:00:00",
-    "slug": 5
+    "title": "Wine - Red, Concha Y Toro",
+    "description": "tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus",
+    "unit_price": 65.45,
+    "inventory": 24,
+    "last_update": "2020-11-01 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 190,
@@ -1931,13 +1931,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 194,
-    "title": "'Seedlings - Mix",
-    "description": "Organic'",
-    "unit_price": "aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris",
-    "inventory": 6.23,
-    "last_update": 51,
-    "collection_id": "2020-11-29 00:00:00",
-    "slug": 5
+    "title": "Seedlings - Mix, Organic",
+    "description": "aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris",
+    "unit_price": 6.23,
+    "inventory": 51,
+    "last_update": "2020-11-29 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 195,
@@ -2021,13 +2021,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 203,
-    "title": "'Split Peas - Green",
-    "description": "Dry'",
-    "unit_price": "lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec",
-    "inventory": 2.51,
-    "last_update": 77,
-    "collection_id": "2020-08-02 00:00:00",
-    "slug": 4
+    "title": "Split Peas - Green, Dry",
+    "description": "lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec",
+    "unit_price": 2.51,
+    "inventory": 77,
+    "last_update": "2020-08-02 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 204,
@@ -2071,13 +2071,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 208,
-    "title": "'Pepper - Chillies",
-    "description": "Crushed'",
-    "unit_price": "ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
-    "inventory": 17.08,
-    "last_update": 77,
-    "collection_id": "2020-11-08 00:00:00",
-    "slug": 5
+    "title": "Pepper - Chillies, Crushed",
+    "description": "ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
+    "unit_price": 17.08,
+    "inventory": 77,
+    "last_update": "2020-11-08 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 209,
@@ -2121,13 +2121,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 213,
-    "title": "'Pineapple - Canned",
-    "description": "Rings'",
-    "unit_price": "ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi",
-    "inventory": 19.07,
-    "last_update": 23,
-    "collection_id": "2020-07-19 00:00:00",
-    "slug": 3
+    "title": "Pineapple - Canned, Rings",
+    "description": "ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi",
+    "unit_price": 19.07,
+    "inventory": 23,
+    "last_update": "2020-07-19 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 214,
@@ -2151,13 +2151,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 216,
-    "title": "'Pork - Sausage",
-    "description": "Medium'",
-    "unit_price": "vitae quam suspendisse potenti nullam porttitor lacus at turpis donec",
-    "inventory": 68.06,
-    "last_update": 25,
-    "collection_id": "2020-10-31 00:00:00",
-    "slug": 3
+    "title": "Pork - Sausage, Medium",
+    "description": "vitae quam suspendisse potenti nullam porttitor lacus at turpis donec",
+    "unit_price": 68.06,
+    "inventory": 25,
+    "last_update": "2020-10-31 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 217,
@@ -2181,23 +2181,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 219,
-    "title": "'Beef - Rib Roast",
-    "description": "Capless'",
-    "unit_price": "accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec",
-    "inventory": 85.39,
-    "last_update": 41,
-    "collection_id": "2020-10-28 00:00:00",
-    "slug": 5
+    "title": "Beef - Rib Roast, Capless",
+    "description": "accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec",
+    "unit_price": 85.39,
+    "inventory": 41,
+    "last_update": "2020-10-28 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 220,
-    "title": "'Beans - Turtle",
-    "description": "Black",
-    "unit_price": "Dry'",
-    "inventory": "turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec",
-    "last_update": 40.72,
-    "collection_id": 30,
-    "slug": "2020-09-23 00:00:00"
+    "title": "Beans - Turtle, Black, Dry",
+    "description": "turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec",
+    "unit_price": 40.72,
+    "inventory": 30,
+    "last_update": "2020-09-23 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 221,
@@ -2251,13 +2251,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 226,
-    "title": "'Melon - Watermelon",
-    "description": "Seedless'",
-    "unit_price": "sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar",
-    "inventory": 57.44,
-    "last_update": 26,
-    "collection_id": "2021-05-15 00:00:00",
-    "slug": 3
+    "title": "Melon - Watermelon, Seedless",
+    "description": "sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar",
+    "unit_price": 57.44,
+    "inventory": 26,
+    "last_update": "2021-05-15 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 227,
@@ -2321,13 +2321,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 233,
-    "title": "'Cup - 6oz",
-    "description": "Foam'",
-    "unit_price": "imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in",
-    "inventory": 92.28,
-    "last_update": 97,
-    "collection_id": "2021-04-02 00:00:00",
-    "slug": 6
+    "title": "Cup - 6oz, Foam",
+    "description": "imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in",
+    "unit_price": 92.28,
+    "inventory": 97,
+    "last_update": "2021-04-02 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 234,
@@ -2511,13 +2511,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 252,
-    "title": "'Cheese - Cheddar",
-    "description": "Medium'",
-    "unit_price": "enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis",
-    "inventory": 92.34,
-    "last_update": 85,
-    "collection_id": "2020-06-10 00:00:00",
-    "slug": 3
+    "title": "Cheese - Cheddar, Medium",
+    "description": "enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis",
+    "unit_price": 92.34,
+    "inventory": 85,
+    "last_update": "2020-06-10 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 253,
@@ -2541,13 +2541,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 255,
-    "title": "'Ham - Smoked",
-    "description": "Bone - In'",
-    "unit_price": "vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia",
-    "inventory": 83.75,
-    "last_update": 93,
-    "collection_id": "2020-12-29 00:00:00",
-    "slug": 3
+    "title": "Ham - Smoked, Bone - In",
+    "description": "vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia",
+    "unit_price": 83.75,
+    "inventory": 93,
+    "last_update": "2020-12-29 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 256,
@@ -2591,13 +2591,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 260,
-    "title": "'Cheese - Brie",
-    "description": "Triple Creme'",
-    "unit_price": "tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim",
-    "inventory": 17.75,
-    "last_update": 88,
-    "collection_id": "2021-05-25 00:00:00",
-    "slug": 4
+    "title": "Cheese - Brie, Triple Creme",
+    "description": "tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim",
+    "unit_price": 17.75,
+    "inventory": 88,
+    "last_update": "2021-05-25 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 261,
@@ -2631,13 +2631,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 264,
-    "title": "'Soup - Campbells",
-    "description": "Spinach Crm'",
-    "unit_price": "a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla",
-    "inventory": 31.98,
-    "last_update": 100,
-    "collection_id": "2021-05-13 00:00:00",
-    "slug": 3
+    "title": "Soup - Campbells, Spinach Crm",
+    "description": "a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla",
+    "unit_price": 31.98,
+    "inventory": 100,
+    "last_update": "2021-05-13 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 265,
@@ -2791,23 +2791,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 280,
-    "title": "'Doilies - 10",
-    "description": "Paper'",
-    "unit_price": "mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla",
-    "inventory": 99.19,
-    "last_update": 24,
-    "collection_id": "2021-05-08 00:00:00",
-    "slug": 4
+    "title": "Doilies - 10, Paper",
+    "description": "mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla",
+    "unit_price": 99.19,
+    "inventory": 24,
+    "last_update": "2021-05-08 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 281,
-    "title": "'Shrimp",
-    "description": "Dried",
-    "unit_price": "Small / Lb'",
-    "inventory": "in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec",
-    "last_update": 24.32,
-    "collection_id": 34,
-    "slug": "2020-08-29 00:00:00"
+    "title": "Shrimp, Dried, Small / Lb",
+    "description": "in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec",
+    "unit_price": 24.32,
+    "inventory": 34,
+    "last_update": "2020-08-29 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 282,
@@ -2861,13 +2861,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 287,
-    "title": "'Cup - 6oz",
-    "description": "Foam'",
-    "unit_price": "sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus",
-    "inventory": 2.83,
-    "last_update": 38,
-    "collection_id": "2021-01-11 00:00:00",
-    "slug": 5
+    "title": "Cup - 6oz, Foam",
+    "description": "sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus",
+    "unit_price": 2.83,
+    "inventory": 38,
+    "last_update": "2021-01-11 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 288,
@@ -2931,23 +2931,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 294,
-    "title": "'Coffee - Colombian",
-    "description": "Portioned'",
-    "unit_price": "felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed",
-    "inventory": 5.99,
-    "last_update": 48,
-    "collection_id": "2020-08-15 00:00:00",
-    "slug": 3
+    "title": "Coffee - Colombian, Portioned",
+    "description": "felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed",
+    "unit_price": 5.99,
+    "inventory": 48,
+    "last_update": "2020-08-15 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 295,
-    "title": "'Pasta - Fettuccine",
-    "description": "Egg",
-    "unit_price": "Fresh'",
-    "inventory": "sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis",
-    "last_update": 12.85,
-    "collection_id": 16,
-    "slug": "2020-06-12 00:00:00"
+    "title": "Pasta - Fettuccine, Egg, Fresh",
+    "description": "sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis",
+    "unit_price": 12.85,
+    "inventory": 16,
+    "last_update": "2020-06-12 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 296,
@@ -3081,13 +3081,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 309,
-    "title": "'Doilies - 8",
-    "description": "Paper'",
-    "unit_price": "pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo",
-    "inventory": 49.7,
-    "last_update": 80,
-    "collection_id": "2021-04-30 00:00:00",
-    "slug": 4
+    "title": "Doilies - 8, Paper",
+    "description": "pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo",
+    "unit_price": 49.7,
+    "inventory": 80,
+    "last_update": "2021-04-30 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 310,
@@ -3111,13 +3111,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 312,
-    "title": "'Coconut - Creamed",
-    "description": "Pure'",
-    "unit_price": "justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet",
-    "inventory": 52.81,
-    "last_update": 80,
-    "collection_id": "2021-03-02 00:00:00",
-    "slug": 5
+    "title": "Coconut - Creamed, Pure",
+    "description": "justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet",
+    "unit_price": 52.81,
+    "inventory": 80,
+    "last_update": "2021-03-02 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 313,
@@ -3161,13 +3161,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 317,
-    "title": "'Soup - Campbells",
-    "description": "Creamy'",
-    "unit_price": "hac habitasse platea dictumst maecenas ut massa quis augue luctus",
-    "inventory": 14.16,
-    "last_update": 67,
-    "collection_id": "2020-10-20 00:00:00",
-    "slug": 3
+    "title": "Soup - Campbells, Creamy",
+    "description": "hac habitasse platea dictumst maecenas ut massa quis augue luctus",
+    "unit_price": 14.16,
+    "inventory": 67,
+    "last_update": "2020-10-20 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 318,
@@ -3201,13 +3201,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 321,
-    "title": "'Vermouth - White",
-    "description": "Cinzano'",
-    "unit_price": "molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue",
-    "inventory": 46.15,
-    "last_update": 35,
-    "collection_id": "2020-09-13 00:00:00",
-    "slug": 5
+    "title": "Vermouth - White, Cinzano",
+    "description": "molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue",
+    "unit_price": 46.15,
+    "inventory": 35,
+    "last_update": "2020-09-13 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 322,
@@ -3261,13 +3261,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 327,
-    "title": "'Chicken - Thigh",
-    "description": "Bone In'",
-    "unit_price": "nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu",
-    "inventory": 61.95,
-    "last_update": 100,
-    "collection_id": "2020-08-15 00:00:00",
-    "slug": 6
+    "title": "Chicken - Thigh, Bone In",
+    "description": "nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu",
+    "unit_price": 61.95,
+    "inventory": 100,
+    "last_update": "2020-08-15 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 328,
@@ -3281,13 +3281,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 329,
-    "title": "'Soup - Beef",
-    "description": "Base Mix'",
-    "unit_price": "amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus",
-    "inventory": 41.99,
-    "last_update": 89,
-    "collection_id": "2020-10-20 00:00:00",
-    "slug": 6
+    "title": "Soup - Beef, Base Mix",
+    "description": "amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus",
+    "unit_price": 41.99,
+    "inventory": 89,
+    "last_update": "2020-10-20 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 330,
@@ -3311,13 +3311,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 332,
-    "title": "'Soup - Knorr",
-    "description": "Country Bean'",
-    "unit_price": "consequat metus sapien ut nunc vestibulum ante ipsum primis in",
-    "inventory": 75.74,
-    "last_update": 54,
-    "collection_id": "2021-02-20 00:00:00",
-    "slug": 3
+    "title": "Soup - Knorr, Country Bean",
+    "description": "consequat metus sapien ut nunc vestibulum ante ipsum primis in",
+    "unit_price": 75.74,
+    "inventory": 54,
+    "last_update": "2021-02-20 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 333,
@@ -3351,13 +3351,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 336,
-    "title": "'Vermacelli - Sprinkles",
-    "description": "Assorted'",
-    "unit_price": "id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at",
-    "inventory": 33.79,
-    "last_update": 46,
-    "collection_id": "2020-06-10 00:00:00",
-    "slug": 6
+    "title": "Vermacelli - Sprinkles, Assorted",
+    "description": "id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at",
+    "unit_price": 33.79,
+    "inventory": 46,
+    "last_update": "2020-06-10 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 337,
@@ -3411,13 +3411,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 342,
-    "title": "'Tart Shells - Savory",
-    "description": "3'",
-    "unit_price": "rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non",
-    "inventory": 64.88,
-    "last_update": 44,
-    "collection_id": "2020-08-26 00:00:00",
-    "slug": 3
+    "title": "Tart Shells - Savory, 3",
+    "description": "rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non",
+    "unit_price": 64.88,
+    "inventory": 44,
+    "last_update": "2020-08-26 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 343,
@@ -3441,13 +3441,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 345,
-    "title": "'Pork - Ham",
-    "description": "Virginia'",
-    "unit_price": "consequat morbi a ipsum integer a nibh in quis justo maecenas",
-    "inventory": 58.53,
-    "last_update": 79,
-    "collection_id": "2021-03-01 00:00:00",
-    "slug": 6
+    "title": "Pork - Ham, Virginia",
+    "description": "consequat morbi a ipsum integer a nibh in quis justo maecenas",
+    "unit_price": 58.53,
+    "inventory": 79,
+    "last_update": "2021-03-01 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 346,
@@ -3491,13 +3491,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 350,
-    "title": "'Pasta - Canelloni",
-    "description": "Single Serve'",
-    "unit_price": "nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum",
-    "inventory": 20.21,
-    "last_update": 19,
-    "collection_id": "2020-08-27 00:00:00",
-    "slug": 5
+    "title": "Pasta - Canelloni, Single Serve",
+    "description": "nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum",
+    "unit_price": 20.21,
+    "inventory": 19,
+    "last_update": "2020-08-27 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 351,
@@ -3531,13 +3531,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 354,
-    "title": "'Marsala - Sperone",
-    "description": "Fine",
-    "unit_price": "D.o.c.'",
-    "inventory": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus",
-    "last_update": 71.21,
-    "collection_id": 80,
-    "slug": "2021-04-09 00:00:00"
+    "title": "Marsala - Sperone, Fine, D.o.c.",
+    "description": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus",
+    "unit_price": 71.21,
+    "inventory": 80,
+    "last_update": "2021-04-09 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 355,
@@ -3551,23 +3551,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 356,
-    "title": "'Cod - Salted",
-    "description": "Boneless'",
-    "unit_price": "est risus auctor sed tristique in tempus sit amet sem fusce consequat",
-    "inventory": 26.71,
-    "last_update": 12,
-    "collection_id": "2020-07-28 00:00:00",
-    "slug": 5
+    "title": "Cod - Salted, Boneless",
+    "description": "est risus auctor sed tristique in tempus sit amet sem fusce consequat",
+    "unit_price": 26.71,
+    "inventory": 12,
+    "last_update": "2020-07-28 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 357,
-    "title": "'Lemonade - Kiwi",
-    "description": "591 Ml'",
-    "unit_price": "tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse",
-    "inventory": 43.4,
-    "last_update": 41,
-    "collection_id": "2020-10-11 00:00:00",
-    "slug": 5
+    "title": "Lemonade - Kiwi, 591 Ml",
+    "description": "tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse",
+    "unit_price": 43.4,
+    "inventory": 41,
+    "last_update": "2020-10-11 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 358,
@@ -3641,13 +3641,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 365,
-    "title": "'Flour - Corn",
-    "description": "Fine'",
-    "unit_price": "curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer",
-    "inventory": 32.55,
-    "last_update": 68,
-    "collection_id": "2021-04-02 00:00:00",
-    "slug": 5
+    "title": "Flour - Corn, Fine",
+    "description": "curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer",
+    "unit_price": 32.55,
+    "inventory": 68,
+    "last_update": "2021-04-02 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 366,
@@ -3671,13 +3671,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 368,
-    "title": "'Beef - Tenderlion",
-    "description": "Center Cut'",
-    "unit_price": "quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus",
-    "inventory": 3.45,
-    "last_update": 36,
-    "collection_id": "2020-09-08 00:00:00",
-    "slug": 5
+    "title": "Beef - Tenderlion, Center Cut",
+    "description": "quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus",
+    "unit_price": 3.45,
+    "inventory": 36,
+    "last_update": "2020-09-08 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 369,
@@ -3751,13 +3751,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 376,
-    "title": "'Salmon - Atlantic",
-    "description": "No Skin'",
-    "unit_price": "dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus",
-    "inventory": 38.85,
-    "last_update": 15,
-    "collection_id": "2020-10-31 00:00:00",
-    "slug": 3
+    "title": "Salmon - Atlantic, No Skin",
+    "description": "dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus",
+    "unit_price": 38.85,
+    "inventory": 15,
+    "last_update": "2020-10-31 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 377,
@@ -3841,23 +3841,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 385,
-    "title": "'Shrimp - 21/25",
-    "description": "Peel And Deviened'",
-    "unit_price": "lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat",
-    "inventory": 68.55,
-    "last_update": 65,
-    "collection_id": "2020-11-14 00:00:00",
-    "slug": 5
+    "title": "Shrimp - 21/25, Peel And Deviened",
+    "description": "lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat",
+    "unit_price": 68.55,
+    "inventory": 65,
+    "last_update": "2020-11-14 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 386,
-    "title": "'Salmon - Smoked",
-    "description": "Sliced'",
-    "unit_price": "suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla",
-    "inventory": 50.5,
-    "last_update": 100,
-    "collection_id": "2021-03-27 00:00:00",
-    "slug": 3
+    "title": "Salmon - Smoked, Sliced",
+    "description": "suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla",
+    "unit_price": 50.5,
+    "inventory": 100,
+    "last_update": "2021-03-27 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 387,
@@ -3871,13 +3871,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 388,
-    "title": "'Water - Spring Water",
-    "description": "355 Ml'",
-    "unit_price": "diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et",
-    "inventory": 11.69,
-    "last_update": 75,
-    "collection_id": "2021-02-04 00:00:00",
-    "slug": 4
+    "title": "Water - Spring Water, 355 Ml",
+    "description": "diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et",
+    "unit_price": 11.69,
+    "inventory": 75,
+    "last_update": "2021-02-04 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 389,
@@ -3981,23 +3981,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 399,
-    "title": "'Pork - Tenderloin",
-    "description": "Frozen'",
-    "unit_price": "eu felis fusce posuere felis sed lacus morbi sem mauris",
-    "inventory": 52.9,
-    "last_update": 8,
-    "collection_id": "2020-10-29 00:00:00",
-    "slug": 4
+    "title": "Pork - Tenderloin, Frozen",
+    "description": "eu felis fusce posuere felis sed lacus morbi sem mauris",
+    "unit_price": 52.9,
+    "inventory": 8,
+    "last_update": "2020-10-29 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 400,
-    "title": "'Chilli Paste",
-    "description": "Ginger Garlic'",
-    "unit_price": "hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam",
-    "inventory": 50.47,
-    "last_update": 3,
-    "collection_id": "2021-03-12 00:00:00",
-    "slug": 3
+    "title": "Chilli Paste, Ginger Garlic",
+    "description": "hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam",
+    "unit_price": 50.47,
+    "inventory": 3,
+    "last_update": "2021-03-12 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 401,
@@ -4021,13 +4021,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 403,
-    "title": "'Pasta - Lasagna",
-    "description": "Dry'",
-    "unit_price": "eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien",
-    "inventory": 37.8,
-    "last_update": 49,
-    "collection_id": "2020-11-12 00:00:00",
-    "slug": 4
+    "title": "Pasta - Lasagna, Dry",
+    "description": "eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien",
+    "unit_price": 37.8,
+    "inventory": 49,
+    "last_update": "2020-11-12 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 404,
@@ -4071,13 +4071,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 408,
-    "title": "'Shrimp - Baby",
-    "description": "Warm Water'",
-    "unit_price": "magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed",
-    "inventory": 21.07,
-    "last_update": 14,
-    "collection_id": "2021-04-10 00:00:00",
-    "slug": 6
+    "title": "Shrimp - Baby, Warm Water",
+    "description": "magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed",
+    "unit_price": 21.07,
+    "inventory": 14,
+    "last_update": "2021-04-10 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 409,
@@ -4111,13 +4111,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 412,
-    "title": "'Mushroom - Enoki",
-    "description": "Fresh'",
-    "unit_price": "adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at",
-    "inventory": 39.73,
-    "last_update": 44,
-    "collection_id": "2021-03-23 00:00:00",
-    "slug": 5
+    "title": "Mushroom - Enoki, Fresh",
+    "description": "adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at",
+    "unit_price": 39.73,
+    "inventory": 44,
+    "last_update": "2021-03-23 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 413,
@@ -4141,13 +4141,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 415,
-    "title": "'Nut - Pecan",
-    "description": "Halves'",
-    "unit_price": "fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus",
-    "inventory": 81.11,
-    "last_update": 48,
-    "collection_id": "2021-05-16 00:00:00",
-    "slug": 4
+    "title": "Nut - Pecan, Halves",
+    "description": "fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus",
+    "unit_price": 81.11,
+    "inventory": 48,
+    "last_update": "2021-05-16 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 416,
@@ -4241,13 +4241,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 425,
-    "title": "'Beef - Cooked",
-    "description": "Corned'",
-    "unit_price": "ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit",
-    "inventory": 24.65,
-    "last_update": 65,
-    "collection_id": "2021-01-02 00:00:00",
-    "slug": 6
+    "title": "Beef - Cooked, Corned",
+    "description": "ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit",
+    "unit_price": 24.65,
+    "inventory": 65,
+    "last_update": "2021-01-02 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 426,
@@ -4261,23 +4261,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 427,
-    "title": "'Quail - Whole",
-    "description": "Bone - In'",
-    "unit_price": "eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare",
-    "inventory": 41.85,
-    "last_update": 30,
-    "collection_id": "2021-01-11 00:00:00",
-    "slug": 6
+    "title": "Quail - Whole, Bone - In",
+    "description": "eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare",
+    "unit_price": 41.85,
+    "inventory": 30,
+    "last_update": "2021-01-11 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 428,
-    "title": "'Pepper - Julienne",
-    "description": "Frozen'",
-    "unit_price": "tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus",
-    "inventory": 22.56,
-    "last_update": 65,
-    "collection_id": "2021-05-14 00:00:00",
-    "slug": 5
+    "title": "Pepper - Julienne, Frozen",
+    "description": "tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus",
+    "unit_price": 22.56,
+    "inventory": 65,
+    "last_update": "2021-05-14 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 429,
@@ -4311,13 +4311,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 432,
-    "title": "'Sauce - Soya",
-    "description": "Light'",
-    "unit_price": "congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien",
-    "inventory": 81.1,
-    "last_update": 48,
-    "collection_id": "2021-04-24 00:00:00",
-    "slug": 6
+    "title": "Sauce - Soya, Light",
+    "description": "congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien",
+    "unit_price": 81.1,
+    "inventory": 48,
+    "last_update": "2021-04-24 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 433,
@@ -4431,13 +4431,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 444,
-    "title": "'Pasta - Fusili",
-    "description": "Dry'",
-    "unit_price": "pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante",
-    "inventory": 17.95,
-    "last_update": 19,
-    "collection_id": "2020-11-17 00:00:00",
-    "slug": 3
+    "title": "Pasta - Fusili, Dry",
+    "description": "pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante",
+    "unit_price": 17.95,
+    "inventory": 19,
+    "last_update": "2020-11-17 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 445,
@@ -4471,23 +4471,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 448,
-    "title": "'Soup - Campbells",
-    "description": "Lentil'",
-    "unit_price": "nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam",
-    "inventory": 48.58,
-    "last_update": 76,
-    "collection_id": "2021-01-27 00:00:00",
-    "slug": 5
+    "title": "Soup - Campbells, Lentil",
+    "description": "nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam",
+    "unit_price": 48.58,
+    "inventory": 76,
+    "last_update": "2021-01-27 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 449,
-    "title": "'Roe - Lump Fish",
-    "description": "Red'",
-    "unit_price": "non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam",
-    "inventory": 84.19,
-    "last_update": 65,
-    "collection_id": "2021-04-04 00:00:00",
-    "slug": 4
+    "title": "Roe - Lump Fish, Red",
+    "description": "non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam",
+    "unit_price": 84.19,
+    "inventory": 65,
+    "last_update": "2021-04-04 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 450,
@@ -4511,13 +4511,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 452,
-    "title": "'Salmon - Smoked",
-    "description": "Sliced'",
-    "unit_price": "rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi",
-    "inventory": 30.55,
-    "last_update": 11,
-    "collection_id": "2020-10-09 00:00:00",
-    "slug": 4
+    "title": "Salmon - Smoked, Sliced",
+    "description": "rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi",
+    "unit_price": 30.55,
+    "inventory": 11,
+    "last_update": "2020-10-09 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 453,
@@ -4531,13 +4531,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 454,
-    "title": "'Sole - Dover",
-    "description": "Whole",
-    "unit_price": "Fresh'",
-    "inventory": "nunc donec quis orci eget orci vehicula condimentum curabitur in libero",
-    "last_update": 14.14,
-    "collection_id": 29,
-    "slug": "2021-06-05 00:00:00"
+    "title": "Sole - Dover, Whole, Fresh",
+    "description": "nunc donec quis orci eget orci vehicula condimentum curabitur in libero",
+    "unit_price": 14.14,
+    "inventory": 29,
+    "last_update": "2021-06-05 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 455,
@@ -4561,13 +4561,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 457,
-    "title": "'Wine - Magnotta",
-    "description": "White'",
-    "unit_price": "diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien",
-    "inventory": 96.03,
-    "last_update": 34,
-    "collection_id": "2021-01-30 00:00:00",
-    "slug": 5
+    "title": "Wine - Magnotta, White",
+    "description": "diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien",
+    "unit_price": 96.03,
+    "inventory": 34,
+    "last_update": "2021-01-30 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 458,
@@ -4611,13 +4611,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 462,
-    "title": "'Yogurt - Raspberry",
-    "description": "175 Gr'",
-    "unit_price": "habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque",
-    "inventory": 74.58,
-    "last_update": 100,
-    "collection_id": "2020-12-08 00:00:00",
-    "slug": 4
+    "title": "Yogurt - Raspberry, 175 Gr",
+    "description": "habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque",
+    "unit_price": 74.58,
+    "inventory": 100,
+    "last_update": "2020-12-08 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 463,
@@ -4661,13 +4661,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 467,
-    "title": "'Beef - Chuck",
-    "description": "Boneless'",
-    "unit_price": "viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec",
-    "inventory": 85.88,
-    "last_update": 22,
-    "collection_id": "2020-10-21 00:00:00",
-    "slug": 5
+    "title": "Beef - Chuck, Boneless",
+    "description": "viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec",
+    "unit_price": 85.88,
+    "inventory": 22,
+    "last_update": "2020-10-21 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 468,
@@ -4701,13 +4701,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 471,
-    "title": "'Bread - White",
-    "description": "Unsliced'",
-    "unit_price": "donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna",
-    "inventory": 83.52,
-    "last_update": 51,
-    "collection_id": "2021-01-17 00:00:00",
-    "slug": 4
+    "title": "Bread - White, Unsliced",
+    "description": "donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna",
+    "unit_price": 83.52,
+    "inventory": 51,
+    "last_update": "2021-01-17 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 472,
@@ -4741,13 +4741,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 475,
-    "title": "'Pepper - Green",
-    "description": "Chili'",
-    "unit_price": "eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in",
-    "inventory": 95.2,
-    "last_update": 61,
-    "collection_id": "2021-01-13 00:00:00",
-    "slug": 6
+    "title": "Pepper - Green, Chili",
+    "description": "eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in",
+    "unit_price": 95.2,
+    "inventory": 61,
+    "last_update": "2021-01-13 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 476,
@@ -4761,13 +4761,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 477,
-    "title": "'Yogurt - Cherry",
-    "description": "175 Gr'",
-    "unit_price": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut",
-    "inventory": 52.89,
-    "last_update": 80,
-    "collection_id": "2020-08-05 00:00:00",
-    "slug": 3
+    "title": "Yogurt - Cherry, 175 Gr",
+    "description": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut",
+    "unit_price": 52.89,
+    "inventory": 80,
+    "last_update": "2020-08-05 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 478,
@@ -4781,13 +4781,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 479,
-    "title": "'Turnip - White",
-    "description": "Organic'",
-    "unit_price": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
-    "inventory": 50.07,
-    "last_update": 25,
-    "collection_id": "2021-02-09 00:00:00",
-    "slug": 5
+    "title": "Turnip - White, Organic",
+    "description": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
+    "unit_price": 50.07,
+    "inventory": 25,
+    "last_update": "2021-02-09 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 480,
@@ -4811,33 +4811,33 @@ db.store_product.insertMany([
   },
   {
     "_id": 482,
-    "title": "'Pasta - Elbows",
-    "description": "Macaroni",
-    "unit_price": "Dry'",
-    "inventory": "faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus",
-    "last_update": 37.3,
-    "collection_id": 87,
-    "slug": "2021-04-08 00:00:00"
+    "title": "Pasta - Elbows, Macaroni, Dry",
+    "description": "faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus",
+    "unit_price": 37.3,
+    "inventory": 87,
+    "last_update": "2021-04-08 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 483,
-    "title": "'Wine - White",
-    "description": "Colubia Cresh'",
-    "unit_price": "lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a",
-    "inventory": 1.59,
-    "last_update": 42,
-    "collection_id": "2020-06-24 00:00:00",
-    "slug": 4
+    "title": "Wine - White, Colubia Cresh",
+    "description": "lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a",
+    "unit_price": 1.59,
+    "inventory": 42,
+    "last_update": "2020-06-24 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 484,
-    "title": "'Soup - Beef Conomme",
-    "description": "Dry'",
-    "unit_price": "ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec",
-    "inventory": 92.54,
-    "last_update": 75,
-    "collection_id": "2021-01-05 00:00:00",
-    "slug": 4
+    "title": "Soup - Beef Conomme, Dry",
+    "description": "ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec",
+    "unit_price": 92.54,
+    "inventory": 75,
+    "last_update": "2021-01-05 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 485,
@@ -4861,23 +4861,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 487,
-    "title": "'Cheese - Havarti",
-    "description": "Salsa'",
-    "unit_price": "blandit non interdum in ante vestibulum ante ipsum primis in",
-    "inventory": 31.03,
-    "last_update": 75,
-    "collection_id": "2020-12-06 00:00:00",
-    "slug": 6
+    "title": "Cheese - Havarti, Salsa",
+    "description": "blandit non interdum in ante vestibulum ante ipsum primis in",
+    "unit_price": 31.03,
+    "inventory": 75,
+    "last_update": "2020-12-06 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 488,
-    "title": "'Shrimp - 21/25",
-    "description": "Peel And Deviened'",
-    "unit_price": "sed tristique in tempus sit amet sem fusce consequat nulla",
-    "inventory": 83.12,
-    "last_update": 20,
-    "collection_id": "2020-07-09 00:00:00",
-    "slug": 4
+    "title": "Shrimp - 21/25, Peel And Deviened",
+    "description": "sed tristique in tempus sit amet sem fusce consequat nulla",
+    "unit_price": 83.12,
+    "inventory": 20,
+    "last_update": "2020-07-09 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 489,
@@ -4931,13 +4931,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 494,
-    "title": "'Mushroom - Chantrelle",
-    "description": "Fresh'",
-    "unit_price": "amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras",
-    "inventory": 23.61,
-    "last_update": 39,
-    "collection_id": "2020-09-12 00:00:00",
-    "slug": 5
+    "title": "Mushroom - Chantrelle, Fresh",
+    "description": "amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras",
+    "unit_price": 23.61,
+    "inventory": 39,
+    "last_update": "2020-09-12 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 495,
@@ -5091,13 +5091,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 510,
-    "title": "'Pineapple - Canned",
-    "description": "Rings'",
-    "unit_price": "aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed",
-    "inventory": 14.96,
-    "last_update": 77,
-    "collection_id": "2021-04-04 00:00:00",
-    "slug": 3
+    "title": "Pineapple - Canned, Rings",
+    "description": "aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed",
+    "unit_price": 14.96,
+    "inventory": 77,
+    "last_update": "2021-04-04 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 511,
@@ -5141,13 +5141,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 515,
-    "title": "'Sparkling Wine - Rose",
-    "description": "Freixenet'",
-    "unit_price": "justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue",
-    "inventory": 95.18,
-    "last_update": 44,
-    "collection_id": "2020-12-24 00:00:00",
-    "slug": 3
+    "title": "Sparkling Wine - Rose, Freixenet",
+    "description": "justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue",
+    "unit_price": 95.18,
+    "inventory": 44,
+    "last_update": "2020-12-24 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 516,
@@ -5291,13 +5291,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 530,
-    "title": "'Wine - Red",
-    "description": "Cabernet Merlot'",
-    "unit_price": "platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum",
-    "inventory": 89.73,
-    "last_update": 57,
-    "collection_id": "2020-12-11 00:00:00",
-    "slug": 4
+    "title": "Wine - Red, Cabernet Merlot",
+    "description": "platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum",
+    "unit_price": 89.73,
+    "inventory": 57,
+    "last_update": "2020-12-11 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 531,
@@ -5521,33 +5521,33 @@ db.store_product.insertMany([
   },
   {
     "_id": 553,
-    "title": "'Wine - Magnotta - Red",
-    "description": "Baco'",
-    "unit_price": "vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices",
-    "inventory": 27.6,
-    "last_update": 71,
-    "collection_id": "2021-02-14 00:00:00",
-    "slug": 5
+    "title": "Wine - Magnotta - Red, Baco",
+    "description": "vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices",
+    "unit_price": 27.6,
+    "inventory": 71,
+    "last_update": "2021-02-14 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 554,
-    "title": "'Chicken - Leg",
-    "description": "Fresh'",
-    "unit_price": "leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam",
-    "inventory": 11.5,
-    "last_update": 2,
-    "collection_id": "2021-06-02 00:00:00",
-    "slug": 4
+    "title": "Chicken - Leg, Fresh",
+    "description": "leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam",
+    "unit_price": 11.5,
+    "inventory": 2,
+    "last_update": "2021-06-02 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 555,
-    "title": "'Soup - French Onion",
-    "description": "Dry'",
-    "unit_price": "libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc",
-    "inventory": 66.46,
-    "last_update": 37,
-    "collection_id": "2021-01-24 00:00:00",
-    "slug": 6
+    "title": "Soup - French Onion, Dry",
+    "description": "libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc",
+    "unit_price": 66.46,
+    "inventory": 37,
+    "last_update": "2021-01-24 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 556,
@@ -5561,23 +5561,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 557,
-    "title": "'Carrots - Purple",
-    "description": "Organic'",
-    "unit_price": "eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis",
-    "inventory": 12.34,
-    "last_update": 48,
-    "collection_id": "2021-06-02 00:00:00",
-    "slug": 5
+    "title": "Carrots - Purple, Organic",
+    "description": "eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis",
+    "unit_price": 12.34,
+    "inventory": 48,
+    "last_update": "2021-06-02 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 558,
-    "title": "'Yogurt - Raspberry",
-    "description": "175 Gr'",
-    "unit_price": "sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet",
-    "inventory": 73.13,
-    "last_update": 32,
-    "collection_id": "2021-05-07 00:00:00",
-    "slug": 6
+    "title": "Yogurt - Raspberry, 175 Gr",
+    "description": "sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet",
+    "unit_price": 73.13,
+    "inventory": 32,
+    "last_update": "2021-05-07 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 559,
@@ -5681,23 +5681,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 569,
-    "title": "'Crab - Claws",
-    "description": "26 - 30'",
-    "unit_price": "congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero",
-    "inventory": 60.21,
-    "last_update": 78,
-    "collection_id": "2021-02-22 00:00:00",
-    "slug": 3
+    "title": "Crab - Claws, 26 - 30",
+    "description": "congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero",
+    "unit_price": 60.21,
+    "inventory": 78,
+    "last_update": "2021-02-22 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 570,
-    "title": "'Stock - Chicken",
-    "description": "White'",
-    "unit_price": "velit eu est congue elementum in hac habitasse platea dictumst",
-    "inventory": 48.55,
-    "last_update": 24,
-    "collection_id": "2021-04-15 00:00:00",
-    "slug": 6
+    "title": "Stock - Chicken, White",
+    "description": "velit eu est congue elementum in hac habitasse platea dictumst",
+    "unit_price": 48.55,
+    "inventory": 24,
+    "last_update": "2021-04-15 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 571,
@@ -5721,13 +5721,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 573,
-    "title": "'Cheese - Brie",
-    "description": "Cups 125g'",
-    "unit_price": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur",
-    "inventory": 36.3,
-    "last_update": 32,
-    "collection_id": "2020-06-12 00:00:00",
-    "slug": 5
+    "title": "Cheese - Brie, Cups 125g",
+    "description": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur",
+    "unit_price": 36.3,
+    "inventory": 32,
+    "last_update": "2020-06-12 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 574,
@@ -5761,13 +5761,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 577,
-    "title": "'Soup - Campbells",
-    "description": "Classic Chix'",
-    "unit_price": "eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem",
-    "inventory": 24.59,
-    "last_update": 48,
-    "collection_id": "2020-12-10 00:00:00",
-    "slug": 5
+    "title": "Soup - Campbells, Classic Chix",
+    "description": "eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem",
+    "unit_price": 24.59,
+    "inventory": 48,
+    "last_update": "2020-12-10 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 578,
@@ -5851,13 +5851,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 586,
-    "title": "'Bread - Rolls",
-    "description": "Rye'",
-    "unit_price": "erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi",
-    "inventory": 80.76,
-    "last_update": 76,
-    "collection_id": "2021-02-01 00:00:00",
-    "slug": 4
+    "title": "Bread - Rolls, Rye",
+    "description": "erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi",
+    "unit_price": 80.76,
+    "inventory": 76,
+    "last_update": "2021-02-01 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 587,
@@ -5941,13 +5941,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 595,
-    "title": "'Doilies - 5",
-    "description": "Paper'",
-    "unit_price": "vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi",
-    "inventory": 1.06,
-    "last_update": 86,
-    "collection_id": "2020-07-15 00:00:00",
-    "slug": 6
+    "title": "Doilies - 5, Paper",
+    "description": "vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi",
+    "unit_price": 1.06,
+    "inventory": 86,
+    "last_update": "2020-07-15 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 596,
@@ -5971,13 +5971,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 598,
-    "title": "'Yogurt - Raspberry",
-    "description": "175 Gr'",
-    "unit_price": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel",
-    "inventory": 9.79,
-    "last_update": 35,
-    "collection_id": "2020-09-23 00:00:00",
-    "slug": 4
+    "title": "Yogurt - Raspberry, 175 Gr",
+    "description": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel",
+    "unit_price": 9.79,
+    "inventory": 35,
+    "last_update": "2020-09-23 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 599,
@@ -6081,13 +6081,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 609,
-    "title": "'Beef - Ground",
-    "description": "Extra Lean",
-    "unit_price": "Fresh'",
-    "inventory": "mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at",
-    "last_update": 88.73,
-    "collection_id": 35,
-    "slug": "2021-04-12 00:00:00"
+    "title": "Beef - Ground, Extra Lean, Fresh",
+    "description": "mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at",
+    "unit_price": 88.73,
+    "inventory": 35,
+    "last_update": "2021-04-12 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 610,
@@ -6121,13 +6121,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 613,
-    "title": "'Shrimp - Baby",
-    "description": "Warm Water'",
-    "unit_price": "nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi",
-    "inventory": 37.16,
-    "last_update": 33,
-    "collection_id": "2020-07-26 00:00:00",
-    "slug": 5
+    "title": "Shrimp - Baby, Warm Water",
+    "description": "nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi",
+    "unit_price": 37.16,
+    "inventory": 33,
+    "last_update": "2020-07-26 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 614,
@@ -6161,23 +6161,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 617,
-    "title": "'Olives - Black",
-    "description": "Pitted'",
-    "unit_price": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est",
-    "inventory": 67.08,
-    "last_update": 76,
-    "collection_id": "2021-06-04 00:00:00",
-    "slug": 3
+    "title": "Olives - Black, Pitted",
+    "description": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est",
+    "unit_price": 67.08,
+    "inventory": 76,
+    "last_update": "2021-06-04 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 618,
-    "title": "'Napkin - Beverge",
-    "description": "White 2 - Ply'",
-    "unit_price": "non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu",
-    "inventory": 73.73,
-    "last_update": 36,
-    "collection_id": "2020-11-27 00:00:00",
-    "slug": 4
+    "title": "Napkin - Beverge, White 2 - Ply",
+    "description": "non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu",
+    "unit_price": 73.73,
+    "inventory": 36,
+    "last_update": "2020-11-27 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 619,
@@ -6241,23 +6241,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 625,
-    "title": "'Soup - Knorr",
-    "description": "Chicken Noodle'",
-    "unit_price": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec",
-    "inventory": 50.07,
-    "last_update": 30,
-    "collection_id": "2021-04-23 00:00:00",
-    "slug": 3
+    "title": "Soup - Knorr, Chicken Noodle",
+    "description": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec",
+    "unit_price": 50.07,
+    "inventory": 30,
+    "last_update": "2021-04-23 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 626,
-    "title": "'Rum - Light",
-    "description": "Captain Morgan'",
-    "unit_price": "tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non",
-    "inventory": 90.2,
-    "last_update": 52,
-    "collection_id": "2020-11-17 00:00:00",
-    "slug": 5
+    "title": "Rum - Light, Captain Morgan",
+    "description": "tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non",
+    "unit_price": 90.2,
+    "inventory": 52,
+    "last_update": "2020-11-17 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 627,
@@ -6271,13 +6271,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 628,
-    "title": "'Pasta - Linguini",
-    "description": "Dry'",
-    "unit_price": "ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus",
-    "inventory": 78.66,
-    "last_update": 35,
-    "collection_id": "2020-09-30 00:00:00",
-    "slug": 4
+    "title": "Pasta - Linguini, Dry",
+    "description": "ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus",
+    "unit_price": 78.66,
+    "inventory": 35,
+    "last_update": "2020-09-30 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 629,
@@ -6291,13 +6291,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 630,
-    "title": "'Beef - Roasted",
-    "description": "Cooked'",
-    "unit_price": "eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper",
-    "inventory": 81.59,
-    "last_update": 13,
-    "collection_id": "2021-02-13 00:00:00",
-    "slug": 4
+    "title": "Beef - Roasted, Cooked",
+    "description": "eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper",
+    "unit_price": 81.59,
+    "inventory": 13,
+    "last_update": "2021-02-13 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 631,
@@ -6341,13 +6341,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 635,
-    "title": "'Sauce - White",
-    "description": "Mix'",
-    "unit_price": "ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui",
-    "inventory": 90.02,
-    "last_update": 54,
-    "collection_id": "2021-05-22 00:00:00",
-    "slug": 3
+    "title": "Sauce - White, Mix",
+    "description": "ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui",
+    "unit_price": 90.02,
+    "inventory": 54,
+    "last_update": "2021-05-22 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 636,
@@ -6461,23 +6461,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 647,
-    "title": "'Star Anise",
-    "description": "Whole'",
-    "unit_price": "luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur",
-    "inventory": 23.01,
-    "last_update": 78,
-    "collection_id": "2020-06-13 00:00:00",
-    "slug": 5
+    "title": "Star Anise, Whole",
+    "description": "luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur",
+    "unit_price": 23.01,
+    "inventory": 78,
+    "last_update": "2020-06-13 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 648,
-    "title": "'7up Diet",
-    "description": "355 Ml'",
-    "unit_price": "tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est",
-    "inventory": 79.07,
-    "last_update": 82,
-    "collection_id": "2020-07-16 00:00:00",
-    "slug": 5
+    "title": "7up Diet, 355 Ml",
+    "description": "tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est",
+    "unit_price": 79.07,
+    "inventory": 82,
+    "last_update": "2020-07-16 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 649,
@@ -6601,13 +6601,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 661,
-    "title": "'Garlic - Primerba",
-    "description": "Paste'",
-    "unit_price": "pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi",
-    "inventory": 16.36,
-    "last_update": 31,
-    "collection_id": "2020-09-19 00:00:00",
-    "slug": 4
+    "title": "Garlic - Primerba, Paste",
+    "description": "pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi",
+    "unit_price": 16.36,
+    "inventory": 31,
+    "last_update": "2020-09-19 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 662,
@@ -6641,13 +6641,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 665,
-    "title": "'Wine - Red",
-    "description": "Gamay Noir'",
-    "unit_price": "tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat",
-    "inventory": 6.72,
-    "last_update": 23,
-    "collection_id": "2020-06-18 00:00:00",
-    "slug": 3
+    "title": "Wine - Red, Gamay Noir",
+    "description": "tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat",
+    "unit_price": 6.72,
+    "inventory": 23,
+    "last_update": "2020-06-18 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 666,
@@ -6721,13 +6721,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 673,
-    "title": "'Cheese - Brie",
-    "description": "danish'",
-    "unit_price": "elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper",
-    "inventory": 91.06,
-    "last_update": 42,
-    "collection_id": "2020-12-13 00:00:00",
-    "slug": 6
+    "title": "Cheese - Brie,danish",
+    "description": "elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper",
+    "unit_price": 91.06,
+    "inventory": 42,
+    "last_update": "2020-12-13 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 674,
@@ -6781,13 +6781,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 679,
-    "title": "'Apple - Delicious",
-    "description": "Red'",
-    "unit_price": "primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis",
-    "inventory": 74.54,
-    "last_update": 58,
-    "collection_id": "2020-06-20 00:00:00",
-    "slug": 6
+    "title": "Apple - Delicious, Red",
+    "description": "primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis",
+    "unit_price": 74.54,
+    "inventory": 58,
+    "last_update": "2020-06-20 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 680,
@@ -6831,13 +6831,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 684,
-    "title": "'Butter - Salted",
-    "description": "Micro'",
-    "unit_price": "convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia",
-    "inventory": 14.83,
-    "last_update": 68,
-    "collection_id": "2021-05-04 00:00:00",
-    "slug": 6
+    "title": "Butter - Salted, Micro",
+    "description": "convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia",
+    "unit_price": 14.83,
+    "inventory": 68,
+    "last_update": "2021-05-04 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 685,
@@ -6881,13 +6881,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 689,
-    "title": "'Pail - 15l White",
-    "description": "With Handle'",
-    "unit_price": "praesent lectus vestibulum quam sapien varius ut blandit non interdum in",
-    "inventory": 73.84,
-    "last_update": 49,
-    "collection_id": "2020-08-17 00:00:00",
-    "slug": 3
+    "title": "Pail - 15l White, With Handle",
+    "description": "praesent lectus vestibulum quam sapien varius ut blandit non interdum in",
+    "unit_price": 73.84,
+    "inventory": 49,
+    "last_update": "2020-08-17 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 690,
@@ -7001,13 +7001,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 701,
-    "title": "'Fish - Halibut",
-    "description": "Cold Smoked'",
-    "unit_price": "congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed",
-    "inventory": 4.66,
-    "last_update": 44,
-    "collection_id": "2020-11-18 00:00:00",
-    "slug": 4
+    "title": "Fish - Halibut, Cold Smoked",
+    "description": "congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed",
+    "unit_price": 4.66,
+    "inventory": 44,
+    "last_update": "2020-11-18 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 702,
@@ -7021,23 +7021,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 703,
-    "title": "'Marsala - Sperone",
-    "description": "Fine",
-    "unit_price": "D.o.c.'",
-    "inventory": "viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae",
-    "last_update": 75.52,
-    "collection_id": 94,
-    "slug": "2020-11-26 00:00:00"
+    "title": "Marsala - Sperone, Fine, D.o.c.",
+    "description": "viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae",
+    "unit_price": 75.52,
+    "inventory": 94,
+    "last_update": "2020-11-26 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 704,
-    "title": "'Tabasco Sauce",
-    "description": "2 Oz'",
-    "unit_price": "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget",
-    "inventory": 47.85,
-    "last_update": 76,
-    "collection_id": "2020-12-17 00:00:00",
-    "slug": 3
+    "title": "Tabasco Sauce, 2 Oz",
+    "description": "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget",
+    "unit_price": 47.85,
+    "inventory": 76,
+    "last_update": "2020-12-17 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 705,
@@ -7061,13 +7061,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 707,
-    "title": "'Salmon - Atlantic",
-    "description": "No Skin'",
-    "unit_price": "metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean",
-    "inventory": 23.02,
-    "last_update": 44,
-    "collection_id": "2020-11-26 00:00:00",
-    "slug": 3
+    "title": "Salmon - Atlantic, No Skin",
+    "description": "metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean",
+    "unit_price": 23.02,
+    "inventory": 44,
+    "last_update": "2020-11-26 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 708,
@@ -7091,13 +7091,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 710,
-    "title": "'Juice - Apple",
-    "description": "341 Ml'",
-    "unit_price": "risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis",
-    "inventory": 73.52,
-    "last_update": 35,
-    "collection_id": "2020-07-18 00:00:00",
-    "slug": 4
+    "title": "Juice - Apple, 341 Ml",
+    "description": "risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis",
+    "unit_price": 73.52,
+    "inventory": 35,
+    "last_update": "2020-07-18 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 711,
@@ -7111,23 +7111,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 712,
-    "title": "'Garlic - Primerba",
-    "description": "Paste'",
-    "unit_price": "sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec",
-    "inventory": 22.25,
-    "last_update": 89,
-    "collection_id": "2020-07-08 00:00:00",
-    "slug": 5
+    "title": "Garlic - Primerba, Paste",
+    "description": "sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec",
+    "unit_price": 22.25,
+    "inventory": 89,
+    "last_update": "2020-07-08 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 713,
-    "title": "'Chocolate - Milk",
-    "description": "Callets'",
-    "unit_price": "sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel",
-    "inventory": 15.33,
-    "last_update": 75,
-    "collection_id": "2020-07-17 00:00:00",
-    "slug": 6
+    "title": "Chocolate - Milk, Callets",
+    "description": "sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel",
+    "unit_price": 15.33,
+    "inventory": 75,
+    "last_update": "2020-07-17 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 714,
@@ -7171,23 +7171,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 718,
-    "title": "'Sauce - Apple",
-    "description": "Unsweetened'",
-    "unit_price": "mauris vulputate elementum nullam varius nulla facilisi cras non velit",
-    "inventory": 35.3,
-    "last_update": 12,
-    "collection_id": "2020-12-27 00:00:00",
-    "slug": 4
+    "title": "Sauce - Apple, Unsweetened",
+    "description": "mauris vulputate elementum nullam varius nulla facilisi cras non velit",
+    "unit_price": 35.3,
+    "inventory": 12,
+    "last_update": "2020-12-27 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 719,
-    "title": "'Crush - Grape",
-    "description": "355 Ml'",
-    "unit_price": "nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac",
-    "inventory": 2.04,
-    "last_update": 49,
-    "collection_id": "2020-12-14 00:00:00",
-    "slug": 4
+    "title": "Crush - Grape, 355 Ml",
+    "description": "nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac",
+    "unit_price": 2.04,
+    "inventory": 49,
+    "last_update": "2020-12-14 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 720,
@@ -7281,13 +7281,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 729,
-    "title": "'Juice - Cranberry",
-    "description": "341 Ml'",
-    "unit_price": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non",
-    "inventory": 3.74,
-    "last_update": 48,
-    "collection_id": "2020-12-19 00:00:00",
-    "slug": 5
+    "title": "Juice - Cranberry, 341 Ml",
+    "description": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non",
+    "unit_price": 3.74,
+    "inventory": 48,
+    "last_update": "2020-12-19 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 730,
@@ -7321,13 +7321,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 733,
-    "title": "'Wine - White",
-    "description": "Gewurtzraminer'",
-    "unit_price": "sapien non mi integer ac neque duis bibendum morbi non quam",
-    "inventory": 20.81,
-    "last_update": 38,
-    "collection_id": "2020-09-15 00:00:00",
-    "slug": 4
+    "title": "Wine - White, Gewurtzraminer",
+    "description": "sapien non mi integer ac neque duis bibendum morbi non quam",
+    "unit_price": 20.81,
+    "inventory": 38,
+    "last_update": "2020-09-15 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 734,
@@ -7351,13 +7351,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 736,
-    "title": "'Iced Tea - Lemon",
-    "description": "460 Ml'",
-    "unit_price": "cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum",
-    "inventory": 10.87,
-    "last_update": 93,
-    "collection_id": "2020-11-11 00:00:00",
-    "slug": 6
+    "title": "Iced Tea - Lemon, 460 Ml",
+    "description": "cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum",
+    "unit_price": 10.87,
+    "inventory": 93,
+    "last_update": "2020-11-11 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 737,
@@ -7481,13 +7481,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 749,
-    "title": "'Bread - Roll",
-    "description": "Calabrese'",
-    "unit_price": "ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros",
-    "inventory": 85.75,
-    "last_update": 49,
-    "collection_id": "2021-04-09 00:00:00",
-    "slug": 5
+    "title": "Bread - Roll, Calabrese",
+    "description": "ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros",
+    "unit_price": 85.75,
+    "inventory": 49,
+    "last_update": "2021-04-09 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 750,
@@ -7521,13 +7521,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 753,
-    "title": "'Soup - Beef",
-    "description": "Base Mix'",
-    "unit_price": "tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut",
-    "inventory": 42.17,
-    "last_update": 81,
-    "collection_id": "2020-11-25 00:00:00",
-    "slug": 4
+    "title": "Soup - Beef, Base Mix",
+    "description": "tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut",
+    "unit_price": 42.17,
+    "inventory": 81,
+    "last_update": "2020-11-25 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 754,
@@ -7561,13 +7561,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 757,
-    "title": "'Cheese - Cheddar",
-    "description": "Old White'",
-    "unit_price": "libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis",
-    "inventory": 89.36,
-    "last_update": 78,
-    "collection_id": "2020-08-03 00:00:00",
-    "slug": 6
+    "title": "Cheese - Cheddar, Old White",
+    "description": "libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis",
+    "unit_price": 89.36,
+    "inventory": 78,
+    "last_update": "2020-08-03 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 758,
@@ -7591,13 +7591,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 760,
-    "title": "'Sparkling Wine - Rose",
-    "description": "Freixenet'",
-    "unit_price": "mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet",
-    "inventory": 67.78,
-    "last_update": 32,
-    "collection_id": "2020-06-25 00:00:00",
-    "slug": 5
+    "title": "Sparkling Wine - Rose, Freixenet",
+    "description": "mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet",
+    "unit_price": 67.78,
+    "inventory": 32,
+    "last_update": "2020-06-25 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 761,
@@ -7851,13 +7851,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 786,
-    "title": "'Salmon - Atlantic",
-    "description": "Skin On'",
-    "unit_price": "quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in",
-    "inventory": 40.6,
-    "last_update": 57,
-    "collection_id": "2020-11-03 00:00:00",
-    "slug": 4
+    "title": "Salmon - Atlantic, Skin On",
+    "description": "quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in",
+    "unit_price": 40.6,
+    "inventory": 57,
+    "last_update": "2020-11-03 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 787,
@@ -7881,13 +7881,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 789,
-    "title": "'Wine - Magnotta",
-    "description": "Merlot Sr Vqa'",
-    "unit_price": "mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue",
-    "inventory": 95.54,
-    "last_update": 61,
-    "collection_id": "2021-04-21 00:00:00",
-    "slug": 4
+    "title": "Wine - Magnotta, Merlot Sr Vqa",
+    "description": "mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue",
+    "unit_price": 95.54,
+    "inventory": 61,
+    "last_update": "2021-04-21 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 790,
@@ -7921,13 +7921,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 793,
-    "title": "'Cherries - Bing",
-    "description": "Canned'",
-    "unit_price": "nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget",
-    "inventory": 7.5,
-    "last_update": 74,
-    "collection_id": "2021-05-20 00:00:00",
-    "slug": 6
+    "title": "Cherries - Bing, Canned",
+    "description": "nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget",
+    "unit_price": 7.5,
+    "inventory": 74,
+    "last_update": "2021-05-20 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 794,
@@ -7961,13 +7961,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 797,
-    "title": "'Lamb - Loin",
-    "description": "Trimmed",
-    "unit_price": "Boneless'",
-    "inventory": "eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a",
-    "last_update": 38.98,
-    "collection_id": 97,
-    "slug": "2020-09-04 00:00:00"
+    "title": "Lamb - Loin, Trimmed, Boneless",
+    "description": "eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a",
+    "unit_price": 38.98,
+    "inventory": 97,
+    "last_update": "2020-09-04 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 798,
@@ -8041,13 +8041,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 805,
-    "title": "'Wine - Red",
-    "description": "Colio Cabernet'",
-    "unit_price": "lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium",
-    "inventory": 96.99,
-    "last_update": 59,
-    "collection_id": "2021-03-23 00:00:00",
-    "slug": 3
+    "title": "Wine - Red, Colio Cabernet",
+    "description": "lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium",
+    "unit_price": 96.99,
+    "inventory": 59,
+    "last_update": "2021-03-23 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 806,
@@ -8191,23 +8191,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 820,
-    "title": "'Pork - Sausage",
-    "description": "Medium'",
-    "unit_price": "in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus",
-    "inventory": 56.86,
-    "last_update": 26,
-    "collection_id": "2021-02-25 00:00:00",
-    "slug": 4
+    "title": "Pork - Sausage, Medium",
+    "description": "in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus",
+    "unit_price": 56.86,
+    "inventory": 26,
+    "last_update": "2021-02-25 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 821,
-    "title": "'Iced Tea - Lemon",
-    "description": "460 Ml'",
-    "unit_price": "tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia",
-    "inventory": 3.29,
-    "last_update": 68,
-    "collection_id": "2021-03-20 00:00:00",
-    "slug": 5
+    "title": "Iced Tea - Lemon, 460 Ml",
+    "description": "tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia",
+    "unit_price": 3.29,
+    "inventory": 68,
+    "last_update": "2021-03-20 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 822,
@@ -8221,13 +8221,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 823,
-    "title": "'Juice - Apple",
-    "description": "500 Ml'",
-    "unit_price": "ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce",
-    "inventory": 47.96,
-    "last_update": 50,
-    "collection_id": "2021-04-02 00:00:00",
-    "slug": 3
+    "title": "Juice - Apple, 500 Ml",
+    "description": "ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce",
+    "unit_price": 47.96,
+    "inventory": 50,
+    "last_update": "2021-04-02 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 824,
@@ -8321,13 +8321,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 833,
-    "title": "'Wine - Red",
-    "description": "Gallo",
-    "unit_price": "Merlot'",
-    "inventory": "pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus",
-    "last_update": 49.76,
-    "collection_id": 31,
-    "slug": "2021-05-31 00:00:00"
+    "title": "Wine - Red, Gallo, Merlot",
+    "description": "pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus",
+    "unit_price": 49.76,
+    "inventory": 31,
+    "last_update": "2021-05-31 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 834,
@@ -8341,13 +8341,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 835,
-    "title": "'Sole - Dover",
-    "description": "Whole",
-    "unit_price": "Fresh'",
-    "inventory": "in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
-    "last_update": 54.55,
-    "collection_id": 42,
-    "slug": "2020-07-22 00:00:00"
+    "title": "Sole - Dover, Whole, Fresh",
+    "description": "in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
+    "unit_price": 54.55,
+    "inventory": 42,
+    "last_update": "2020-07-22 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 836,
@@ -8401,13 +8401,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 841,
-    "title": "'Soup - Beef Conomme",
-    "description": "Dry'",
-    "unit_price": "lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam",
-    "inventory": 81.56,
-    "last_update": 86,
-    "collection_id": "2020-07-17 00:00:00",
-    "slug": 5
+    "title": "Soup - Beef Conomme, Dry",
+    "description": "lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam",
+    "unit_price": 81.56,
+    "inventory": 86,
+    "last_update": "2020-07-17 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 842,
@@ -8431,13 +8431,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 844,
-    "title": "'Beef - Cooked",
-    "description": "Corned'",
-    "unit_price": "dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt",
-    "inventory": 62.21,
-    "last_update": 56,
-    "collection_id": "2021-04-29 00:00:00",
-    "slug": 5
+    "title": "Beef - Cooked, Corned",
+    "description": "dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt",
+    "unit_price": 62.21,
+    "inventory": 56,
+    "last_update": "2021-04-29 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 845,
@@ -8471,23 +8471,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 848,
-    "title": "'Chicken - Breast",
-    "description": "5 - 7 Oz'",
-    "unit_price": "vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices",
-    "inventory": 32.82,
-    "last_update": 72,
-    "collection_id": "2021-03-25 00:00:00",
-    "slug": 6
+    "title": "Chicken - Breast, 5 - 7 Oz",
+    "description": "vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices",
+    "unit_price": 32.82,
+    "inventory": 72,
+    "last_update": "2021-03-25 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 849,
-    "title": "'Brownies - Two Bite",
-    "description": "Chocolate'",
-    "unit_price": "ultrices libero non mattis pulvinar nulla pede ullamcorper augue a",
-    "inventory": 69.04,
-    "last_update": 69,
-    "collection_id": "2021-05-03 00:00:00",
-    "slug": 6
+    "title": "Brownies - Two Bite, Chocolate",
+    "description": "ultrices libero non mattis pulvinar nulla pede ullamcorper augue a",
+    "unit_price": 69.04,
+    "inventory": 69,
+    "last_update": "2021-05-03 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 850,
@@ -8561,13 +8561,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 857,
-    "title": "'Wine - Red",
-    "description": "Marechal Foch'",
-    "unit_price": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
-    "inventory": 78.94,
-    "last_update": 77,
-    "collection_id": "2021-04-02 00:00:00",
-    "slug": 3
+    "title": "Wine - Red, Marechal Foch",
+    "description": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in",
+    "unit_price": 78.94,
+    "inventory": 77,
+    "last_update": "2021-04-02 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 858,
@@ -8611,13 +8611,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 862,
-    "title": "'Juice - Apple",
-    "description": "500 Ml'",
-    "unit_price": "ligula in lacus curabitur at ipsum ac tellus semper interdum",
-    "inventory": 91.83,
-    "last_update": 41,
-    "collection_id": "2020-06-20 00:00:00",
-    "slug": 6
+    "title": "Juice - Apple, 500 Ml",
+    "description": "ligula in lacus curabitur at ipsum ac tellus semper interdum",
+    "unit_price": 91.83,
+    "inventory": 41,
+    "last_update": "2020-06-20 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 863,
@@ -8681,13 +8681,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 869,
-    "title": "'Nut - Walnut",
-    "description": "Pieces'",
-    "unit_price": "praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante",
-    "inventory": 90.88,
-    "last_update": 63,
-    "collection_id": "2021-02-24 00:00:00",
-    "slug": 4
+    "title": "Nut - Walnut, Pieces",
+    "description": "praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante",
+    "unit_price": 90.88,
+    "inventory": 63,
+    "last_update": "2021-02-24 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 870,
@@ -8751,13 +8751,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 876,
-    "title": "'Coffee - Beans",
-    "description": "Whole'",
-    "unit_price": "cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient",
-    "inventory": 38.07,
-    "last_update": 31,
-    "collection_id": "2021-05-06 00:00:00",
-    "slug": 5
+    "title": "Coffee - Beans, Whole",
+    "description": "cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient",
+    "unit_price": 38.07,
+    "inventory": 31,
+    "last_update": "2021-05-06 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 877,
@@ -8801,13 +8801,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 881,
-    "title": "'Pasta - Penne",
-    "description": "Rigate",
-    "unit_price": "Dry'",
-    "inventory": "sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper",
-    "last_update": 68.17,
-    "collection_id": 14,
-    "slug": "2020-07-24 00:00:00"
+    "title": "Pasta - Penne, Rigate, Dry",
+    "description": "sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper",
+    "unit_price": 68.17,
+    "inventory": 14,
+    "last_update": "2020-07-24 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 882,
@@ -8871,13 +8871,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 888,
-    "title": "'Pork - Loin",
-    "description": "Boneless'",
-    "unit_price": "aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam",
-    "inventory": 30.54,
-    "last_update": 31,
-    "collection_id": "2021-01-31 00:00:00",
-    "slug": 3
+    "title": "Pork - Loin, Boneless",
+    "description": "aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam",
+    "unit_price": 30.54,
+    "inventory": 31,
+    "last_update": "2021-01-31 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 889,
@@ -8901,13 +8901,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 891,
-    "title": "'Mushroom - Morels",
-    "description": "Dry'",
-    "unit_price": "tellus nulla ut erat id mauris vulputate elementum nullam varius",
-    "inventory": 93.01,
-    "last_update": 99,
-    "collection_id": "2021-05-05 00:00:00",
-    "slug": 5
+    "title": "Mushroom - Morels, Dry",
+    "description": "tellus nulla ut erat id mauris vulputate elementum nullam varius",
+    "unit_price": 93.01,
+    "inventory": 99,
+    "last_update": "2021-05-05 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 892,
@@ -8921,23 +8921,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 893,
-    "title": "'Flour - Buckwheat",
-    "description": "Dark'",
-    "unit_price": "pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient",
-    "inventory": 63.49,
-    "last_update": 73,
-    "collection_id": "2021-02-23 00:00:00",
-    "slug": 5
+    "title": "Flour - Buckwheat, Dark",
+    "description": "pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient",
+    "unit_price": 63.49,
+    "inventory": 73,
+    "last_update": "2021-02-23 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 894,
-    "title": "'Lemonade - Island Tea",
-    "description": "591 Ml'",
-    "unit_price": "massa id lobortis convallis tortor risus dapibus augue vel accumsan",
-    "inventory": 87.53,
-    "last_update": 17,
-    "collection_id": "2020-07-29 00:00:00",
-    "slug": 5
+    "title": "Lemonade - Island Tea, 591 Ml",
+    "description": "massa id lobortis convallis tortor risus dapibus augue vel accumsan",
+    "unit_price": 87.53,
+    "inventory": 17,
+    "last_update": "2020-07-29 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 895,
@@ -9061,13 +9061,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 907,
-    "title": "'Lamb - Whole",
-    "description": "Frozen'",
-    "unit_price": "duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit",
-    "inventory": 16.64,
-    "last_update": 39,
-    "collection_id": "2020-11-10 00:00:00",
-    "slug": 5
+    "title": "Lamb - Whole, Frozen",
+    "description": "duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit",
+    "unit_price": 16.64,
+    "inventory": 39,
+    "last_update": "2020-11-10 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 908,
@@ -9121,13 +9121,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 913,
-    "title": "'Wine - Red",
-    "description": "Mouton Cadet'",
-    "unit_price": "nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy",
-    "inventory": 16.96,
-    "last_update": 32,
-    "collection_id": "2020-12-05 00:00:00",
-    "slug": 5
+    "title": "Wine - Red, Mouton Cadet",
+    "description": "nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy",
+    "unit_price": 16.96,
+    "inventory": 32,
+    "last_update": "2020-12-05 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 914,
@@ -9191,13 +9191,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 920,
-    "title": "'Turnip - White",
-    "description": "Organic'",
-    "unit_price": "nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta",
-    "inventory": 43.91,
-    "last_update": 63,
-    "collection_id": "2021-05-30 00:00:00",
-    "slug": 5
+    "title": "Turnip - White, Organic",
+    "description": "nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta",
+    "unit_price": 43.91,
+    "inventory": 63,
+    "last_update": "2021-05-30 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 921,
@@ -9321,13 +9321,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 933,
-    "title": "'Yogurt - Blueberry",
-    "description": "175 Gr'",
-    "unit_price": "tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet",
-    "inventory": 93.57,
-    "last_update": 8,
-    "collection_id": "2020-09-07 00:00:00",
-    "slug": 5
+    "title": "Yogurt - Blueberry, 175 Gr",
+    "description": "tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet",
+    "unit_price": 93.57,
+    "inventory": 8,
+    "last_update": "2020-09-07 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 934,
@@ -9341,13 +9341,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 935,
-    "title": "'Clams - Littleneck",
-    "description": "Whole'",
-    "unit_price": "ut dolor morbi vel lectus in quam fringilla rhoncus mauris",
-    "inventory": 80.37,
-    "last_update": 45,
-    "collection_id": "2020-08-19 00:00:00",
-    "slug": 4
+    "title": "Clams - Littleneck, Whole",
+    "description": "ut dolor morbi vel lectus in quam fringilla rhoncus mauris",
+    "unit_price": 80.37,
+    "inventory": 45,
+    "last_update": "2020-08-19 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 936,
@@ -9371,13 +9371,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 938,
-    "title": "'Pesto - Primerba",
-    "description": "Paste'",
-    "unit_price": "lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat",
-    "inventory": 85.67,
-    "last_update": 27,
-    "collection_id": "2021-01-16 00:00:00",
-    "slug": 6
+    "title": "Pesto - Primerba, Paste",
+    "description": "lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat",
+    "unit_price": 85.67,
+    "inventory": 27,
+    "last_update": "2021-01-16 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 939,
@@ -9421,23 +9421,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 943,
-    "title": "'Bread - Roll",
-    "description": "Whole Wheat'",
-    "unit_price": "orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum",
-    "inventory": 85.47,
-    "last_update": 95,
-    "collection_id": "2020-09-05 00:00:00",
-    "slug": 6
+    "title": "Bread - Roll, Whole Wheat",
+    "description": "orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum",
+    "unit_price": 85.47,
+    "inventory": 95,
+    "last_update": "2020-09-05 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 944,
-    "title": "'Wine - White",
-    "description": "French Cross'",
-    "unit_price": "convallis nulla neque libero convallis eget eleifend luctus ultricies eu",
-    "inventory": 19.88,
-    "last_update": 88,
-    "collection_id": "2021-01-06 00:00:00",
-    "slug": 3
+    "title": "Wine - White, French Cross",
+    "description": "convallis nulla neque libero convallis eget eleifend luctus ultricies eu",
+    "unit_price": 19.88,
+    "inventory": 88,
+    "last_update": "2021-01-06 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 945,
@@ -9521,13 +9521,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 953,
-    "title": "'Loaf Pan - 2 Lb",
-    "description": "Foil'",
-    "unit_price": "in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices",
-    "inventory": 31.72,
-    "last_update": 85,
-    "collection_id": "2020-08-29 00:00:00",
-    "slug": 5
+    "title": "Loaf Pan - 2 Lb, Foil",
+    "description": "in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices",
+    "unit_price": 31.72,
+    "inventory": 85,
+    "last_update": "2020-08-29 00:00:00",
+    "collection_id": 5,
+    "slug": "-"
   },
   {
     "_id": 954,
@@ -9551,23 +9551,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 956,
-    "title": "'Mushroom - Enoki",
-    "description": "Fresh'",
-    "unit_price": "curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend",
-    "inventory": 94.14,
-    "last_update": 36,
-    "collection_id": "2021-06-03 00:00:00",
-    "slug": 6
+    "title": "Mushroom - Enoki, Fresh",
+    "description": "curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend",
+    "unit_price": 94.14,
+    "inventory": 36,
+    "last_update": "2021-06-03 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 957,
-    "title": "'Coffee - Colombian",
-    "description": "Portioned'",
-    "unit_price": "enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh",
-    "inventory": 30.8,
-    "last_update": 88,
-    "collection_id": "2020-11-29 00:00:00",
-    "slug": 4
+    "title": "Coffee - Colombian, Portioned",
+    "description": "enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh",
+    "unit_price": 30.8,
+    "inventory": 88,
+    "last_update": "2020-11-29 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 958,
@@ -9731,13 +9731,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 974,
-    "title": "'Sparkling Wine - Rose",
-    "description": "Freixenet'",
-    "unit_price": "congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum",
-    "inventory": 56.63,
-    "last_update": 66,
-    "collection_id": "2020-08-07 00:00:00",
-    "slug": 3
+    "title": "Sparkling Wine - Rose, Freixenet",
+    "description": "congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum",
+    "unit_price": 56.63,
+    "inventory": 66,
+    "last_update": "2020-08-07 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 975,
@@ -9881,13 +9881,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 989,
-    "title": "'Soup - Campbells",
-    "description": "Creamy'",
-    "unit_price": "pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non",
-    "inventory": 22.7,
-    "last_update": 30,
-    "collection_id": "2021-01-06 00:00:00",
-    "slug": 3
+    "title": "Soup - Campbells, Creamy",
+    "description": "pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non",
+    "unit_price": 22.7,
+    "inventory": 30,
+    "last_update": "2021-01-06 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 990,
@@ -9901,13 +9901,13 @@ db.store_product.insertMany([
   },
   {
     "_id": 991,
-    "title": "'Mushroom - Porcini",
-    "description": "Dry'",
-    "unit_price": "turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor",
-    "inventory": 41.43,
-    "last_update": 36,
-    "collection_id": "2020-07-08 00:00:00",
-    "slug": 4
+    "title": "Mushroom - Porcini, Dry",
+    "description": "turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor",
+    "unit_price": 41.43,
+    "inventory": 36,
+    "last_update": "2020-07-08 00:00:00",
+    "collection_id": 4,
+    "slug": "-"
   },
   {
     "_id": 992,
@@ -9941,23 +9941,23 @@ db.store_product.insertMany([
   },
   {
     "_id": 995,
-    "title": "'Club Soda - Schweppes",
-    "description": "355 Ml'",
-    "unit_price": "sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl",
-    "inventory": 8.32,
-    "last_update": 61,
-    "collection_id": "2021-03-19 00:00:00",
-    "slug": 3
+    "title": "Club Soda - Schweppes, 355 Ml",
+    "description": "sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl",
+    "unit_price": 8.32,
+    "inventory": 61,
+    "last_update": "2021-03-19 00:00:00",
+    "collection_id": 3,
+    "slug": "-"
   },
   {
     "_id": 996,
-    "title": "'Beef - Rib Roast",
-    "description": "Capless'",
-    "unit_price": "sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci",
-    "inventory": 52.9,
-    "last_update": 68,
-    "collection_id": "2020-06-20 00:00:00",
-    "slug": 6
+    "title": "Beef - Rib Roast, Capless",
+    "description": "sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci",
+    "unit_price": 52.9,
+    "inventory": 68,
+    "last_update": "2020-06-20 00:00:00",
+    "collection_id": 6,
+    "slug": "-"
   },
   {
     "_id": 997,
