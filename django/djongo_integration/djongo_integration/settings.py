@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'djongo_integration.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'test_db',
+        'NAME': 'test_course_db',
         'CLIENT': {
             'host': 'localhost',
             'port': 27017,

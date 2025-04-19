@@ -1,7 +1,9 @@
-from django.db import models
+from djongo import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
+
+from bson.objectid import ObjectId
 
 
 class LikedItem(models.Model):
