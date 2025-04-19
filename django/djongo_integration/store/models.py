@@ -1,4 +1,6 @@
 from djongo import models
+from django.core.validators import MinValueValidator
+
 from bson.objectid import ObjectId
 
 
@@ -33,9 +35,14 @@ class Product(models.Model):
     _id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField()
-    description = models.TextField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
-    inventory = models.IntegerField()
+    description = models.TextField(
+        null=True, blank=True)  # Makes this field optional
+    unit_price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        validators=[MinValueValidator(1)]
+    )
+    inventory = models.IntegerField(validators=[MinValueValidator(0)])
 
     # auto_now=True : means everytime we update this data model, it automatically stores the date in this field
     # auto_now_add=True : the date is generated only when the first time the product object is created
@@ -44,7 +51,8 @@ class Product(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
 
     # related_name=<name> : sets the name of the field or column on the parent (Promotion) class
-    promotions = models.ManyToManyField(Promotion, related_name="products")
+    promotions = models.ManyToManyField(
+        Promotion, related_name="products", blank=True)
 
     def __str__(self) -> str:
         return self.title

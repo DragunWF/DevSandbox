@@ -1,10 +1,12 @@
 from django.contrib import admin, messages
+from django.contrib.contenttypes.admin import GenericTabularInline
 from django.db.models.aggregates import Count
 from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.html import format_html
 
 from . import models
+from tags.models import TaggedItem
 
 
 class CollectionAdmin(admin.ModelAdmin):
@@ -46,6 +48,12 @@ class InventoryFilter(admin.SimpleListFilter):
             return queryset.filter(inventory__lt=10)
 
 
+class TagInline(GenericTabularInline):
+    autocomplete_fields = ["tag"]
+    model = TaggedItem
+    extra = 0
+
+
 class ProductAdmin(admin.ModelAdmin):
     # fields = ["title", "slug"]
     # readonly_fields = ["title"]
@@ -53,8 +61,9 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": ["title"]
     }
-    exclude = ["promotions"]
+    # exclude = ["promotions"]
     actions = ["clear_inventory"]
+    inlines = [TagInline]
     search_fields = ["first_name", "last_name"]
 
     # Shows the fields that are displayed on the admin list panel
@@ -113,8 +122,18 @@ class CustomerAdmin(admin.ModelAdmin):
     orders_count.short_description = "Number of Orders"
 
 
+class OrderItemInLine(admin.TabularInline):
+    autocomplete_fields = ["product"]
+    min_num = 1
+    max_num = 10
+    model = models.OrderItem
+    extra = 0
+
+
 class OrderAdmin(admin.ModelAdmin):
     autocomplete_fields = ["customer"]
+    inlines = [OrderItemInLine]
+
     list_display = ["customer", "placed_at", "payment_status"]
     list_editable = ["payment_status"]
 

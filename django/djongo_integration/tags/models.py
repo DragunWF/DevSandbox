@@ -26,6 +26,9 @@ class Tag(models.Model):
     _id = models.IntegerField(primary_key=True)
     label = models.CharField(max_length=255)
 
+    def __str__(self, tag):
+        return tag.label
+
 
 class TaggedItem(models.Model):
     # Overrides the default manager to a custom one
