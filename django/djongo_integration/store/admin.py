@@ -8,15 +8,15 @@ from . import models
 
 
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ["title", "collection_link", "products_count"]
+    list_display = ["title", "products_count"]
 
-    def collection_link(self, collection):
+    def products_count(self, collection):
         url = (
             reverse("admin:store_product_changelist")
             + "?"
             + urlencode({"collection__pk": collection._id})
         )
-        return format_html('<a href="{}">Change Products</a>', url)
+        return format_html('<a href="{}">{}</a>', url, collection.product_set.count())
 
     # Incompatible with Djongo
     # def products_count(self, collection):
@@ -27,9 +27,7 @@ class CollectionAdmin(admin.ModelAdmin):
     #         products_count=Count("product")
     #     )
 
-    def products_count(self, collection):
-        return collection.product_set.count()
-
+    products_count.short_description = "Number of Products"
     # products_count.admin_order_field = "products_count"
 
 
@@ -60,9 +58,19 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ["first_name", "last_name", "membership"]
+    list_display = ["first_name", "last_name", "membership", "orders_count"]
     list_editable = ["membership"]
     list_per_page = 10
+
+    def orders_count(self, customer):
+        url = (
+            reverse("admin:store_order_changelist")
+            + "?"
+            + urlencode({"customer__pk": customer._id})
+        )
+        return format_html('<a href="{}">{}</a>', url, customer.order_set.count())
+
+    orders_count.short_description = "Number of Orders"
 
 
 class OrderAdmin(admin.ModelAdmin):
