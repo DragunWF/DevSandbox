@@ -4,13 +4,18 @@ from . import models
 
 class ProductAdmin(admin.ModelAdmin):
     # Shows the fields that are displayed on the admin list panel
-    list_display = ["title", "inventory"]
+    list_display = ["title", "unit_price", "inventory"]
 
     # Declares the fields that can be editable in the admin list panel
-    list_editable = ["inventory"]
+    list_editable = ["unit_price", "inventory"]
 
     # Declares the number of objects visible per page
     list_per_page = 10
+
+    # def inventory_status(self, product):
+    #     if product.inventory < 10:
+    #         return "Low"
+    #     return "OK"
 
 
 class CustomerAdmin(admin.ModelAdmin):
