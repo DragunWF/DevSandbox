@@ -1,12 +1,15 @@
 from djongo import models
+from bson.objectid import ObjectId
 
 
 class Promotion(models.Model):
+    _id = models.IntegerField(primary_key=True)
     description = models.CharField(max_length=255)
     discount = models.FloatField()
 
 
 class Collection(models.Model):
+    _id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
 
     # An alternate way to pass in a reference is to supply the name of the class
@@ -27,6 +30,7 @@ class Collection(models.Model):
 
 
 class Product(models.Model):
+    _id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField()
@@ -60,6 +64,7 @@ class Customer(models.Model):
         (MEMBERSHIP_GOLD, "Gold")
     ]
 
+    _id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     email = models.EmailField(unique=True)
@@ -104,20 +109,24 @@ class Order(models.Model):
 
     customer = models.ForeignKey(Customer,
                                  on_delete=models.PROTECT,
-                                 primary_key=True)
+                                 primary_key=True,
+                                 unique=False)
 
 
 class Cart(models.Model):
+    _id = models.IntegerField(primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
 class CartItem(models.Model):
+    _id = models.IntegerField(primary_key=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
 
 
 class OrderItem(models.Model):
+    _id = models.IntegerField(primary_key=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveSmallIntegerField()

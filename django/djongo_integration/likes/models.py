@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 
 
 class LikedItem(models.Model):
+    _id = models.IntegerField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

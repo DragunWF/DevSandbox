@@ -2,6 +2,8 @@ from djongo import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+from bson.objectid import ObjectId
+
 
 class TaggedItemManager(models.Manager):
     """
@@ -21,6 +23,7 @@ class TaggedItemManager(models.Manager):
 
 
 class Tag(models.Model):
+    _id = models.IntegerField(primary_key=True)
     label = models.CharField(max_length=255)
 
 
@@ -28,6 +31,7 @@ class TaggedItem(models.Model):
     # Overrides the default manager to a custom one
     objects = TaggedItemManager()
 
+    _id = models.IntegerField(primary_key=True)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
     # ContentType : allows the developer to create generic relationships between models
