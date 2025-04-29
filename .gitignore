@@ -11,6 +11,8 @@ projects/AutoJoinZoom/config/private_settings.json
 config.py
 .env
 .DS_STORE
+credentials.json
+token.json
 
 # ------- DOTNET PROJECTS -------
 
