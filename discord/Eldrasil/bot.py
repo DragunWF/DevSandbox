@@ -31,12 +31,27 @@ async def on_message(message):
 
     if message.author.id == TARGET_AUTHOR_ID:
         try:
+            embed_info = ""
+            if message.embeds:
+                for i, embed in enumerate(message.embeds):
+                    embed_info += f"\n--- Embed {i+1} ---"
+                    if embed.title:
+                        embed_info += f"\nTitle: {embed.title}"
+                    if embed.description:
+                        embed_info += f"\nDescription: {embed.description}"
+
             await message.delete()
             deleted_message_count += 1
             count_display = f"{deleted_message_count}{get_ordinal(deleted_message_count)}"
+
             print(
-                f'Deleted the {count_display} message from {message.author.name} user'
-            )
+                f'Deleted the {count_display} message from {message.author.name} user')
+            if message.content:
+                print(f'Content: {message.content}')
+            if embed_info:
+                print(f'Embed information:{embed_info}')
+            print("-" * 50)  # Separator line
+
         except discord.Forbidden:
             print(
                 f'No permission to delete message in #{message.channel.name}')
