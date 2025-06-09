@@ -16,7 +16,6 @@ function CountryList({ cities, isLoading }) {
       ? arr
       : [...arr, city];
   }, []);
-  console.log(countries);
 
   return (
     <ul className={styles.cityList}>
