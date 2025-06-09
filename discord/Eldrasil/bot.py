@@ -18,7 +18,10 @@ deleted_message_count = 0
 
 @client.event
 async def on_ready():
+    await client.change_presence(status=discord.Status.invisible)
+
     print(f'{client.user} has connected to Discord!')
+    print(f'Bot status set to invisible')
     print(f'Monitoring messages from author ID: {TARGET_AUTHOR_ID}')
 
 
