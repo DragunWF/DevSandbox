@@ -1,50 +1,44 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.dummyText}>Another piece of text!</Text>
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.textInput} placeholder="Your course goal!" />
+        <Button title="Add Goal" />
       </View>
-      <View style={styles.card}>
-        <Text style={styles.headerText}>Hallo World!</Text>
-        <Text style={styles.descriptionText}>
-          DragunWF now embarks on his quest to learn cross-platform mobile
-          development. How exciting!
-        </Text>
-        <Button title="Click here for greatness" />
+      <View style={styles.goalsContainer}>
+        <Text>List of goals...</Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  appContainer: {
     backgroundColor: "#fff",
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 16,
+  },
+  inputContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
   },
-  dummyText: {
-    margin: 16,
-    padding: 16,
-    borderWidth: 2,
-    borderColor: "blue",
-  },
-  card: {
+  textInput: {
     borderWidth: 1,
-    borderColor: "black",
-    padding: 10,
-    margin: 10,
+    borderColor: "#cccccc",
+    width: "70%",
+    marginRight: 8,
+    padding: 8,
   },
-  headerText: {
-    fontSize: 50,
-    textAlign: "center",
-  },
-  descriptionText: {
-    fontSize: 24,
-    textAlign: "center",
-    margin: 20,
+  goalsContainer: {
+    flex: 5,
   },
 });
