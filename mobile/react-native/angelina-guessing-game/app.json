@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "guess-the-number-basic",
-    "slug": "guess-the-number-basic",
+    "name": "angelina-guessing-game",
+    "slug": "angelina-guessing-game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

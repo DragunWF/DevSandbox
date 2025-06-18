@@ -27,7 +27,7 @@ export default function App() {
   return (
     <View style={styles.appContainer}>
       <StatusBar style="light" />
-      <Text style={styles.textHeader}>Angelina's Roulette Game</Text>
+      <Text style={styles.textHeader}>Angelina's Guessing Game</Text>
       <Image
         style={styles.welcomeImage}
         source={require("./assets/images/playful-mage.png")}

@@ -4,13 +4,23 @@ import GameView from "./GameView";
 
 function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
   const [enteredNumber, setEnteredNumber] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isGameOpen, setIsGameOpen] = useState(false);
 
   function handleNumberInput(userInput) {
     setEnteredNumber(userInput);
   }
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    const convertedNumber = Number(enteredNumber);
+    if (convertedNumber <= 0) {
+      setErrorMessage("Number cannot be 0 or negative!");
+    } else if (convertedNumber > 100) {
+      setEnteredNumber("Number cannot be greater than 100!");
+    } else {
+      setIsGameOpen(true);
+    }
+  }
 
   function handleResetInput() {
     setEnteredNumber("");
@@ -25,7 +35,11 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
           placeholder="Your secret number!"
           onChangeText={handleNumberInput}
           value={enteredNumber}
+          keyboardType="number-pad"
         />
+        {errorMessage && (
+          <Text style={styles.errorMessage}>{errorMessage}</Text>
+        )}
         <View style={styles.buttonContainer}>
           <Button title="Back" onPress={onCancelGame} />
           <Button title="Reset" onPress={handleResetInput} />
@@ -33,6 +47,7 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
         </View>
         <GameView
           isVisible={isGameOpen}
+          correctNumber={Number(enteredNumber)}
           onGameWon={onGameWon}
           onCancelGame={onCancelGame}
         />
@@ -58,6 +73,11 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     borderRadius: 15,
+  },
+  errorMessage: {
+    color: "#DC2525",
+    fontSize: 19,
+    marginTop: 10,
   },
   textHeader: {
     fontSize: 24,
