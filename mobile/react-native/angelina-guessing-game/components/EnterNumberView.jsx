@@ -15,12 +15,13 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
     const convertedNumber = Number(enteredNumber);
     if (convertedNumber <= 0) {
       setErrorMessage("Number cannot be 0 or negative!");
+      handleResetInput();
     } else if (convertedNumber > 100) {
       setErrorMessage("Number cannot be greater than 100!");
+      handleResetInput();
     } else {
       setIsGameOpen(true);
     }
-    handleResetInput();
   }
 
   function handleResetInput() {

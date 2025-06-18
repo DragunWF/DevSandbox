@@ -18,9 +18,10 @@ function GameView({
   const [isGameOver, setGameOver] = useState(false);
 
   function handleHigherButtonClick() {
-    if (guessedNumber < correctNumber) {
+    if (correctNumber > guessedNumber) {
+      // User says "Higher" - AI should guess higher numbers
       const newMinNumber = guessedNumber + 1;
-      setMinNumber(guessedNumber + 1);
+      setMinNumber(newMinNumber);
       guessNumber(newMinNumber, maxNumber);
     } else {
       setWarningMessage("⚠️ Number should be lower! ⚠️");
@@ -28,7 +29,8 @@ function GameView({
   }
 
   function handleLowerButtonClick() {
-    if (guessedNumber > correctNumber) {
+    if (correctNumber < guessedNumber) {
+      // User says "Lower" - AI should guess lower numbers
       const newMaxNumber = guessedNumber - 1;
       setMaxNumber(newMaxNumber);
       guessNumber(minNumber, newMaxNumber);
@@ -43,6 +45,7 @@ function GameView({
   }
 
   function guessNumber(updatedMinNumber, updatedMaxNumber) {
+    // Fixed random number generation to include max number
     const newGuessedNumber = Math.floor(
       Math.random() * (updatedMaxNumber - updatedMinNumber + 1) +
         updatedMinNumber
