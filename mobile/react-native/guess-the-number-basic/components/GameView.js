@@ -7,7 +7,10 @@ function GameView({ isVisible, onCancelGame, onGameWon, onGameLost }) {
   return (
     <Modal visible={isVisible} animationType="slide">
       <View style={styles.gameContainer}>
-        <Text>Opponent's Guess</Text>
+        <Text style={styles.textHeader}>Opponent's Guess</Text>
+        <View style={styles.opponentGuessContainer}>
+          <Text style={styles.opponentGuessText}>38</Text>
+        </View>
         <View style={styles.gameButtonsContainer}>
           <Button title="Higher" />
           <Button title="Lower" />
@@ -24,6 +27,23 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#090040",
+  },
+  opponentGuessContainer: {
+    backgroundColor: "#471396",
+    padding: 30,
+    margin: 20,
+    width: "80%",
+    alignItems: "center",
+    borderRadius: 100,
+  },
+  opponentGuessText: {
+    color: "#fff",
+    fontSize: 50,
+  },
+  textHeader: {
+    color: "#fff",
+    fontSize: 24,
   },
   gameButtonsContainer: {
     flexDirection: "row",
