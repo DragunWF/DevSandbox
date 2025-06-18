@@ -1,7 +1,7 @@
 {
   "name": "guess-the-number-basic",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "start": "expo start --tunnel",
     "android": "expo start --android",

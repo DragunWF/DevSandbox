@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import EnterNumberView from "./components/EnterNumberView";
+import GameImage from "./components/GameImage";
 
 export default function App() {
   const [sessionsPlayed, setSessionsPlayed] = useState(0);
@@ -28,10 +29,7 @@ export default function App() {
     <View style={styles.appContainer}>
       <StatusBar style="light" />
       <Text style={styles.textHeader}>Angelina's Guessing Game</Text>
-      <Image
-        style={styles.welcomeImage}
-        source={require("./assets/images/playful-mage.png")}
-      />
+      <GameImage source={require("./assets/images/playful-mage.png")} />
 
       <View style={styles.mainMenu}>
         <Button title="Play Game" onPress={playGame} />
@@ -56,13 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#121212",
     alignItems: "center",
     justifyContent: "center",
-  },
-  welcomeImage: {
-    width: 200,
-    height: 200,
-    marginTop: 20,
-    marginBottom: 5,
-    borderRadius: 15,
   },
   mainMenu: {
     marginTop: 10,

@@ -19,6 +19,7 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
       setEnteredNumber("Number cannot be greater than 100!");
     } else {
       setIsGameOpen(true);
+      handleResetInput();
     }
   }
 
@@ -50,6 +51,7 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
           correctNumber={Number(enteredNumber)}
           onGameWon={onGameWon}
           onCancelGame={onCancelGame}
+          setIsGameOpen={setIsGameOpen}
         />
       </View>
     </Modal>

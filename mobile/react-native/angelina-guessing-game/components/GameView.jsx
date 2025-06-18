@@ -3,7 +3,13 @@ import { Modal, StyleSheet, View, Button, Text, FlatList } from "react-native";
 import GuessCard from "./GuessCard";
 import GameOverView from "./GameOverView";
 
-function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
+function GameView({
+  isVisible,
+  correctNumber,
+  onCancelGame,
+  onGameWon,
+  setIsGameOpen,
+}) {
   const [guesses, setGuesses] = useState([]);
   const [guessedNumber, setGuessedNumber] = useState(null);
   const [warningMessage, setWarningMessage] = useState("");
@@ -12,8 +18,8 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
   const [isGameOver, setGameOver] = useState(false);
 
   function handleHigherButtonClick() {
-    if (guessedNumber > correctNumber) {
-      setMinNumber(guessedNumber);
+    if (guessedNumber < correctNumber) {
+      setMinNumber(guessedNumber + 1);
       guessNumber();
     } else {
       setWarningMessage("⚠️ Number should be lower! ⚠️");
@@ -21,8 +27,8 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
   }
 
   function handleLowerButtonClick() {
-    if (guessedNumber < correctNumber) {
-      setMaxNumber(guessedNumber);
+    if (guessedNumber > correctNumber) {
+      setMaxNumber(guessedNumber - 1);
       guessNumber();
     } else {
       setWarningMessage("⚠️ Number should be higher! ⚠️");
@@ -36,16 +42,26 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
 
   function guessNumber() {
     const newGuessedNumber = Math.floor(
-      Math.random() * (maxNumber - minNumber) + minNumber
+      Math.random() * (maxNumber - minNumber + 1) + minNumber
     );
     setGuesses((current) => [...current, newGuessedNumber]);
     setWarningMessage("");
 
     if (newGuessedNumber === correctNumber) {
       setGameOver(true);
+      resetGame();
+      setIsGameOpen(false);
+      onGameWon();
     } else {
       setGuessedNumber(newGuessedNumber);
     }
+  }
+
+  function resetGame() {
+    setMinNumber(1);
+    setMaxNumber(100);
+    setWarningMessage("");
+    setGuesses([]);
   }
 
   if (guessedNumber == null) {
