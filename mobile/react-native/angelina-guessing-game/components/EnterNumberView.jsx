@@ -35,7 +35,6 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
         correctNumber={Number(enteredNumber)}
         onGameWon={onGameWon}
         onCancelGame={onCancelGame}
-        setIsGameOpen={setIsGameOpen}
       />
       <View style={styles.viewContainer}>
         <Text style={styles.textHeader}>Enter your number!</Text>

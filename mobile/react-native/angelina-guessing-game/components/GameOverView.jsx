@@ -1,10 +1,16 @@
-import { StyleSheet, View, Text, Modal, Button } from "react-native";
-import RNExitApp from "react-native-exit-app";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Modal,
+  Button,
+  DevSettings,
+} from "react-native";
 import GameImage from "./GameImage";
 
 function GameOverView({ isVisible, guessCount }) {
   function handleFinishGame() {
-    RNExitApp.exitApp();
+    DevSettings.reload();
   }
 
   return (

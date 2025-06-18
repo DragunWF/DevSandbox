@@ -3,13 +3,7 @@ import { Modal, StyleSheet, View, Button, Text, FlatList } from "react-native";
 import GuessCard from "./GuessCard";
 import GameOverView from "./GameOverView";
 
-function GameView({
-  isVisible,
-  correctNumber,
-  onCancelGame,
-  onGameWon,
-  setIsGameOpen,
-}) {
+function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
   const [guesses, setGuesses] = useState([]);
   const [guessedNumber, setGuessedNumber] = useState(null);
   const [warningMessage, setWarningMessage] = useState("");
