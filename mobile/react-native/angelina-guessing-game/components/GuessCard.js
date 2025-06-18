@@ -13,6 +13,10 @@ function GuessCard({ order, guess }) {
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "#fff",
+    padding: 15,
+    margin: 10,
+    width: 150,
+    borderRadius: 15,
   },
 });
 

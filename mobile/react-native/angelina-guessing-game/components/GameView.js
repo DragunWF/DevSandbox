@@ -1,19 +1,37 @@
 import { useState } from "react";
 import { Modal, StyleSheet, View, Button, Text, FlatList } from "react-native";
 import GuessCard from "./GuessCard";
+import GameOverView from "./GameOverView";
 
 function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
   const [guesses, setGuesses] = useState([]);
   const [guessedNumber, setGuessedNumber] = useState(null);
+  const [warningMessage, setWarningMessage] = useState("");
   const [minNumber, setMinNumber] = useState(1);
   const [maxNumber, setMaxNumber] = useState(100);
+  const [isGameOver, setGameOver] = useState(false);
 
-  function handleHigherButton() {
-    guessNumber();
+  function handleHigherButtonClick() {
+    if (guessedNumber > correctNumber) {
+      setMinNumber(guessedNumber);
+      guessNumber();
+    } else {
+      setWarningMessage("⚠️ Number should be lower! ⚠️");
+    }
   }
 
-  function handleLowerButton() {
-    guessNumber();
+  function handleLowerButtonClick() {
+    if (guessedNumber < correctNumber) {
+      setMaxNumber(guessedNumber);
+      guessNumber();
+    } else {
+      setWarningMessage("⚠️ Number should be higher! ⚠️");
+    }
+  }
+
+  function handleCancelGameButtonClick() {
+    // TODO: Add other functionality
+    onCancelGame();
   }
 
   function guessNumber() {
@@ -21,8 +39,10 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
       Math.random() * (maxNumber - minNumber) + minNumber
     );
     setGuesses((current) => [...current, newGuessedNumber]);
+    setWarningMessage("");
+
     if (newGuessedNumber === correctNumber) {
-      //
+      setGameOver(true);
     } else {
       setGuessedNumber(newGuessedNumber);
     }
@@ -34,28 +54,35 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
 
   return (
     <Modal visible={isVisible} animationType="slide">
-      <View style={styles.gameContainer}>
-        <Text style={styles.textHeader}>Opponent's Guess</Text>
-        <View style={styles.opponentGuessContainer}>
-          <Text style={styles.opponentGuessText}>{guessedNumber}</Text>
-        </View>
-        <View style={styles.gameButtonsContainer}>
-          <Button title="Higher" />
-          <Button title="Lower" />
-        </View>
-        <Button title="Cancel Game" onPress={onCancelGame} />
-        <View style={styles.guessCardContainer}>
-          <FlatList
-            data={guesses}
-            renderItem={(itemData) => {
-              return (
-                <GuessCard order={itemData.index + 1} guess={itemData.item} />
-              );
-            }}
-            keyExtractor={(item, index) => {
-              return index;
-            }}
-          />
+      <GameOverView isVisible={isGameOver} guessCount={guesses.length} />
+      <View style={styles.viewContainer}>
+        <View style={styles.gameContainer}>
+          <Text style={styles.textHeader}>Opponent's Guess</Text>
+          <View style={styles.opponentGuessContainer}>
+            <Text style={styles.opponentGuessText}>{guessedNumber}</Text>
+          </View>
+          {warningMessage && (
+            <Text style={styles.warningText}>{warningMessage}</Text>
+          )}
+          <View style={styles.gameButtonsContainer}>
+            <Button title="Higher" onPress={handleHigherButtonClick} />
+            <Button title="Lower" onPress={handleLowerButtonClick} />
+          </View>
+          <Button title="Cancel Game" onPress={handleCancelGameButtonClick} />
+          <View style={styles.guessCardContainer}>
+            <Text style={styles.guessTextHeader}>Guess Log</Text>
+            <FlatList
+              data={guesses}
+              renderItem={(itemData) => {
+                return (
+                  <GuessCard order={itemData.index + 1} guess={itemData.item} />
+                );
+              }}
+              keyExtractor={(item, index) => {
+                return index;
+              }}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -63,11 +90,14 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
 }
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    backgroundColor: "#090040",
+  },
   gameContainer: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#090040",
+    marginTop: 300,
   },
   opponentGuessContainer: {
     backgroundColor: "#471396",
@@ -77,6 +107,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
   },
+  warningText: {
+    color: "#ffcc00",
+    padding: 10,
+    marginBottom: 5,
+    fontSize: 18,
+  },
   opponentGuessText: {
     color: "#fff",
     fontSize: 50,
@@ -84,6 +120,14 @@ const styles = StyleSheet.create({
   textHeader: {
     color: "#fff",
     fontSize: 34,
+  },
+  guessTextHeader: {
+    color: "#fff",
+    fontSize: 28,
+    marginTop: 15,
+    marginBottom: 15,
+    textAlign: "center",
+    border: "solid",
   },
   gameButtonsContainer: {
     flexDirection: "row",
