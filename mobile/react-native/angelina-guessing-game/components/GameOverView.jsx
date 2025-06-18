@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Modal } from "react-native";
+import { StyleSheet, View, Text, Modal, Button } from "react-native";
 import GameImage from "./GameImage";
 
 function GameOverView({ isVisible, guessCount }) {

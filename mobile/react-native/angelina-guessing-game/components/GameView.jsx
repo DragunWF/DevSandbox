@@ -19,8 +19,9 @@ function GameView({
 
   function handleHigherButtonClick() {
     if (guessedNumber < correctNumber) {
+      const newMinNumber = guessedNumber + 1;
       setMinNumber(guessedNumber + 1);
-      guessNumber();
+      guessNumber(newMinNumber, maxNumber);
     } else {
       setWarningMessage("⚠️ Number should be lower! ⚠️");
     }
@@ -28,8 +29,9 @@ function GameView({
 
   function handleLowerButtonClick() {
     if (guessedNumber > correctNumber) {
-      setMaxNumber(guessedNumber - 1);
-      guessNumber();
+      const newMaxNumber = guessedNumber - 1;
+      setMaxNumber(newMaxNumber);
+      guessNumber(minNumber, newMaxNumber);
     } else {
       setWarningMessage("⚠️ Number should be higher! ⚠️");
     }
@@ -40,9 +42,10 @@ function GameView({
     onCancelGame();
   }
 
-  function guessNumber() {
+  function guessNumber(updatedMinNumber, updatedMaxNumber) {
     const newGuessedNumber = Math.floor(
-      Math.random() * (maxNumber - minNumber + 1) + minNumber
+      Math.random() * (updatedMaxNumber - updatedMinNumber + 1) +
+        updatedMinNumber
     );
     setGuesses((current) => [...current, newGuessedNumber]);
     setWarningMessage("");
@@ -65,7 +68,7 @@ function GameView({
   }
 
   if (guessedNumber == null) {
-    guessNumber();
+    guessNumber(minNumber, maxNumber);
   }
 
   return (

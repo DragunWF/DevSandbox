@@ -16,11 +16,11 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
     if (convertedNumber <= 0) {
       setErrorMessage("Number cannot be 0 or negative!");
     } else if (convertedNumber > 100) {
-      setEnteredNumber("Number cannot be greater than 100!");
+      setErrorMessage("Number cannot be greater than 100!");
     } else {
       setIsGameOpen(true);
-      handleResetInput();
     }
+    handleResetInput();
   }
 
   function handleResetInput() {
