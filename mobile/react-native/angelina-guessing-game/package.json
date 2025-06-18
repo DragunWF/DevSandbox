@@ -12,7 +12,8 @@
     "expo": "~53.0.11",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
-    "react-native": "0.79.3"
+    "react-native": "0.79.3",
+    "react-native-exit-app": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

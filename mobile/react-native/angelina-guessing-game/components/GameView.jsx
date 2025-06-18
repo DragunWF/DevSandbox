@@ -17,6 +17,8 @@ function GameView({
   const [maxNumber, setMaxNumber] = useState(100);
   const [isGameOver, setGameOver] = useState(false);
 
+  const [finalGuessCount, setFinalGuessCount] = useState(0);
+
   function handleHigherButtonClick() {
     if (correctNumber > guessedNumber) {
       // User says "Higher" - AI should guess higher numbers
@@ -56,7 +58,6 @@ function GameView({
     if (newGuessedNumber === correctNumber) {
       setGameOver(true);
       resetGame();
-      setIsGameOpen(false);
       onGameWon();
     } else {
       setGuessedNumber(newGuessedNumber);
@@ -76,7 +77,8 @@ function GameView({
 
   return (
     <Modal visible={isVisible} animationType="slide">
-      <GameOverView isVisible={isGameOver} guessCount={guesses.length} />
+      <GameOverView isVisible={isGameOver} guessCount={finalGuessCount} />
+
       <View style={styles.viewContainer}>
         <View style={styles.gameContainer}>
           <Text style={styles.textHeader}>Opponent's Guess</Text>

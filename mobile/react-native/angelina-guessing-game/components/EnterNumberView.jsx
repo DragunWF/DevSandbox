@@ -30,6 +30,13 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
 
   return (
     <Modal visible={isVisible} animationType="fade">
+      <GameView
+        isVisible={isGameOpen}
+        correctNumber={Number(enteredNumber)}
+        onGameWon={onGameWon}
+        onCancelGame={onCancelGame}
+        setIsGameOpen={setIsGameOpen}
+      />
       <View style={styles.viewContainer}>
         <Text style={styles.textHeader}>Enter your number!</Text>
         <TextInput
@@ -47,13 +54,6 @@ function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
           <Button title="Reset" onPress={handleResetInput} />
           <Button title="Submit" onPress={handleSubmit} />
         </View>
-        <GameView
-          isVisible={isGameOpen}
-          correctNumber={Number(enteredNumber)}
-          onGameWon={onGameWon}
-          onCancelGame={onCancelGame}
-          setIsGameOpen={setIsGameOpen}
-        />
       </View>
     </Modal>
   );
