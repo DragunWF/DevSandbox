@@ -2,24 +2,21 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-import GameView from "./components/GameView";
+import EnterNumberView from "./components/EnterNumberView";
 
 export default function App() {
   const [sessionsPlayed, setSessionsPlayed] = useState(0);
   const [wonGames, setWonGames] = useState(0);
-  const [lostGames, setLostGames] = useState(0);
+  const [cancelledGames, setCancelledGames] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleWonGame() {
     setWonGames((current) => current + 1);
   }
 
-  function handleLostGame() {
-    setLostGames((current) => current + 1);
-  }
-
   function handleCancelGame() {
     setIsModalOpen(false);
+    setCancelledGames((current) => current + 1);
   }
 
   function playGame() {
@@ -29,7 +26,7 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <Text style={styles.textHeader}>Angelina's Roulette Game</Text>
       <Image
         style={styles.welcomeImage}
@@ -38,16 +35,15 @@ export default function App() {
 
       <View style={styles.mainMenu}>
         <Button title="Play Game" onPress={playGame} />
-        <GameView
+        <EnterNumberView
           isVisible={isModalOpen}
           onCancelGame={handleCancelGame}
           onGameWon={handleWonGame}
-          onGameLost={handleLostGame}
         />
         <View style={styles.stats}>
           <Text style={styles.statText}>Sessions Played: {sessionsPlayed}</Text>
           <Text style={styles.statText}>Won Games: {wonGames}</Text>
-          <Text style={styles.statText}>Lost Games: {lostGames}</Text>
+          <Text style={styles.statText}>Cancelled Games: {cancelledGames}</Text>
         </View>
       </View>
     </View>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, StyleSheet, View, Button, Text } from "react-native";
 
-function GameView({ isVisible, onCancelGame, onGameWon, onGameLost }) {
+function GameView({ isVisible, onCancelGame, onGameWon }) {
   const [opponentGuesses, setOpponentGuesses] = useState([]);
 
   return (
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
   },
   opponentGuessContainer: {
     backgroundColor: "#471396",
-    padding: 30,
+    padding: 20,
     margin: 20,
-    width: "80%",
+    width: "70%",
     alignItems: "center",
     borderRadius: 100,
   },
@@ -43,13 +43,14 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     color: "#fff",
-    fontSize: 24,
+    fontSize: 34,
   },
   gameButtonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     gap: 20,
+    marginBottom: 10,
   },
 });
 
