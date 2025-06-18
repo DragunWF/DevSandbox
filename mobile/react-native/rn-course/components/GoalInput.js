@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, View, TextInput, Button, Modal } from "react-native";
 
-function GoalInput({ onAddGoal, isVisible }) {
+function GoalInput({ onAddGoal, onCancel, isVisible }) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
   function goalInputHandler(enteredText) {
@@ -27,7 +27,7 @@ function GoalInput({ onAddGoal, isVisible }) {
             <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" />
+            <Button title="Cancel" onPress={onCancel} />
           </View>
         </View>
       </View>
