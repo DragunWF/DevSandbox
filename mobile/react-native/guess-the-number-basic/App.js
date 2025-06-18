@@ -15,8 +15,8 @@ export default function App() {
   }
 
   function handleCancelGame() {
-    setIsModalOpen(false);
     setCancelledGames((current) => current + 1);
+    setIsModalOpen(false);
   }
 
   function playGame() {

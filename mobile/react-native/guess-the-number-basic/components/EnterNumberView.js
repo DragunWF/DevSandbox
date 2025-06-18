@@ -1,22 +1,36 @@
 import { useState } from "react";
-import { StyleSheet, View, Modal, TextInput } from "react-native";
+import { StyleSheet, View, Modal, TextInput, Text, Button } from "react-native";
 import GameView from "./GameView";
 
 function EnterNumberView({ isVisible, onGameWon, onCancelGame }) {
-  const [enteredNumber, setEnteredNumber] = useState(null);
+  const [enteredNumber, setEnteredNumber] = useState("");
   const [isGameOpen, setIsGameOpen] = useState(false);
 
-  function numberInputHandler() {}
+  function handleNumberInput(userInput) {
+    setEnteredNumber(userInput);
+  }
+
+  function handleSubmit() {}
+
+  function handleResetInput() {
+    setEnteredNumber("");
+  }
 
   return (
     <Modal visible={isVisible} animationType="fade">
-      <View styles={styles.viewContainer}>
+      <View style={styles.viewContainer}>
+        <Text style={styles.textHeader}>Enter your number!</Text>
         <TextInput
           style={styles.textInput}
           placeholder="Your secret number!"
-          onChangeText={numberInputHandler}
+          onChangeText={handleNumberInput}
           value={enteredNumber}
         />
+        <View style={styles.buttonContainer}>
+          <Button title="Back" onPress={onCancelGame} />
+          <Button title="Reset" onPress={handleResetInput} />
+          <Button title="Submit" onPress={handleSubmit} />
+        </View>
         <GameView
           isVisible={isGameOpen}
           onGameWon={onGameWon}
@@ -33,9 +47,32 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#393E46",
+    backgroundColor: "#471396",
   },
-  textInput: {},
+  buttonContainer: {
+    marginTop: 15,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    gap: 20,
+    padding: 8,
+    paddingLeft: 24,
+    paddingRight: 24,
+    borderRadius: 15,
+  },
+  textHeader: {
+    fontSize: 24,
+    color: "#fff",
+    marginBottom: 20,
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
+    borderRadius: 6,
+    width: "70%",
+    padding: 16,
+  },
 });
 
 export default EnterNumberView;
