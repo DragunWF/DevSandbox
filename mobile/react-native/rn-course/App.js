@@ -21,8 +21,10 @@ export default function App() {
     ]);
   }
 
-  function deleteGoalHandler() {
-    //
+  function deleteGoalHandler(id) {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
   }
 
   return (
@@ -34,7 +36,11 @@ export default function App() {
           data={courseGoals}
           renderItem={(itemData) => {
             return (
-              <GoalItem itemData={itemData} onDeleteItem={deleteGoalHandler} />
+              <GoalItem
+                itemData={itemData}
+                id={itemData.item.id}
+                onDeleteItem={deleteGoalHandler}
+              />
             );
           }}
           keyExtractor={(item, index) => {
