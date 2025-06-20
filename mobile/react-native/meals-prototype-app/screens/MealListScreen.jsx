@@ -1,16 +1,36 @@
+import { useState } from "react";
 import { StyleSheet, View, Text, FlatList } from "react-native";
 
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealCard from "../components/MealCard";
 import TitleCard from "../components/TitleCard";
 import PrimaryButton from "../components/PrimaryButton";
+import MealModal from "../components/MealModal";
 
 function MealListScreen({ categoryId, onBackButtonPressed }) {
   const category = CATEGORIES.filter((item) => item.id === categoryId)[0];
   const meals = MEALS.filter((item) => item.categoryIds.includes(categoryId));
 
+  const [isMealModalOpen, setIsMealModalOpen] = useState(false);
+  const [selectedMealId, setSelectedMealId] = useState(null);
+
+  function openMealDetailsHandler(mealId) {
+    setSelectedMealId(mealId);
+    setIsMealModalOpen(true);
+  }
+
+  function hideMealDetailsHandler() {
+    setIsMealModalOpen(false);
+    setSelectedMealId(null);
+  }
+
   return (
     <View style={styles.screen}>
+      <MealModal
+        isVisible={isMealModalOpen}
+        mealId={selectedMealId}
+        onCloseButtonPressed={hideMealDetailsHandler}
+      />
       <View style={styles.titleContainer}>
         <TitleCard>{category.title}</TitleCard>
       </View>
@@ -20,9 +40,11 @@ function MealListScreen({ categoryId, onBackButtonPressed }) {
           renderItem={(itemData) => {
             return (
               <MealCard
+                id={itemData.item.id}
                 title={itemData.item.title}
                 affordability={itemData.item.affordability}
                 complexity={itemData.item.complexity}
+                onButtonPressed={openMealDetailsHandler}
               />
             );
           }}

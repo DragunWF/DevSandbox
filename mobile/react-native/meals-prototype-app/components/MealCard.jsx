@@ -3,13 +3,25 @@ import Card from "./Card";
 import Title from "./Title";
 import PrimaryButton from "./PrimaryButton";
 
-function MealCard({ id, title, affordability, complexity }) {
+function MealCard({
+  id,
+  title,
+  affordability,
+  complexity,
+  onButtonPressed: onOpenMeal,
+}) {
+  function openMealHandler() {
+    onOpenMeal(id);
+  }
+
   return (
     <Card style={styles.cardContainer}>
       <Title style={styles.title}>{title}</Title>
       <Text style={styles.cardText}>Affordability: {affordability}</Text>
       <Text style={styles.cardText}>Complexity: {complexity}</Text>
-      <PrimaryButton style={styles.button}>See More</PrimaryButton>
+      <PrimaryButton onPress={openMealHandler} style={styles.button}>
+        See More
+      </PrimaryButton>
     </Card>
   );
 }
