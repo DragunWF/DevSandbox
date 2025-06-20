@@ -1,13 +1,18 @@
-import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import Title from "./components/Title";
 import CategoriesScreen from "./screens/CategoriesScreen";
+import MealListScreen from "./screens/MealListScreen";
 
 export default function App() {
+  const [isCategoriesScreenOpen, setIsCategoriesScreenOpen] = useState(true);
+  const [isMealListScreenOpen, setIsMealListScreenOpen] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+
   const [fontsLoaded] = useFonts({
     poppins: require("./assets/fonts/Poppins-Regular.ttf"),
     "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
@@ -17,12 +22,23 @@ export default function App() {
     return <AppLoading />;
   }
 
+  function selectCategoryHandler(categoryId) {
+    setSelectedCategoryId(categoryId);
+    setIsCategoriesScreenOpen(false);
+    setIsMealListScreenOpen(true);
+  }
+
+  let screen;
+  if (isCategoriesScreenOpen) {
+    screen = <CategoriesScreen onSelectCategory={selectCategoryHandler} />;
+  } else if (isMealListScreenOpen) {
+    screen = <MealListScreen categoryId={selectedCategoryId} />;
+  }
+
   return (
     <LinearGradient style={styles.screen} colors={["#18230F", "#1F7D53"]}>
       <StatusBar style="light" />
-      <SafeAreaView style={styles.screen}>
-        <CategoriesScreen />
-      </SafeAreaView>
+      <SafeAreaView style={styles.screen}>{screen}</SafeAreaView>
     </LinearGradient>
   );
 }
