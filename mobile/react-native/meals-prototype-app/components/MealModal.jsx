@@ -31,7 +31,7 @@ function MealModal({ isVisible, mealId, onCloseButtonPressed }) {
         <ScrollView>
           <MealImage source={meal.imageUrl} />
           <Card style={styles.mealCard}>
-            <Text style={styles.mealText}>
+            <Text style={[styles.mealText, styles.firstMealText]}>
               Affordability: {meal.affordability}
             </Text>
             <Text style={styles.mealText}>Complexity: {meal.complexity}</Text>
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
   mealCard: {
     margin: 15,
     alignItems: "flex-start",
+  },
+  firstMealText: {
+    marginTop: 0,
   },
   mealText: {
     color: "white",

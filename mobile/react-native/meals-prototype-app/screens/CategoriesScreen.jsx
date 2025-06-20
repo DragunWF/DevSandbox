@@ -1,7 +1,5 @@
 import { StyleSheet, View, Text, FlatList } from "react-native";
 
-import Title from "../components/Title";
-import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
 import TitleCard from "../components/TitleCard";
 import { CATEGORIES } from "../data/dummy-data";
