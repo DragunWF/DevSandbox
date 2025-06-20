@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 20,
     paddingHorizontal: 100,
+    borderWidth: 2,
+    borderColor: "black",
   },
   categoryText: {
     fontFamily: "poppins",
