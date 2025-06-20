@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
 function Card({ children, style, backgroundColor }) {
-  const cardBackgroundColor = backgroundColor ? backgroundColor : "#7B4019";
+  const cardBackgroundColor = backgroundColor ? backgroundColor : "#255F38";
 
   return (
     <View

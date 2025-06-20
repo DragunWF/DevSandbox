@@ -3,16 +3,13 @@ import { StyleSheet, View, Text, FlatList } from "react-native";
 import Title from "../components/Title";
 import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
+import TitleCard from "../components/TitleCard";
 import { CATEGORIES } from "../data/dummy-data";
 
 function CategoriesScreen({ onSelectCategory }) {
   return (
     <View style={styles.screen}>
-      <View style={styles.headContainer}>
-        <Card style={styles.titleCardContainer}>
-          <Title>Meal Categories</Title>
-        </Card>
-      </View>
+      <TitleCard>Meal Categories</TitleCard>
       <View style={styles.categoriesContainer}>
         <FlatList
           data={CATEGORIES}
@@ -39,18 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start", // Align to top
     alignItems: "center",
-  },
-  headContainer: {
-    width: "100%",
-    padding: 15,
-  },
-  categoriesContainer: {
-    marginTop: 10,
-  },
-  titleCardContainer: {
-    marginTop: 10,
-    borderRadius: 15,
-  },
+  }
 });
 
 export default CategoriesScreen;
