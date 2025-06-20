@@ -28,11 +28,22 @@ export default function App() {
     setIsMealListScreenOpen(true);
   }
 
+  function backButtonHandler() {
+    setSelectedCategoryId(null);
+    setIsMealListScreenOpen(false);
+    setIsCategoriesScreenOpen(true);
+  }
+
   let screen;
   if (isCategoriesScreenOpen) {
     screen = <CategoriesScreen onSelectCategory={selectCategoryHandler} />;
   } else if (isMealListScreenOpen) {
-    screen = <MealListScreen categoryId={selectedCategoryId} />;
+    screen = (
+      <MealListScreen
+        onBackButtonPressed={backButtonHandler}
+        categoryId={selectedCategoryId}
+      />
+    );
   }
 
   return (

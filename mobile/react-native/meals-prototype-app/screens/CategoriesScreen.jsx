@@ -36,7 +36,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start", // Align to top
     alignItems: "center",
-  }
+  },
+  categoriesContainer: {
+    paddingBottom: 150,
+  },
 });
 
 export default CategoriesScreen;

@@ -14,6 +14,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#537D5D",
     borderRadius: 15,
+    borderWidth: 2,
+    borderColor: "#405e47",
     elevation: 4,
     shadowColor: "black",
     shadowOffset: { width: 2, height: 2 },
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     padding: 10,
+    textAlign: "center",
   },
 });
 
