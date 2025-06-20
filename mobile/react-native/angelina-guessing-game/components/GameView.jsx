@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Modal, StyleSheet, View, Button, Text, FlatList } from "react-native";
 import GuessCard from "./GuessCard";
 import GameOverView from "./GameOverView";
 
 function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
+  const minNumber = useRef(1);
+  const maxNumber = useRef(100);
+
   const [guesses, setGuesses] = useState([]);
   const [guessedNumber, setGuessedNumber] = useState(null);
   const [warningMessage, setWarningMessage] = useState("");
-  const [minNumber, setMinNumber] = useState(1);
-  const [maxNumber, setMaxNumber] = useState(100);
   const [isGameOver, setGameOver] = useState(false);
 
   const [finalGuessCount, setFinalGuessCount] = useState(0);
@@ -17,7 +18,7 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
     if (correctNumber > guessedNumber) {
       // User says "Higher" - AI should guess higher numbers
       const newMinNumber = guessedNumber + 1;
-      setMinNumber(newMinNumber);
+      minNumber.current = newMinNumber;
       guessNumber(newMinNumber, maxNumber);
     } else {
       setWarningMessage("⚠️ Number should be lower! ⚠️");
@@ -28,7 +29,7 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
     if (correctNumber < guessedNumber) {
       // User says "Lower" - AI should guess lower numbers
       const newMaxNumber = guessedNumber - 1;
-      setMaxNumber(newMaxNumber);
+      maxNumber.current = newMaxNumber;
       guessNumber(minNumber, newMaxNumber);
     } else {
       setWarningMessage("⚠️ Number should be higher! ⚠️");
@@ -59,14 +60,14 @@ function GameView({ isVisible, correctNumber, onCancelGame, onGameWon }) {
   }
 
   function resetGame() {
-    setMinNumber(1);
-    setMaxNumber(100);
+    minNumber.current = 1;
+    maxNumber.current = 1;
     setWarningMessage("");
     setGuesses([]);
   }
 
   if (guessedNumber == null) {
-    guessNumber(minNumber, maxNumber);
+    guessNumber(minNumber.current, maxNumber.current);
   }
 
   return (
