@@ -48,5 +48,27 @@
     "scope": "javascript,typescript,javascriptreact",
     "body": ["import styles from './${TM_FILENAME_BASE}.module.css'"],
     "description": "Import CSS Module as `styles`"
+  },
+  "reactNativeComponent": {
+    "prefix": "rnc",
+    "scope": "javascript,typescript,javascriptreact",
+    "body": [
+      "import { StyleSheet, View } from 'react-native';",
+      "",
+      "function ${TM_FILENAME_BASE}() {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t${TM_FILENAME_BASE}",
+      "\t\t</View>",
+      "\t)",
+      "}",
+      "",
+      "const styles = StyleSheet.create({});",
+      "",
+      "export default ${TM_FILENAME_BASE}",
+      ""
+      
+    ],
+    "description": "React Native component"
   }
 }
