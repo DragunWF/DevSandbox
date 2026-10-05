@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Voxel Meadow Instancing: Arcane Tech Edition  +  Arcane Staff & Plasma Bolts
+Voxel Meadow Instancing: Arcane Tech Edition
+  + Arcane Staff & Plasma Bolts
+  + Procedural Sky & Emerald Sun
+  + Destructible Slate Monoliths (fragment-shader holes)
 =============================================================================
 Dependencies:  pip install pygame moderngl numpy
 
@@ -13,13 +16,15 @@ Controls:
     Esc          quit
 
 Render passes per frame:
+    0. Sky + sun                        (full-screen triangle, depth test OFF, drawn first)
     1. Ground plane                     (opaque, depth tested)
-    2. Grass meadow                     (ONE instanced draw call, 60k blades)
-    3. Plasma bolts                     (ONE instanced draw call, additive blend, spherical billboards)
-    4. Staff view-model                 (separate pass: static "view space" matrix, locked to the camera)
-    5. Crosshair                        (additive 2D overlay)
+    2. Slate monoliths (trees)          (ONE instanced draw call, fragment-shader `discard` holes)
+    3. Grass meadow                     (ONE instanced draw call, 60k blades)
+    4. Plasma bolts                     (ONE instanced draw call, additive blend, spherical billboards)
+    5. Staff view-model                 (separate pass: static "view space" matrix, locked to the camera)
+    6. Crosshair                        (additive 2D overlay)
 
-Everything (geometry, colours, noise, patterns) is generated procedurally.
+Everything (geometry, colours, noise, sky, patterns) is generated procedurally.
 """
 
 import math
@@ -31,6 +36,7 @@ import moderngl
 # Configuration
 # ----------------------------------------------------------------------------
 WIDTH, HEIGHT = 800, 600
+FOV_Y_DEG = 70.0
 BLADE_COUNT = 60_000          # number of instanced grass blades
 MEADOW_HALF_SIZE = 32.0       # meadow spans [-32, 32] on X and Z
 GROUND_HALF_SIZE = 120.0      # ground plane is bigger than the meadow (fog hides the edge)
@@ -43,6 +49,119 @@ BOLT_LIFESPAN = 4.5           # seconds before a bolt dissipates
 MAX_FIREBALLS = 64            # capacity of the dynamic instance buffer
 MAX_BOLT_LIGHTS = 16          # how many bolts can disturb/light the grass at once
 STAFF_CRYSTAL_TIP = (0.0, 0.92, 0.0)   # staff-local point where bolts are born
+
+# --- Tree / destruction settings ---
+TREE_COUNT = 40               # number of instanced monoliths
+MAX_HIT_POINTS = 48           # size of the `uniform vec3 hit_points[]` array (oldest overwritten)
+HOLE_RADIUS = 0.50            # world-space radius of every blasted hole
+CARVE_EXIT_HOLE = True        # also punch a hole where the bolt WOULD have left the pillar,
+                              # so the blast is genuinely see-through (both walls)
+
+# --- Sky ---
+# A static sun direction (unit vector pointing FROM the camera TOWARD the sun).
+# Slightly right of straight ahead and ~13 deg above the horizon, so it is
+# visible from the spawn point.
+SUN_DIR = np.array([0.35, 0.22, -0.90], dtype=np.float32)
+SUN_DIR /= np.linalg.norm(SUN_DIR)
+
+# Colour of the distant haze. The sky shader uses EXACTLY this colour at the
+# horizon and every object fades into it, so the ground melts seamlessly into the sky.
+FOG_COLOR_GLSL = "vec3(0.015, 0.20, 0.25)"
+
+
+def prep(src):
+    """Inject shared constants into a GLSL source string."""
+    return (src.replace("__FOG_COLOR__", FOG_COLOR_GLSL)
+               .replace("__MAX_BOLTS__", str(MAX_BOLT_LIGHTS))
+               .replace("__MAX_HITS__", str(MAX_HIT_POINTS)))
+
+
+# ----------------------------------------------------------------------------
+# GLSL: Sky shaders (full-screen triangle, view-direction gradient + sun)
+# ----------------------------------------------------------------------------
+SKY_VERTEX_SHADER = """
+#version 330 core
+in vec2 in_pos;          // one big triangle covering the whole screen in NDC
+out vec2 v_ndc;
+void main() {
+    v_ndc = in_pos;
+    // z = w  ->  depth = 1.0 (the far plane). The sky is also drawn with the
+    // depth test disabled, so it never occludes anything.
+    gl_Position = vec4(in_pos, 1.0, 1.0);
+}
+"""
+
+SKY_FRAGMENT_SHADER = """
+#version 330 core
+in vec2 v_ndc;
+
+uniform vec3  u_cam_right;      // camera basis in WORLD space
+uniform vec3  u_cam_up;
+uniform vec3  u_cam_fwd;
+uniform float u_tan_half_fov;   // tan(fov_y / 2)
+uniform float u_aspect;         // width / height
+uniform vec3  u_sun_dir;        // static, normalised
+uniform float u_time;
+
+out vec4 fragColor;
+
+void main() {
+    // ---------------- Per-pixel VIEW DIRECTION ----------------
+    // A pixel at normalised device coords (x, y) in [-1,1] looks along:
+    //     forward + right * (x * aspect * tan(fov/2)) + up * (y * tan(fov/2))
+    // This is the inverse of the perspective projection, expressed with the
+    // camera's world-space basis, so `dir` is a world-space direction and the
+    // sky stays glued to the world as you look around.
+    vec3 dir = normalize(u_cam_fwd
+                       + u_cam_right * (v_ndc.x * u_aspect * u_tan_half_fov)
+                       + u_cam_up    * (v_ndc.y * u_tan_half_fov));
+
+    // ---------------- Gradient on the Y axis ----------------
+    // Dark slate void at the zenith -> hazy glowing cyan at the horizon.
+    // Below the horizon we clamp to the horizon colour (== fog colour).
+    float h = max(dir.y, 0.0);
+    vec3 zenith  = vec3(0.004, 0.008, 0.016);
+    vec3 horizon = __FOG_COLOR__;
+    float blend  = 1.0 - exp(-h * 4.2);              // fast rise near the horizon, long soft tail
+    vec3 sky = mix(horizon, zenith, blend);
+
+    // ---------------- Sun ----------------
+    // dot(dir, sun_dir) == cos(angle between them); it approaches 1.0 when the
+    // pixel looks straight at the sun. We convert to an actual angle (radians)
+    // so disc size and halo falloff are easy to tune.
+    float d   = dot(dir, u_sun_dir);
+    float ang = acos(clamp(d, -1.0, 1.0));
+
+    // A basis around the sun direction lets us measure the polar angle of the
+    // pixel AROUND the sun (for rays and the swirling surface).
+    vec3  sr = normalize(cross(u_sun_dir, vec3(0.0, 1.0, 0.0)));
+    vec3  su = cross(sr, u_sun_dir);
+    float around = atan(dot(dir, su), dot(dir, sr));
+
+    // (a) The disc: hard-ish edge at ~1.8 degrees.
+    float disc = 1.0 - smoothstep(0.030, 0.034, ang);
+
+    // Energy sphere surface: swirling emerald <-> cyan, white-mint hot centre.
+    float swirl = 0.5 + 0.5 * sin(around * 5.0 + ang * 170.0 - u_time * 2.0);
+    vec3  disc_col = mix(vec3(0.05, 1.00, 0.50), vec3(0.00, 0.90, 1.00), swirl * 0.7);
+    disc_col = mix(disc_col, vec3(0.85, 1.0, 0.95), (1.0 - smoothstep(0.0, 0.030, ang)) * 0.85);
+    disc_col *= 1.6;                                  // overexposed: "blinding"
+
+    // (b) Halo: a tight bright glow + a wide soft glow, both exponential falloffs.
+    float halo_tight = exp(-ang * 16.0);
+    float halo_wide  = exp(-ang * 4.0);
+
+    // (c) Faint radial god-ray streaks that slowly rotate.
+    float rays = pow(0.5 + 0.5 * sin(around * 14.0 + u_time * 0.35), 3.0) * exp(-ang * 6.0);
+
+    sky += vec3(0.05, 0.95, 0.60) * halo_tight * 0.85;
+    sky += vec3(0.00, 0.55, 0.65) * halo_wide  * 0.45;
+    sky += vec3(0.20, 1.00, 0.85) * rays * 0.22;
+    sky  = mix(sky, disc_col, disc);
+
+    fragColor = vec4(sky, 1.0);
+}
+"""
 
 # ----------------------------------------------------------------------------
 # GLSL: Grass shaders (meadow + reaction to plasma bolts)
@@ -151,7 +270,7 @@ void main() {
     v_energy = max(v_energy, bolt_glow);
 
     float dist = length(world - u_cam_pos);
-    v_fog = exp(-dist * dist * 0.00045);   // exponential-squared fog into the black void
+    v_fog = exp(-dist * dist * 0.00045);   // exponential-squared fog (blended toward the sky haze)
 }
 """
 
@@ -186,8 +305,8 @@ void main() {
     // Dark roots: fake ambient occlusion at the base
     col *= mix(0.35, 1.0, smoothstep(0.0, 0.35, v_height));
 
-    // Fade into the pitch-black void
-    col *= v_fog;
+    // Distance fog now fades into the sky's horizon haze (not into black)
+    col = mix(__FOG_COLOR__, col, v_fog);
 
     fragColor = vec4(col, 1.0);
 }
@@ -237,7 +356,157 @@ void main() {
     col += vec3(0.0, 0.22, 0.28) * line * (0.10 + 0.9 * ring);
     col += vec3(0.0, 0.10, 0.12) * ring * 0.35;   // soft glow under the pulse
 
-    col *= exp(-dist * dist * 0.00045);           // same fog as the grass
+    // Same fog as the grass: dissolve into the sky's horizon haze
+    col = mix(__FOG_COLOR__, col, exp(-dist * dist * 0.00045));
+    fragColor = vec4(col, 1.0);
+}
+"""
+
+# ----------------------------------------------------------------------------
+# GLSL: Tree (slate monolith) shaders: instanced boxes + `discard` holes
+# ----------------------------------------------------------------------------
+TREE_VERTEX_SHADER = """
+#version 330 core
+
+// ---- Per-VERTEX: a unit pillar mesh (divisor = 0) ----
+// x,z in [-1, 1], y in [0, 1]  (the base sits on the ground, the top at y = 1)
+in vec3 in_vert;
+in vec3 in_normal;      // flat face normal (axis aligned)
+
+// ---- Per-INSTANCE (divisor = 1) ----
+in vec4 in_base;        // xyz = world position of the base centre, w = random seed
+in vec3 in_size;        // x = half-width along X, y = height, z = half-width along Z
+
+uniform mat4 u_mvp;
+
+out vec3  v_world;      // world-space position, used for the hole distance test
+out vec3  v_normal;
+out float v_hfrac;      // 0 at the base, 1 at the top
+out float v_seed;
+
+void main() {
+    // Scale the unit pillar to this instance's size and move it into the world.
+    // Non-uniform scaling of an AXIS-ALIGNED box does not change its face
+    // normals, so we can pass in_normal through untouched.
+    vec3 world = in_base.xyz + in_vert * in_size;
+
+    v_world  = world;
+    v_normal = in_normal;
+    v_hfrac  = in_vert.y;
+    v_seed   = in_base.w;
+    gl_Position = u_mvp * vec4(world, 1.0);
+}
+"""
+
+TREE_FRAGMENT_SHADER = """
+#version 330 core
+in vec3  v_world;
+in vec3  v_normal;
+in float v_hfrac;
+in float v_seed;
+
+uniform float u_time;
+uniform vec3  u_cam_pos;
+uniform vec3  u_sun_dir;
+
+// ---- Destruction data, written from Python every frame ----
+uniform vec3  hit_points[__MAX_HITS__];   // world-space impact coordinates
+uniform int   u_hit_count;                // how many entries are valid
+uniform float u_hole_radius;              // radius of every blasted hole
+
+out vec4 fragColor;
+
+void main() {
+    // =====================================================================
+    // THE HOLE TEST  (this is the whole destruction effect)
+    // =====================================================================
+    // For this pixel's WORLD position we measure the distance to every
+    // recorded impact point. A pixel closer than the hole radius is
+    // `discard`ed: the GPU throws the fragment away completely, so it writes
+    // neither colour NOR depth. The pillar's surface simply does not exist
+    // there, which means (a) the background / interior behind it shows
+    // through and (b) later passes (grass, bolts) depth-test against whatever
+    // is really visible. Because the test is done in 3D world space, the same
+    // sphere carves every face it touches (front, back, edges, even a
+    // neighbouring pillar) as one consistent hole.
+    //
+    // To avoid a perfectly smooth, CG-looking circle, the radius is
+    // perturbed by a product of sines of the position relative to the impact,
+    // so the rim becomes ragged, like melted stone.
+    //
+    // `gap` records how far OUTSIDE the nearest hole this pixel is
+    // (distance - effective radius). It drives the glowing rim afterwards.
+    float gap = 1e5;
+    for (int i = 0; i < __MAX_HITS__; i++) {
+        if (i >= u_hit_count) break;                       // only the valid entries
+        vec3  off = v_world - hit_points[i];
+        float d   = length(off);
+        float ragged = sin(off.x * 21.0 + off.y * 13.0 + float(i) * 1.7)
+                     * sin(off.z * 25.0 - off.y *  9.0 + float(i) * 0.9);
+        float r = u_hole_radius * (1.0 + 0.16 * ragged);   // effective, irregular radius
+        if (d < r) discard;                                // INSIDE the hole -> pixel vanishes
+        gap = min(gap, d - r);                             // just outside -> remember how close
+    }
+
+    // =====================================================================
+    // Shading (only pixels that survived the discard get here)
+    // =====================================================================
+    vec3 N = normalize(v_normal);
+    bool front = gl_FrontFacing;
+    // Face culling is OFF for trees. If we are looking at the INSIDE of the
+    // shell (visible only through a hole) the geometric normal points away
+    // from the eye, so flip it.
+    if (!front) N = -N;
+
+    vec3 V = normalize(u_cam_pos - v_world);
+    vec3 cyan    = vec3(0.00, 0.85, 1.00);
+    vec3 emerald = vec3(0.05, 1.00, 0.40);
+
+    vec3 col;
+    if (front) {
+        // ---- Dark slate monolith, lit by the emerald-cyan sun ----
+        float diff   = max(dot(N, u_sun_dir), 0.0);
+        float strata = 0.5 + 0.5 * sin(v_world.y * 9.0 + v_seed * 20.0);
+        col  = vec3(0.030, 0.042, 0.055) * (0.8 + 0.4 * strata);
+        col += vec3(0.02, 0.16, 0.14) * diff * 0.55;
+
+        // Vertical seams: pick the horizontal axis that runs ALONG this face.
+        float u = (abs(N.x) > 0.5) ? v_world.z : v_world.x;
+        col += cyan * smoothstep(0.94, 1.0, sin(u * 6.0 + v_seed * 10.0)) * 0.10;
+
+        // Rune bands crawling up the pillar
+        float band = smoothstep(0.95, 1.0, sin(v_world.y * 2.2 - u_time * 1.4 + v_seed * 6.2831));
+        col += cyan * band * 0.45;
+
+        // Glowing cap at the very top, plus a bright plate on the top face
+        col += cyan * smoothstep(0.955, 0.985, v_hfrac) * (0.5 + 0.2 * sin(u_time * 2.0 + v_seed * 6.0));
+        if (N.y > 0.9) col = mix(col, cyan * (0.55 + 0.25 * sin(u_time * 2.0 + v_seed * 6.0)), 0.85);
+
+        // Fresnel rim
+        col += cyan * pow(1.0 - max(dot(N, V), 0.0), 3.0) * 0.18;
+    } else {
+        // ---- Hollow interior (only seen through holes): dark, glowing emerald near the wound ----
+        col  = vec3(0.004, 0.018, 0.020);
+        col += emerald * exp(-gap * 2.5) * (0.55 + 0.15 * sin(u_time * 5.0));
+    }
+
+    // ---- Superheated arcane slag on the rim of every hole ----
+    // Pixels that are JUST outside the hole radius (gap < rim_w) are painted
+    // a blazing, saturated emerald, white-hot at the very edge, then they
+    // cool off into the normal slate.
+    float rim_w = 0.18;
+    if (gap < rim_w) {
+        float k = 1.0 - gap / rim_w;                        // 1 at the hole edge, 0 at the outer rim
+        vec3 slag = mix(vec3(0.00, 1.00, 0.35), vec3(0.80, 1.00, 0.90), k * k);
+        slag *= 1.8 + 0.5 * sin(u_time * 9.0 + v_world.y * 20.0);   // flickering
+        col = mix(col, slag, pow(k, 0.6));
+    }
+    // Soft heat bloom radiating a little further out
+    col += emerald * exp(-gap * 7.0) * 0.45;
+
+    // Fog into the sky haze
+    float dist = length(v_world - u_cam_pos);
+    col = mix(__FOG_COLOR__, col, exp(-dist * dist * 0.00045));
     fragColor = vec4(col, 1.0);
 }
 """
@@ -586,8 +855,8 @@ class FPSCamera:
         Full camera basis in world space: (right, up, forward).
         `right` never tilts (we have no roll), and up = right x forward is
         automatically perpendicular to both, so it tilts with the pitch.
-        These are exactly the rows of the view matrix's rotation part, and
-        are what the bolt billboards expand along.
+        These are exactly the rows of the view matrix's rotation part. The bolt
+        billboards and the sky's per-pixel view direction are both built from them.
         """
         fwd = self.forward()
         right = self.flat_right()
@@ -613,15 +882,25 @@ class FPSCamera:
 # Projectiles
 # ----------------------------------------------------------------------------
 class Fireball:
-    """One Arcane Plasma Bolt: position, velocity, age and lifespan."""
-    __slots__ = ("pos", "vel", "age", "life", "seed")
+    """
+    One Arcane Plasma Bolt: position, velocity, age and lifespan.
 
-    def __init__(self, pos, vel, life, seed):
+    `prev` is where the bolt was at the START of the frame; together with `pos`
+    it forms the line SEGMENT swept this frame, which we ray-cast against the
+    trees (so a fast bolt can never "tunnel" through a thin pillar between frames).
+
+    `solid=False` makes a harmless, stationary visual (used for impact flashes).
+    """
+    __slots__ = ("pos", "prev", "vel", "age", "life", "seed", "solid")
+
+    def __init__(self, pos, vel, life, seed, solid=True):
         self.pos = np.array(pos, dtype=np.float32)
+        self.prev = self.pos.copy()
         self.vel = np.array(vel, dtype=np.float32)
         self.age = 0.0
         self.life = life
         self.seed = seed
+        self.solid = solid
 
     def fade(self):
         """Grow in over 0.08 s at birth, shrink out over the last 0.5 s."""
@@ -648,6 +927,50 @@ def staff_model_matrix(t, recoil):
             @ rotate_z(math.radians(12.0))
             @ rotate_x(math.radians(-30.0 + 12.0 * recoil))     # recoil also kicks the tip up
             @ scale(0.9))
+
+
+# ----------------------------------------------------------------------------
+# Ray vs. axis-aligned bounding box collision (the "slab method")
+# ----------------------------------------------------------------------------
+def raycast_boxes(origin, direction, box_min, box_max):
+    """
+    Cast the ray   P(t) = origin + direction * t   against EVERY tree's AABB at once.
+
+    SLAB METHOD: an axis-aligned box is the intersection of three "slabs", one
+    per axis (the space between its two parallel faces on that axis). For one
+    axis the ray enters the slab at t1 = (min - origin) / direction and leaves
+    it at t2 = (max - origin) / direction (swapped if the direction is
+    negative). The ray is inside the BOX only while it is inside ALL THREE
+    slabs at the same time, i.e. during
+            [ t_near, t_far ] = [ max(entry t of x,y,z) , min(exit t of x,y,z) ].
+    If t_near > t_far the ray leaves one slab before it enters another -> miss.
+
+    Because `direction` here is the full movement vector of one frame
+    (pos - prev), the segment itself is t in [0, 1]:
+        * t_far  < 0  -> the box is behind the start point          -> no hit
+        * t_near > 1  -> the box starts beyond the end of the frame  -> no hit (yet)
+        * otherwise   -> the bolt touches the box THIS frame.
+    The exact impact point is origin + direction * t_near.
+
+    Axes where direction ~ 0 would divide by zero, so they get a tiny epsilon:
+    t1/t2 then become huge values of equal sign when the origin is outside that
+    slab (-> miss) or of opposite sign when inside (-> slab never limits the ray).
+
+    Returns (tree_index, t_near, t_far) for the NEAREST box hit, else None.
+    """
+    d = np.where(np.abs(direction) < 1e-9, 1e-9, direction)
+    inv = 1.0 / d
+    t1 = (box_min - origin) * inv                 # (N,3) entry/exit candidates per axis
+    t2 = (box_max - origin) * inv
+    t_near = np.minimum(t1, t2).max(axis=1)       # latest entry among the 3 slabs
+    t_far = np.maximum(t1, t2).min(axis=1)        # earliest exit among the 3 slabs
+
+    hit = (t_near <= t_far) & (t_far >= 0.0) & (t_near <= 1.0)
+    if not hit.any():
+        return None
+    idx = np.where(hit)[0]
+    best = idx[np.argmin(t_near[idx])]            # several boxes may be hit: take the closest
+    return int(best), float(t_near[best]), float(t_far[best])
 
 
 # ----------------------------------------------------------------------------
@@ -691,6 +1014,62 @@ def build_instance_data(count, half_size, seed=1337):
     y = np.zeros(count)                       # flat ground: grass roots sit at y = 0
     r = rng.uniform(0.0, 1.0, count)
     return np.stack([x, y, z, r], axis=1).astype(np.float32)
+
+
+def build_pillar_mesh():
+    """
+    Unit slate pillar: a stretched cube with x,z in [-1, 1] and y in [0, 1].
+    The vertex shader scales it per instance to (half_x, height, half_z).
+
+    Using a BOX (not a hexagonal prism) means the collision AABB is EXACTLY the
+    visible shape, so the ray/box impact point always lies on the real surface.
+
+    Each face is two triangles; the winding is verified against the face normal
+    and flipped if needed, so every face is CCW seen from OUTSIDE (this is what
+    lets the fragment shader use gl_FrontFacing to detect the hollow interior).
+
+    Vertex layout (6 floats): position(3), normal(3).
+    """
+    faces = [  # (normal, 4 corners in cyclic order)
+        ((1, 0, 0),  [(1, 0, -1), (1, 0, 1), (1, 1, 1), (1, 1, -1)]),
+        ((-1, 0, 0), [(-1, 0, -1), (-1, 0, 1), (-1, 1, 1), (-1, 1, -1)]),
+        ((0, 0, 1),  [(-1, 0, 1), (1, 0, 1), (1, 1, 1), (-1, 1, 1)]),
+        ((0, 0, -1), [(-1, 0, -1), (1, 0, -1), (1, 1, -1), (-1, 1, -1)]),
+        ((0, 1, 0),  [(-1, 1, -1), (1, 1, -1), (1, 1, 1), (-1, 1, 1)]),
+        ((0, -1, 0), [(-1, 0, -1), (1, 0, -1), (1, 0, 1), (-1, 0, 1)]),
+    ]
+    out = []
+    for n, (a, b, c, d) in faces:
+        n = np.array(n, dtype=np.float32)
+        for tri in ((a, b, c), (a, c, d)):
+            p0, p1, p2 = (np.array(v, dtype=np.float32) for v in tri)
+            if np.dot(np.cross(p1 - p0, p2 - p0), n) < 0:    # wrong winding -> swap
+                p1, p2 = p2, p1
+            for p in (p0, p1, p2):
+                out.append([*p, *n])
+    return np.array(out, dtype=np.float32)
+
+
+def build_tree_data(count, half_size, avoid_xz, seed=77):
+    """
+    Scatter `count` monoliths by rejection sampling (not too close to the
+    player's spawn point, not too close to each other).
+    Per-instance layout (7 floats): x, y(=0), z, seed, half_x, height, half_z
+    """
+    rng = np.random.default_rng(seed)
+    placed = []
+    for _ in range(10_000):
+        if len(placed) >= count:
+            break
+        x, z = rng.uniform(-half_size + 2, half_size - 2, 2)
+        if math.hypot(x - avoid_xz[0], z - avoid_xz[1]) < 6.0:
+            continue
+        if any(math.hypot(x - p[0], z - p[2]) < 5.0 for p in placed):
+            continue
+        hx, hz = rng.uniform(0.45, 0.85, 2)
+        h = rng.uniform(6.0, 13.0)
+        placed.append((x, 0.0, z, rng.random(), hx, h, hz))
+    return np.array(placed, dtype=np.float32)
 
 
 def build_staff_mesh():
@@ -790,16 +1169,30 @@ def main():
     ctx = moderngl.create_context()
     ctx.enable(moderngl.DEPTH_TEST)   # nearer fragments hide farther ones
 
-    grass_src = GRASS_VERTEX_SHADER.replace("__MAX_BOLTS__", str(MAX_BOLT_LIGHTS))
-    grass_prog = ctx.program(vertex_shader=grass_src, fragment_shader=GRASS_FRAGMENT_SHADER)
-    ground_prog = ctx.program(vertex_shader=GROUND_VERTEX_SHADER,
-                              fragment_shader=GROUND_FRAGMENT_SHADER)
-    bolt_prog = ctx.program(vertex_shader=BOLT_VERTEX_SHADER,
-                            fragment_shader=BOLT_FRAGMENT_SHADER)
-    staff_prog = ctx.program(vertex_shader=STAFF_VERTEX_SHADER,
-                             fragment_shader=STAFF_FRAGMENT_SHADER)
-    cross_prog = ctx.program(vertex_shader=CROSS_VERTEX_SHADER,
-                             fragment_shader=CROSS_FRAGMENT_SHADER)
+    sky_prog = ctx.program(vertex_shader=prep(SKY_VERTEX_SHADER),
+                           fragment_shader=prep(SKY_FRAGMENT_SHADER))
+    grass_prog = ctx.program(vertex_shader=prep(GRASS_VERTEX_SHADER),
+                             fragment_shader=prep(GRASS_FRAGMENT_SHADER))
+    ground_prog = ctx.program(vertex_shader=prep(GROUND_VERTEX_SHADER),
+                              fragment_shader=prep(GROUND_FRAGMENT_SHADER))
+    tree_prog = ctx.program(vertex_shader=prep(TREE_VERTEX_SHADER),
+                            fragment_shader=prep(TREE_FRAGMENT_SHADER))
+    bolt_prog = ctx.program(vertex_shader=prep(BOLT_VERTEX_SHADER),
+                            fragment_shader=prep(BOLT_FRAGMENT_SHADER))
+    staff_prog = ctx.program(vertex_shader=prep(STAFF_VERTEX_SHADER),
+                             fragment_shader=prep(STAFF_FRAGMENT_SHADER))
+    cross_prog = ctx.program(vertex_shader=prep(CROSS_VERTEX_SHADER),
+                             fragment_shader=prep(CROSS_FRAGMENT_SHADER))
+
+    # ------------------------------------------------------------------
+    # Sky: one oversized triangle that covers the whole screen
+    # ------------------------------------------------------------------
+    sky_tri = np.array([-1, -1,  3, -1,  -1, 3], dtype=np.float32)
+    sky_vbo = ctx.buffer(sky_tri.tobytes())
+    sky_vao = ctx.vertex_array(sky_prog, [(sky_vbo, "2f", "in_pos")])
+    sky_prog["u_sun_dir"].value = tuple(SUN_DIR)
+    sky_prog["u_aspect"].value = WIDTH / HEIGHT
+    sky_prog["u_tan_half_fov"].value = math.tan(math.radians(FOV_Y_DEG) / 2.0)
 
     # ------------------------------------------------------------------
     # HARDWARE INSTANCING SETUP: grass meadow
@@ -834,6 +1227,32 @@ def main():
     ], dtype=np.float32)
     ground_vbo = ctx.buffer(ground_verts.tobytes())
     ground_vao = ctx.vertex_array(ground_prog, [(ground_vbo, "3f", "in_position")])
+
+    # ------------------------------------------------------------------
+    # HARDWARE INSTANCING SETUP: slate monoliths ("trees")
+    # ------------------------------------------------------------------
+    # Shared geometry: ONE unit pillar (36 vertices: position + normal).
+    pillar_data = build_pillar_mesh()
+    pillar_vbo = ctx.buffer(pillar_data.tobytes())
+
+    # Per-instance data (7 floats = 28 bytes per tree):
+    #   in_base = (x, y, z, seed)      in_size = (half_x, height, half_z)
+    tree_data = build_tree_data(TREE_COUNT, MEADOW_HALF_SIZE, avoid_xz=(0.0, 12.0))
+    tree_count = len(tree_data)
+    tree_instance_vbo = ctx.buffer(tree_data.tobytes())
+    tree_vao = ctx.vertex_array(
+        tree_prog,
+        [
+            (pillar_vbo,        "3f 3f",  "in_vert", "in_normal"),
+            (tree_instance_vbo, "4f 3f/i", "in_base", "in_size"),   # '/i' -> once per instance
+        ],
+    )
+
+    # Collision boxes (AABBs), float64 for robust slab math.
+    # Pillar i occupies  [x - hx, x + hx] x [0, h] x [z - hz, z + hz].
+    t64 = tree_data.astype(np.float64)
+    box_min = np.stack([t64[:, 0] - t64[:, 4], np.zeros(tree_count), t64[:, 2] - t64[:, 6]], axis=1)
+    box_max = np.stack([t64[:, 0] + t64[:, 4], t64[:, 5],            t64[:, 2] + t64[:, 6]], axis=1)
 
     # ------------------------------------------------------------------
     # HARDWARE INSTANCING SETUP: plasma bolts (DYNAMIC instance buffer)
@@ -875,13 +1294,14 @@ def main():
     # Scene state
     # ------------------------------------------------------------------
     camera = FPSCamera(position=(0.0, 1.6, 12.0))
-    projection = perspective(70.0, WIDTH / HEIGHT, 0.1, 300.0)
+    projection = perspective(FOV_Y_DEG, WIDTH / HEIGHT, 0.1, 300.0)
     proj_bytes = to_gl_bytes(projection)
     clock = pygame.time.Clock()
     start_ms = pygame.time.get_ticks()
     rng = np.random.default_rng(2024)
 
     fireballs = []     # live Fireball objects
+    hit_points = []    # world-space impact coordinates handed to the tree shader (capped)
     recoil = 0.0       # staff kick animation, 1 right after casting, decays to 0
     running = True
 
@@ -937,25 +1357,72 @@ def main():
         # ---- Simulation: integrate projectiles (explicit Euler: p += v * dt) ----
         recoil *= math.exp(-9.0 * dt)       # exponential decay of the staff kick
         for fb in fireballs:
+            fb.prev[:] = fb.pos             # remember where we were: start of the swept segment
             fb.pos += fb.vel * dt
             fb.age += dt
-        fireballs[:] = [fb for fb in fireballs
-                        if fb.age < fb.life and fb.pos[1] > 0.03     # expired or hit the ground
-                        and abs(fb.pos[0]) < 250 and abs(fb.pos[2]) < 250]
+
+        # ---- Collision: swept ray-vs-AABB test of every solid bolt against every tree ----
+        survivors, spawned = [], []
+        for fb in fireballs:
+            if fb.age >= fb.life:
+                continue                                        # expired
+            if fb.solid:
+                origin = fb.prev.astype(np.float64)
+                segment = fb.pos.astype(np.float64) - origin    # this frame's movement (t in [0,1])
+                if np.linalg.norm(segment) > 1e-9:
+                    res = raycast_boxes(origin, segment, box_min, box_max)
+                else:
+                    res = None
+                if res is not None:
+                    _, t_near, t_far = res
+                    # EXACT impact point: where the segment first pierces the box surface.
+                    # (t_near < 0 means the bolt started inside the box -> hit at its start.)
+                    impact = origin + segment * max(t_near, 0.0)
+                    hit_points.append(impact.astype(np.float32))
+
+                    if CARVE_EXIT_HOLE:
+                        # The same ray, followed on to where it LEAVES the box, gives the
+                        # exit point on the far wall. Carving a second hole there makes
+                        # the blast truly see-through instead of just a dent in the near wall.
+                        exit_pt = origin + segment * t_far
+                        hit_points.append(exit_pt.astype(np.float32))
+
+                    while len(hit_points) > MAX_HIT_POINTS:     # cap: stay inside the uniform array
+                        hit_points.pop(0)                       # oldest scars heal first
+
+                    # Impact flash: a short-lived, motionless, non-colliding plasma burst
+                    spawned.append(Fireball(impact, (0, 0, 0), 0.35, float(rng.random()), solid=False))
+                    continue                                    # bolt consumed: delete the fireball
+
+                # Not hit: still remove bolts that hit the ground or flew out of the world
+                if not (fb.pos[1] > 0.03 and abs(fb.pos[0]) < 250 and abs(fb.pos[2]) < 250):
+                    continue
+            survivors.append(fb)
+        fireballs[:] = (survivors + spawned)[-MAX_FIREBALLS:]
 
         # ---- Matrices ----
         # clip = Projection * View * (model = identity, since instance offsets are world space)
         view = camera.view_matrix()
         mvp = projection @ view
         mvp_bytes = to_gl_bytes(mvp)
-        right, up, _ = camera.basis()       # for billboarding the bolts
+        right, up, fwd = camera.basis()     # for billboarding the bolts and for the sky rays
 
         # ---- Render ----
         ctx.fbo.depth_mask = True
         ctx.enable(moderngl.DEPTH_TEST)
         ctx.disable(moderngl.BLEND)
         ctx.disable(moderngl.CULL_FACE)
-        ctx.clear(0.0, 0.0, 0.0, 1.0)       # pitch-black void sky
+        ctx.clear(0.0, 0.0, 0.0, 1.0)
+
+        # (0) Sky + sun: drawn FIRST with the depth test disabled, so it paints the whole
+        # background, writes no depth, and every later pass simply draws on top of it.
+        ctx.disable(moderngl.DEPTH_TEST)
+        sky_prog["u_cam_right"].value = tuple(right)
+        sky_prog["u_cam_up"].value = tuple(up)
+        sky_prog["u_cam_fwd"].value = tuple(fwd)
+        sky_prog["u_time"].value = t
+        sky_vao.render(moderngl.TRIANGLES)
+        ctx.enable(moderngl.DEPTH_TEST)
 
         # (1) Ground
         ground_prog["u_mvp"].write(mvp_bytes)
@@ -963,7 +1430,21 @@ def main():
         ground_prog["u_cam_pos"].value = tuple(camera.position)
         ground_vao.render(moderngl.TRIANGLES)
 
-        # (2) Meadow: a SINGLE draw call renders every blade.
+        # (2) Slate monoliths: ONE instanced draw call. Face culling stays OFF so the
+        # hollow interior is visible through the holes (the shader flips the normal).
+        hit_array = np.zeros((MAX_HIT_POINTS, 3), dtype=np.float32)
+        if hit_points:
+            hit_array[:len(hit_points)] = np.array(hit_points, dtype=np.float32)
+        tree_prog["hit_points"].write(hit_array.tobytes())      # the whole vec3[] array at once
+        tree_prog["u_hit_count"].value = len(hit_points)
+        tree_prog["u_hole_radius"].value = HOLE_RADIUS
+        tree_prog["u_mvp"].write(mvp_bytes)
+        tree_prog["u_time"].value = t
+        tree_prog["u_cam_pos"].value = tuple(camera.position)
+        tree_prog["u_sun_dir"].value = tuple(SUN_DIR)
+        tree_vao.render(moderngl.TRIANGLES, instances=tree_count)
+
+        # (3) Meadow: a SINGLE draw call renders every blade.
         # Hand the newest bolts to the grass shader so blades react to them.
         bolt_lights = np.zeros((MAX_BOLT_LIGHTS, 4), dtype=np.float32)
         for i, fb in enumerate(fireballs[-MAX_BOLT_LIGHTS:]):
@@ -976,7 +1457,7 @@ def main():
         grass_prog["u_cam_right"].value = tuple(camera.flat_right())
         grass_vao.render(moderngl.TRIANGLES, instances=BLADE_COUNT)
 
-        # (3) Plasma bolts: ONE instanced draw call, additive blending.
+        # (4) Plasma bolts: ONE instanced draw call, additive blending.
         if fireballs:
             data = np.array([[*fb.pos, fb.seed, fb.fade()] for fb in fireballs], dtype=np.float32)
             bolt_instance_vbo.write(data.tobytes())
@@ -985,7 +1466,7 @@ def main():
             # Additive blending: result = src * 1 + dst * 1. Overlapping bolts and
             # bolts over bright grass simply ADD light, so they glow intensely.
             ctx.blend_func = moderngl.ONE, moderngl.ONE
-            # Still depth-TEST (the ground/grass hide bolts behind them), but don't
+            # Still depth-TEST (the ground/grass/trees hide bolts behind them), but don't
             # depth-WRITE, otherwise one bolt's soft edge would wrongly mask another.
             ctx.fbo.depth_mask = False
 
@@ -998,7 +1479,7 @@ def main():
             ctx.fbo.depth_mask = True
             ctx.disable(moderngl.BLEND)
 
-        # (4) Staff view-model: separate pass, locked to the camera.
+        # (5) Staff view-model: separate pass, locked to the camera.
         # No depth test: the staff must ALWAYS draw over the world (it is "held" in
         # front of the lens). Its parts are convex, so back-face culling alone
         # resolves self-overlap correctly.
@@ -1010,7 +1491,7 @@ def main():
         staff_vao.render(moderngl.TRIANGLES, vertices=staff_vertex_count)
         ctx.disable(moderngl.CULL_FACE)
 
-        # (5) Crosshair overlay (additive)
+        # (6) Crosshair overlay (additive)
         ctx.enable(moderngl.BLEND)
         ctx.blend_func = moderngl.ONE, moderngl.ONE
         cross_vao.render(moderngl.TRIANGLES, vertices=cross_vertex_count)
@@ -1018,8 +1499,9 @@ def main():
 
         pygame.display.flip()
         pygame.display.set_caption(
-            f"Voxel Meadow Instancing | {BLADE_COUNT:,} blades | "
-            f"{len(fireballs)} bolts | {clock.get_fps():.0f} FPS")
+            f"Voxel Meadow Instancing | {BLADE_COUNT:,} blades | {tree_count} monoliths | "
+            f"{len(fireballs)} bolts | {len(hit_points)}/{MAX_HIT_POINTS} hit points | "
+            f"{clock.get_fps():.0f} FPS")
 
     pygame.quit()
 
