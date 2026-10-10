@@ -6,12 +6,13 @@ Voxel Meadow Instancing: Arcane Tech Edition
   + Destructible Slate Monoliths (fragment-shader holes)
   + Hostile Violet-Core Constructs that SHATTER into tumbling debris
   + Seamless F11 Fullscreen toggle (viewport + projection rebuilt)
+  + TRUE infinite 360-degree FPS mouse-look (relative mouse, unbounded yaw, clamped pitch)
 =============================================================================
-Dependencies:  pip install pygame moderngl numpy
+Dependencies:  pip install pygame moderngl numpy      (pygame 2.x or pygame-ce)
 
 Controls:
     W/A/S/D      move (on the ground plane, relative to where you look)
-    Mouse        look around (mouse is captured)
+    Mouse        look around (cursor hidden + locked, unlimited turning)
     Left click   cast an Arcane Plasma Bolt from the staff
     Space / Ctrl move up / down
     Shift        sprint
@@ -45,7 +46,12 @@ BLADE_COUNT = 60_000          # number of instanced grass blades
 MEADOW_HALF_SIZE = 32.0       # meadow spans [-32, 32] on X and Z
 GROUND_HALF_SIZE = 120.0      # ground plane is bigger than the meadow (fog hides the edge)
 MOVE_SPEED = 6.0
-MOUSE_SENS = 0.0022           # radians per pixel
+
+# --- Mouse look ---
+# Angles are now stored in DEGREES, so the sensitivity is "degrees of rotation per
+# pixel of mouse movement". 0.12 deg/px  ->  about 3000 px of mouse travel per full turn.
+MOUSE_SENSITIVITY = 0.12
+PITCH_LIMIT_DEG = 89.0        # look straight up/down, but never quite 90 (that would flip the camera)
 
 # --- Projectile settings ---
 BOLT_SPEED = 30.0             # world units per second
@@ -885,8 +891,8 @@ def axis_angle_matrix(axis, angle):
 def orthonormalize(R):
     """
     Repeatedly multiplying rotation matrices accumulates floating-point error, so
-    R slowly stops being a pure rotation (it starts to shear / scale). One
-    Gram-Schmidt pass on the columns snaps it back to an orthonormal basis.
+    R slowly stops being a pure rotation. One Gram-Schmidt pass on the columns
+    snaps it back to an orthonormal basis.
     """
     c0 = R[:, 0] / np.linalg.norm(R[:, 0])
     c1 = R[:, 1] - c0 * np.dot(c0, R[:, 1])
@@ -896,54 +902,117 @@ def orthonormalize(R):
 
 
 # ----------------------------------------------------------------------------
-# First-person camera
+# First-person camera  (INFINITE 360-degree mouse look)
 # ----------------------------------------------------------------------------
 class FPSCamera:
+    """
+    Camera state is just TWO angles (in degrees) plus a position:
+
+        yaw   : rotation about the world Y axis. Deliberately UNBOUNDED. It is only
+                ever fed to sin()/cos(), which are periodic, so yaw = 10 and
+                yaw = 370 and yaw = -350 are the same direction. Spinning forever
+                in either direction therefore just works.
+        pitch : up/down angle. CLAMPED to [-89, +89] degrees. At exactly +-90 the
+                forward vector becomes parallel to the world "up" axis, so
+                cross(forward, up) is the zero vector and the right/up basis
+                collapses (gimbal lock: the view flips upside down). Stopping one
+                degree short keeps the basis well defined.
+
+    From these two angles we rebuild the Forward / Right / Up vectors EVERY time
+    the angles change (see update_vectors).
+    """
+
     def __init__(self, position):
         self.position = np.array(position, dtype=np.float32)
-        self.yaw = 0.0     # rotation about the world Y axis (0 => looking toward -Z)
-        self.pitch = -0.15  # rotation up/down (radians)
+        self.yaw = 0.0        # degrees; 0 => looking toward -Z (OpenGL's default view direction)
+        self.pitch = -8.0     # degrees; slightly down
+        self._fwd = self._right = self._up = None
+        self.update_vectors()
 
     def rotate(self, dx, dy):
-        """Mouse deltas -> yaw/pitch. Pitch is clamped to avoid flipping over the poles."""
-        self.yaw += dx * MOUSE_SENS
-        self.pitch -= dy * MOUSE_SENS
-        limit = math.radians(89.0)
-        self.pitch = max(-limit, min(limit, self.pitch))
+        """
+        Apply one frame of RELATIVE mouse movement.
 
+        dx, dy come from pygame.mouse.get_rel(): the number of pixels the mouse moved
+        since the previous call. They are small deltas, never screen positions, so it
+        does not matter where the cursor is: there is no screen edge to run into.
+
+        * Mouse right (dx > 0) must turn the view right. With the basis defined below,
+          increasing yaw rotates forward from -Z toward +X (to the right), so yaw += dx.
+        * Mouse up (dy < 0 in screen coordinates, since screen Y grows downward) must
+          look up, so pitch -= dy.
+        """
+        self.yaw += dx * MOUSE_SENSITIVITY                       # NO clamp: unlimited spins
+        self.pitch -= dy * MOUSE_SENSITIVITY
+        self.pitch = max(-PITCH_LIMIT_DEG, min(PITCH_LIMIT_DEG, self.pitch))   # clamp ONLY pitch
+        self.update_vectors()
+
+    def update_vectors(self):
+        """
+        Recompute Forward, Right and Up from yaw and pitch with plain trigonometry.
+
+        Let y = yaw, p = pitch (converted to radians).
+
+        FORWARD: spherical -> Cartesian conversion.
+            The horizontal part of the look direction has length cos(p) (it shrinks as
+            you look up/down) and points along (sin y, -cos y) on the XZ plane:
+                forward.x =  cos(p) * sin(y)
+                forward.y =  sin(p)
+                forward.z = -cos(p) * cos(y)
+            Check: y = 0, p = 0 -> (0, 0, -1), i.e. looking down -Z.
+                   |forward|^2 = cos^2(p)(sin^2 y + cos^2 y) + sin^2(p) = 1  -> unit length.
+
+        RIGHT: right = normalize( forward x worldUp ), worldUp = (0, 1, 0).
+            Working the cross product out, the pitch terms cancel and the cos(p)
+            factor is exactly what normalisation divides away:
+                right = (cos(y), 0, sin(y))
+            So Right depends on YAW ONLY: looking up or down never tilts it (no roll).
+            Check: y = 0 -> (1, 0, 0), +X is to the right when facing -Z.
+
+        UP: up = right x forward. Perpendicular to both, so it tilts with the pitch:
+                up = (-sin(y) * sin(p), cos(p), cos(y) * sin(p))
+            It always has a positive Y component (cos p > 0 because |p| <= 89 deg),
+            which is exactly what keeps the camera from ever flipping upside down.
+
+        These three vectors are an orthonormal basis; they are the rows of the view
+        matrix's rotation part, and are used for movement, bolt billboards and the sky.
+        """
+        y = math.radians(self.yaw)
+        p = math.radians(self.pitch)
+        cy, sy = math.cos(y), math.sin(y)
+        cp, sp = math.cos(p), math.sin(p)
+
+        self._fwd = np.array([cp * sy, sp, -cp * cy], dtype=np.float32)
+        self._right = np.array([cy, 0.0, sy], dtype=np.float32)
+        self._up = np.array([-sy * sp, cp, cy * sp], dtype=np.float32)   # == cross(right, forward)
+
+    # ---- accessors (all read the vectors rebuilt in update_vectors) ----
     def forward(self):
-        """
-        Spherical -> Cartesian conversion for the look direction.
-        With yaw = 0 and pitch = 0 this gives (0, 0, -1), OpenGL's default view direction.
-            x =  cos(pitch) * sin(yaw)
-            y =  sin(pitch)
-            z = -cos(pitch) * cos(yaw)
-        """
-        cp = math.cos(self.pitch)
-        return np.array([cp * math.sin(self.yaw),
-                         math.sin(self.pitch),
-                         -cp * math.cos(self.yaw)], dtype=np.float32)
+        """Full 3D look direction (includes pitch). Used for aiming and the view matrix."""
+        return self._fwd
 
     def flat_forward(self):
-        """Forward direction projected on the ground (so W/S never fly you up or down)."""
-        return np.array([math.sin(self.yaw), 0.0, -math.cos(self.yaw)], dtype=np.float32)
+        """
+        Forward projected on the ground plane and re-normalised: (sin y, 0, -cos y).
+        Movement uses this, so W/S never fly you up or down when you look up/down.
+        """
+        y = math.radians(self.yaw)
+        return np.array([math.sin(y), 0.0, -math.cos(y)], dtype=np.float32)
 
     def flat_right(self):
-        """Right vector on the ground: right = (cos(yaw), 0, sin(yaw))."""
-        return np.array([math.cos(self.yaw), 0.0, math.sin(self.yaw)], dtype=np.float32)
+        """Right vector (already horizontal): (cos y, 0, sin y). Strafing + grass billboarding."""
+        return self._right
 
     def basis(self):
-        """
-        Full camera basis in world space: (right, up, forward).
-        `right` never tilts (no roll); up = right x forward tilts with the pitch.
-        Used by the bolt billboards and the sky's per-pixel view direction.
-        """
-        fwd = self.forward()
-        right = self.flat_right()
-        up = np.cross(right, fwd).astype(np.float32)
-        return right, up, fwd
+        """Full camera basis in world space: (right, up, forward)."""
+        return self._right, self._up, self._fwd
 
     def update(self, keys, dt):
+        """
+        WASD movement. Because flat_forward()/flat_right() are rebuilt from the current
+        yaw, "W" always moves toward where you are looking and "D" always strafes to
+        your right, no matter how many full turns the camera has made.
+        """
         speed = MOVE_SPEED * (2.5 if keys[pygame.K_LSHIFT] else 1.0) * dt
         fwd, right = self.flat_forward(), self.flat_right()
         if keys[pygame.K_w]: self.position += fwd * speed
@@ -1514,15 +1583,60 @@ def main():
     pygame.display.gl_set_attribute(pygame.GL_CONTEXT_FORWARD_COMPATIBLE_FLAG, True)
     pygame.display.gl_set_attribute(pygame.GL_DEPTH_SIZE, 24)
 
-    # RESIZABLE lets the player also drag-resize the window; the per-frame size
-    # poll below handles that and F11 through one code path (apply_size).
     pygame.display.set_mode((WIDTH, HEIGHT),
                             pygame.OPENGL | pygame.DOUBLEBUF | pygame.RESIZABLE)
     pygame.display.set_caption("Voxel Meadow Instancing")
 
-    pygame.event.set_grab(True)
-    pygame.mouse.set_visible(False)
-    pygame.mouse.get_rel()   # discard the initial jump
+    # ------------------------------------------------------------------
+    # MOUSE CAPTURE  (the heart of the 360-degree fix)
+    # ------------------------------------------------------------------
+    # WHY THE OLD CAMERA GOT STUCK: a normal desktop cursor is an ABSOLUTE pointer. It
+    # stops at the screen/window edge, so once it touches the edge the OS reports
+    # dx = 0 no matter how far your hand keeps moving: you cannot turn any further.
+    #
+    # THE FIX: put the mouse in RELATIVE mode. The OS then reports raw hardware motion
+    # (how far the mouse physically moved) and the cursor itself never travels, so
+    # there is no edge to hit.
+    #   * set_visible(False)  hides the cursor.
+    #   * set_grab(True)      confines the pointer to our window (and, in pygame 2/SDL2,
+    #                         hiding + grabbing together enables SDL's relative mode).
+    #   * set_relative_mode() (pygame-ce) asks for relative mode explicitly where available.
+    # If a platform still lets the cursor drift (some Linux/Wayland/VM setups), the
+    # `recentre_if_near_edge()` guard below warps it back to the middle, so the
+    # cursor can never reach an edge on any setup.
+    has_relative_api = hasattr(pygame.mouse, "set_relative_mode")
+    mouse_captured = False
+
+    def capture_mouse(on):
+        """Hide + lock (on=True) or show + release (on=False) the mouse."""
+        nonlocal mouse_captured
+        mouse_captured = on
+        pygame.mouse.set_visible(not on)          # cursor hidden while playing
+        pygame.event.set_grab(on)                 # confine the pointer to this window
+        if has_relative_api:
+            try:
+                pygame.mouse.set_relative_mode(on)    # raw, unbounded motion deltas
+            except pygame.error:
+                pass
+        pygame.mouse.get_rel()                    # DISCARD whatever motion accumulated before
+                                                  # (otherwise the first frame would jump)
+
+    def recentre_if_near_edge():
+        """
+        Safety net for platforms where grabbing does not give true relative motion.
+        If the (hidden) cursor wandered into the outer part of the window, teleport it
+        back to the centre. We then pump events and call get_rel() once to throw away
+        the artificial "jump" the teleport itself generates, so the camera does not
+        twitch. In true relative mode the cursor never moves, so this never fires.
+        """
+        w, h = pygame.display.get_window_size()
+        x, y = pygame.mouse.get_pos()
+        if x < w * 0.25 or x > w * 0.75 or y < h * 0.25 or y > h * 0.75:
+            pygame.mouse.set_pos((w // 2, h // 2))
+            pygame.event.pump()
+            pygame.mouse.get_rel()
+
+    capture_mouse(True)
 
     # ------------------------------------------------------------------
     # ModernGL context + programs
@@ -1615,8 +1729,6 @@ def main():
     # ------------------------------------------------------------------
     # Both meshes use the SAME shader and the SAME 19-float instance layout, and each
     # has its own dynamic instance buffer that is rewritten every frame.
-    # Alive creature parts and dead debris go through the same draw call; only the
-    # `energy` float in the instance record differs.
     cube_vbo = ctx.buffer(build_cube_mesh().tobytes())
     shard_mesh_data = build_shard_mesh()
     shard_vbo = ctx.buffer(shard_mesh_data.tobytes())
@@ -1694,13 +1806,8 @@ def main():
     def apply_size(w, h):
         """
         Called whenever the drawable size changes (F11, or the user resizing the window).
-        Three things depend on the window size and must be refreshed together:
-          1. the GL VIEWPORT   - without it OpenGL keeps rasterising into the old
-                                 rectangle (image stuck in a corner / cropped);
-          2. the PROJECTION    - its x-scale is f / aspect; with a stale aspect
-                                 the scene is stretched or squashed;
-          3. aspect-dependent screen-space things: the sky's per-pixel ray
-                                 reconstruction and the crosshair's pixel-sized bars.
+        Refreshes the GL viewport, the projection matrix (aspect ratio), the sky's
+        aspect uniform and the pixel-sized crosshair bars.
         """
         nonlocal win_w, win_h, projection, proj_bytes
         if w < 1 or h < 1:          # minimised window: nothing sensible to do
@@ -1719,7 +1826,6 @@ def main():
         F11. pygame.display.toggle_fullscreen() (SDL2) flips the EXISTING window in
         place, so the OpenGL context and every ModernGL buffer/VAO stay valid.
         If a platform cannot do that, fall back to set_mode() with new flags.
-        The new size is picked up by the size poll in the main loop (apply_size).
         """
         nonlocal fullscreen
         fullscreen = not fullscreen
@@ -1734,10 +1840,9 @@ def main():
                 pygame.display.set_mode((0, 0), flags | pygame.FULLSCREEN)
             else:
                 pygame.display.set_mode((WIDTH, HEIGHT), flags | pygame.RESIZABLE)
-        # Re-assert mouse capture, and drop the relative-motion jump the switch causes
-        pygame.event.set_grab(True)
-        pygame.mouse.set_visible(False)
-        pygame.mouse.get_rel()
+        # A window-mode switch can silently drop the grab / relative mode, so re-assert
+        # the full capture state (this also flushes get_rel()).
+        capture_mouse(True)
         w, h = pygame.display.get_window_size()
         apply_size(w, h)
 
@@ -1767,7 +1872,7 @@ def main():
         dt = min(clock.tick(60) / 1000.0, 0.05)     # clamp: a long hitch must not explode the physics
         t = (pygame.time.get_ticks() - start_ms) / 1000.0
 
-        # ---- Input ----
+        # ---- Input events (also pumps the OS queue, which updates get_rel()'s counters) ----
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -1775,16 +1880,37 @@ def main():
                 running = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
                 toggle_fullscreen()
+            elif event.type == getattr(pygame, "WINDOWFOCUSLOST", -1):
+                capture_mouse(False)            # alt-tabbed away: give the cursor back
+            elif event.type == getattr(pygame, "WINDOWFOCUSGAINED", -1):
+                capture_mouse(True)             # came back: hide + lock + flush again
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:   # left click
-                cast_fireball(t)
+                if mouse_captured:
+                    cast_fireball(t)
+                else:
+                    capture_mouse(True)         # first click after losing focus just re-locks
 
         # Size poll: catches F11, manual window resizing and desktop-driven changes alike
         cur = pygame.display.get_window_size()
         if cur != (win_w, win_h):
             apply_size(*cur)
 
+        # ------------------------------------------------------------------
+        # MOUSE LOOK: pygame.mouse.get_rel()
+        # ------------------------------------------------------------------
+        # get_rel() returns (dx, dy): how many pixels the mouse moved since the PREVIOUS
+        # call to get_rel(), then resets its internal counter. We never look at the
+        # absolute cursor position, so the result is independent of where the cursor is
+        # and a long, continuous sweep of the hand gives a long continuous turn.
+        #   dx > 0 : mouse moved right  -> yaw increases   -> view turns right
+        #   dy < 0 : mouse moved up     -> pitch increases -> view looks up
+        # camera.rotate() multiplies by MOUSE_SENSITIVITY (degrees per pixel), adds to
+        # yaw WITHOUT any limit (infinite 360-degree spins), clamps pitch to +-89 degrees,
+        # then rebuilds the Forward/Right/Up vectors with sin/cos.
         dx, dy = pygame.mouse.get_rel()
-        camera.rotate(dx, dy)
+        if mouse_captured:
+            camera.rotate(dx, dy)
+            recentre_if_near_edge()             # no-op in true relative mode (cursor never moves)
         camera.update(pygame.key.get_pressed(), dt)
 
         # ---- Simulation: creatures (wander AI) + respawns ----
@@ -1910,7 +2036,6 @@ def main():
         tree_vao.render(moderngl.TRIANGLES, instances=tree_count)
 
         # (3) Creatures + debris: one instanced call per primitive type.
-        # Parts are closed convex solids with proper-rotation transforms, so back-face culling is safe.
         part_rows = pack_part_instances(creatures, debris, t)
         creature_prog["u_mvp"].write(mvp_bytes)
         creature_prog["u_time"].value = t
@@ -1973,8 +2098,10 @@ def main():
         pygame.display.set_caption(
             f"Voxel Meadow | {BLADE_COUNT:,} blades | {tree_count} monoliths | "
             f"{len(creatures)} constructs | {len(debris)} shards | "
-            f"{len(fireballs)} bolts | {win_w}x{win_h} | {clock.get_fps():.0f} FPS")
+            f"{len(fireballs)} bolts | yaw {camera.yaw % 360:.0f} pitch {camera.pitch:.0f} | "
+            f"{win_w}x{win_h} | {clock.get_fps():.0f} FPS")
 
+    capture_mouse(False)
     pygame.quit()
 
 
