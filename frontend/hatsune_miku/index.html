@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Tech // MMD 3D Companion Prototype</title>
+  <style>
+    :root {
+      --bg-slate: #36393f;
+      --emerald: #00ffaa;
+      --cyan: #00e5ff;
+      --glass-bg: rgba(24, 26, 31, 0.65);
+      --glass-border: rgba(0, 255, 170, 0.25);
+      --text-primary: #f0f6fc;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-slate);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-primary);
+      user-select: none;
+    }
+
+    #canvas-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* Minimalist Arcane Tech HUD */
+    #hud {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10;
+      padding: 16px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-left: 3px solid var(--emerald);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      pointer-events: auto;
+      max-width: 320px;
+    }
+
+    .hud-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hud-status {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--emerald), var(--cyan));
+      transition: width 0.2s ease-out;
+    }
+
+    .hud-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .arcane-btn {
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .arcane-btn:hover {
+      background: rgba(0, 255, 170, 0.2);
+      border-color: var(--emerald);
+      box-shadow: 0 0 12px rgba(0, 255, 170, 0.35);
+    }
+
+    .hud-hint {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+  </style>
+
+  <!-- Ammo.js Physics Engine (Required by Three.js MMDPhysics for cloth & hair simulation) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/ammo.wasm.js"></script>
+
+  <!-- ES Module Import Map for Three.js and Addons -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- 3D Viewport Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Arcane Tech Status & Control Overlay -->
+  <div id="hud">
+    <div class="hud-title">Arcane Tech // Companion Core</div>
+    <div id="status-text" class="hud-status">Initializing WebGL &amp; Ammo.js Physics...</div>
+    <div class="progress-bar-track">
+      <div id="progress-fill" class="progress-bar-fill"></div>
+    </div>
+    <div class="hud-controls">
+      <button id="btn-reset-cam" class="arcane-btn">Reset Camera</button>
+      <button id="btn-toggle-physics" class="arcane-btn">Physics: ON</button>
+    </div>
+    <div class="hud-hint">LMB: Orbit &bull; RMB: Pan &bull; Scroll: Zoom</div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { MMDLoader } from 'three/addons/loaders/MMDLoader.js';
+    import { MMDAnimationHelper } from 'three/addons/animation/MMDAnimationHelper.js';
+
+    /* ==========================================================================
+       1. CONFIGURATION & ASSET CONSTANTS
+       Paste your raw GitHub or CDN links to a .pmx/.pmd model and .vmd motion here.
+       Default links use the official Three.js MMD sample repository via jsDelivr.
+       ========================================================================== */
+    const MODEL_URL = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/mmd/miku/miku_v2.pmd';
+    const MOTION_URL = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/mmd/vmds/wavefile_v2.vmd';
+
+    const CONFIG = {
+      COLORS: {
+        BACKGROUND: 0x36393f,     // Deep dark slate void
+        EMERALD: 0x00ffaa,        // Arcane emerald accent
+        CYAN: 0x00e5ff,           // Arcane cyan accent
+        AMBIENT_LIGHT: 0xdbeafe,  // Soft cool anime fill light
+        KEY_LIGHT: 0xffffff       // Crisp directional key light
+      },
+      CAMERA: {
+        FOV: 45,
+        NEAR: 0.1,
+        FAR: 1000,
+        INITIAL_POS: new THREE.Vector3(0, 14, 34),
+        TARGET: new THREE.Vector3(0, 11, 0)
+      },
+      PHYSICS_ENABLED: true
+    };
+
+    /* ==========================================================================
+       2. SCENE MANAGER (Initialization & Rendering Pipeline)
+       Handles Renderer, Scene, Camera, OrbitControls, and Window Resize events.
+       ========================================================================== */
+    class SceneManager {
+      constructor(container) {
+        this.container = container;
+
+        // Scene & Fog
+        this.scene = new THREE.Scene();
+        this.scene.background = new THREE.Color(CONFIG.COLORS.BACKGROUND);
+        this.scene.fog = new THREE.FogExp2(CONFIG.COLORS.BACKGROUND, 0.012);
+
+        // Camera
+        this.camera = new THREE.PerspectiveCamera(
+          CONFIG.CAMERA.FOV,
+          window.innerWidth / window.innerHeight,
+          CONFIG.CAMERA.NEAR,
+          CONFIG.CAMERA.FAR
+        );
+        this.camera.position.copy(CONFIG.CAMERA.INITIAL_POS);
+
+        // WebGL Renderer
+        this.renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          powerPreference: 'high-performance'
+        });
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        this.renderer.toneMappingExposure = 1.05;
+        this.container.appendChild(this.renderer.domElement);
+
+        // OrbitControls
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.controls.target.copy(CONFIG.CAMERA.TARGET);
+        this.controls.enableDamping = true;
+        this.controls.dampingFactor = 0.06;
+        this.controls.minDistance = 8;
+        this.controls.maxDistance = 85;
+        this.controls.maxPolarAngle = Math.PI * 0.52; // Prevent camera from diving far below the floor
+        this.controls.update();
+
+        // Bind resize listener
+        window.addEventListener('resize', () => this.onWindowResize());
+      }
+
+      resetCamera() {
+        this.camera.position.copy(CONFIG.CAMERA.INITIAL_POS);
+        this.controls.target.copy(CONFIG.CAMERA.TARGET);
+        this.controls.update();
+      }
+
+      onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      updateControls() {
+        this.controls.update();
+      }
+
+      render() {
+        this.renderer.render(this.scene, this.camera);
+      }
+    }
+
+    /* ==========================================================================
+       3. ENVIRONMENT BUILDER (Arcane Tech Aesthetic & Lighting)
+       Builds anime-friendly lighting, glassmorphic floor, and floating primitives.
+       ========================================================================== */
+    class EnvironmentBuilder {
+      constructor(scene) {
+        this.scene = scene;
+        this.floatingPrimitives = [];
+        this.arcaneRings = [];
+
+        this.setupLighting();
+        this.createGlassmorphicFloor();
+        this.createArcanePrimitives();
+      }
+
+      setupLighting() {
+        // Soft ambient illumination so anime toon shadows never crush to pure black
+        const ambientLight = new THREE.AmbientLight(CONFIG.COLORS.AMBIENT_LIGHT, 1.35);
+        this.scene.add(ambientLight);
+
+        // Hemisphere light for subtle sky/ground color gradient on the character
+        const hemiLight = new THREE.HemisphereLight(0xffffff, CONFIG.COLORS.BACKGROUND, 0.65);
+        hemiLight.position.set(0, 40, 0);
+        this.scene.add(hemiLight);
+
+        // Primary Directional Key Light (configured for MMD toon materials & crisp shadows)
+        const dirLight = new THREE.DirectionalLight(CONFIG.COLORS.KEY_LIGHT, 1.6);
+        dirLight.position.set(14, 28, 22);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 2048;
+        dirLight.shadow.mapSize.height = 2048;
+        dirLight.shadow.camera.near = 1;
+        dirLight.shadow.camera.far = 80;
+        const d = 22;
+        dirLight.shadow.camera.left = -d;
+        dirLight.shadow.camera.right = d;
+        dirLight.shadow.camera.top = d;
+        dirLight.shadow.camera.bottom = -d;
+        dirLight.shadow.bias = -0.0005;
+        this.scene.add(dirLight);
+
+        // Arcane Emerald Rim Light (Back-Left)
+        const emeraldRim = new THREE.DirectionalLight(CONFIG.COLORS.EMERALD, 0.85);
+        emeraldRim.position.set(-20, 18, -18);
+        this.scene.add(emeraldRim);
+
+        // Arcane Cyan Rim Light (Back-Right)
+        const cyanRim = new THREE.DirectionalLight(CONFIG.COLORS.CYAN, 0.85);
+        cyanRim.position.set(20, 14, -18);
+        this.scene.add(cyanRim);
+      }
+
+      createGlassmorphicFloor() {
+        // 1. Sub-surface Arcane Grid / Rings (visible through the glassmorphic floor)
+        const subFloorGroup = new THREE.Group();
+        subFloorGroup.position.y = -0.08;
+
+        const polarGrid = new THREE.PolarGridHelper(36, 16, 8, 64, CONFIG.COLORS.CYAN, CONFIG.COLORS.EMERALD);
+        polarGrid.material.transparent = true;
+        polarGrid.material.opacity = 0.25;
+        subFloorGroup.add(polarGrid);
+
+        // Glowing core ring beneath the glass plane
+        const coreRingGeo = new THREE.RingGeometry(6.5, 6.8, 64);
+        coreRingGeo.rotateX(-Math.PI / 2);
+        const coreRingMat = new THREE.MeshBasicMaterial({
+          color: CONFIG.COLORS.EMERALD,
+          side: THREE.DoubleSide,
+          transparent: true,
+          opacity: 0.65
+        });
+        const coreRing = new THREE.Mesh(coreRingGeo, coreRingMat);
+        subFloorGroup.add(coreRing);
+
+        this.scene.add(subFloorGroup);
+
+        // 2. Glassmorphic Floor Plane using MeshPhysicalMaterial
+        const floorGeo = new THREE.CircleGeometry(38, 64);
+        floorGeo.rotateX(-Math.PI / 2);
+
+        const floorMat = new THREE.MeshPhysicalMaterial({
+          color: 0x23272e,
+          transparent: true,
+          opacity: 0.72,
+          roughness: 0.12,
+          metalness: 0.25,
+          reflectivity: 0.9,
+          transmission: 0.35,
+          ior: 1.45,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.08
+        });
+
+        const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+        floorMesh.receiveShadow = true;
+        this.scene.add(floorMesh);
+      }
+
+      createArcanePrimitives() {
+        // Shared glowing wireframe materials in Emerald Green and Cyan
+        const emeraldWireMat = new THREE.MeshStandardMaterial({
+          color: CONFIG.COLORS.EMERALD,
+          emissive: CONFIG.COLORS.EMERALD,
+          emissiveIntensity: 1.8,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.8
+        });
+
+        const cyanWireMat = new THREE.MeshStandardMaterial({
+          color: CONFIG.COLORS.CYAN,
+          emissive: CONFIG.COLORS.CYAN,
+          emissiveIntensity: 1.8,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.75
+        });
+
+        // 1. Floating Wireframe Octahedrons orbiting the workspace
+        const octaGeo = new THREE.OctahedronGeometry(1.15, 0);
+        const detailOctaGeo = new THREE.OctahedronGeometry(0.85, 1);
+
+        const totalOctahedrons = 14;
+        for (let i = 0; i < totalOctahedrons; i++) {
+          const isEmerald = i % 2 === 0;
+          const mesh = new THREE.Mesh(
+            isEmerald ? octaGeo : detailOctaGeo,
+            isEmerald ? emeraldWireMat : cyanWireMat
+          );
+
+          const angle = (i / totalOctahedrons) * Math.PI * 2;
+          const radius = 11 + (i % 3) * 4.5;
+          const baseY = 4 + (i % 5) * 3.8;
+
+          mesh.position.set(
+            Math.cos(angle) * radius,
+            baseY,
+            Math.sin(angle) * radius
+          );
+
+          const scale = 0.65 + (i % 4) * 0.28;
+          mesh.scale.setScalar(scale);
+
+          this.scene.add(mesh);
+          this.floatingPrimitives.push({
+            mesh,
+            baseY,
+            angle,
+            radius,
+            orbitSpeed: (0.08 + (i % 3) * 0.04) * (isEmerald ? 1 : -1),
+            bobSpeed: 1.2 + (i % 4) * 0.35,
+            bobOffset: i * 0.9,
+            rotSpeedX: 0.4 + (i % 3) * 0.25,
+            rotSpeedY: 0.6 + (i % 2) * 0.35
+          });
+        }
+
+        // 2. Arcane Gyroscopic Wireframe Rings
+        const ringConfigs = [
+          { radius: 9.5, tube: 0.08, radialSegs: 8, tubularSegs: 48, mat: emeraldWireMat, y: 11, rotX: 0.35, rotZ: -0.2, speed: 0.25 },
+          { radius: 13.0, tube: 0.12, radialSegs: 6, tubularSegs: 60, mat: cyanWireMat, y: 11, rotX: -0.45, rotZ: 0.35, speed: -0.18 },
+          { radius: 7.2, tube: 0.05, radialSegs: 6, tubularSegs: 36, mat: cyanWireMat, y: 0.4, rotX: Math.PI / 2, rotZ: 0, speed: 0.4 }
+        ];
+
+        ringConfigs.forEach((cfg) => {
+          const torusGeo = new THREE.TorusGeometry(cfg.radius, cfg.tube, cfg.radialSegs, cfg.tubularSegs);
+          const ringMesh = new THREE.Mesh(torusGeo, cfg.mat);
+          ringMesh.position.y = cfg.y;
+          ringMesh.rotation.x = cfg.rotX;
+          ringMesh.rotation.z = cfg.rotZ;
+
+          this.scene.add(ringMesh);
+          this.arcaneRings.push({
+            mesh: ringMesh,
+            speed: cfg.speed,
+            isFlat: cfg.rotX === Math.PI / 2
+          });
+        });
+      }
+
+      update(elapsedTime, delta) {
+        // Animate floating octahedrons (gentle vertical bobbing, local rotation, and slow orbit)
+        for (const item of this.floatingPrimitives) {
+          item.angle += item.orbitSpeed * delta;
+          item.mesh.position.x = Math.cos(item.angle) * item.radius;
+          item.mesh.position.z = Math.sin(item.angle) * item.radius;
+          item.mesh.position.y = item.baseY + Math.sin(elapsedTime * item.bobSpeed + item.bobOffset) * 0.85;
+
+          item.mesh.rotation.x += item.rotSpeedX * delta;
+          item.mesh.rotation.y += item.rotSpeedY * delta;
+        }
+
+        // Animate gyroscopic arcane rings
+        for (const ring of this.arcaneRings) {
+          if (ring.isFlat) {
+            ring.mesh.rotation.z += ring.speed * delta;
+          } else {
+            ring.mesh.rotation.y += ring.speed * delta;
+            ring.mesh.rotation.z += (ring.speed * 0.35) * delta;
+          }
+        }
+      }
+    }
+
+    /* ==========================================================================
+       4. MMD CHARACTER MANAGER (Asset Loading & Physics Simulation)
+       Handles Ammo.js initialization, MMDLoader, and MMDAnimationHelper.
+       ========================================================================== */
+    class MMDCharacterManager {
+      constructor(scene, onStatusUpdate, onProgressUpdate) {
+        this.scene = scene;
+        this.onStatusUpdate = onStatusUpdate;
+        this.onProgressUpdate = onProgressUpdate;
+
+        this.loader = new MMDLoader();
+        this.helper = new MMDAnimationHelper({ afterglow: 2.0 });
+        this.mesh = null;
+        this.physicsEnabled = CONFIG.PHYSICS_ENABLED;
+      }
+
+      async initPhysics() {
+        if (typeof window.Ammo === 'function') {
+          this.onStatusUpdate('Initializing Ammo.js Physics Engine...');
+          window.Ammo = await window.Ammo();
+        }
+      }
+
+      loadCharacter(modelUrl, motionUrl) {
+        return new Promise((resolve, reject) => {
+          const handleProgress = (xhr) => {
+            if (xhr.lengthComputable) {
+              const percentComplete = (xhr.loaded / xhr.total) * 100;
+              this.onProgressUpdate(percentComplete);
+              this.onStatusUpdate(`Loading MMD Asset: ${Math.round(percentComplete)}%`);
+            }
+          };
+
+          const configureMesh = (mesh) => {
+            this.mesh = mesh;
+            this.mesh.position.set(0, 0, 0);
+            this.mesh.castShadow = true;
+            this.mesh.receiveShadow = true;
+
+            // Refine anime-style materials for clean illumination
+            this.mesh.traverse((child) => {
+              if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+              }
+            });
+
+            this.scene.add(this.mesh);
+          };
+
+          // Load both Model (.pmx/.pmd) and Motion (.vmd) if MOTION_URL is provided
+          if (motionUrl && motionUrl.trim() !== '') {
+            this.loader.loadWithAnimation(
+              modelUrl,
+              motionUrl,
+              (mmd) => {
+                configureMesh(mmd.mesh);
+                this.helper.add(mmd.mesh, {
+                  animation: mmd.animation,
+                  physics: this.physicsEnabled
+                });
+                this.onProgressUpdate(100);
+                this.onStatusUpdate('Companion Online // Arcane Sync Active');
+                resolve(mmd.mesh);
+              },
+              handleProgress,
+              (error) => reject(error)
+            );
+          } else {
+            // Load Model only if MOTION_URL is left empty
+            this.loader.load(
+              modelUrl,
+              (mesh) => {
+                configureMesh(mesh);
+                this.helper.add(mesh, {
+                  physics: this.physicsEnabled
+                });
+                this.onProgressUpdate(100);
+                this.onStatusUpdate('Companion Online (Static Pose)');
+                resolve(mesh);
+              },
+              handleProgress,
+              (error) => reject(error)
+            );
+          }
+        });
+      }
+
+      togglePhysics() {
+        this.physicsEnabled = !this.physicsEnabled;
+        this.helper.enable('physics', this.physicsEnabled);
+        return this.physicsEnabled;
+      }
+
+      update(delta) {
+        if (this.mesh) {
+          this.helper.update(delta);
+        }
+      }
+    }
+
+    /* ==========================================================================
+       5. APPLICATION ORCHESTRATOR (Bootstrap & Main Update Loop)
+       Coordinates initialization, UI bindings, and the requestAnimationFrame loop.
+       ========================================================================== */
+    class Application {
+      constructor() {
+        this.container = document.getElementById('canvas-container');
+        this.statusTextEl = document.getElementById('status-text');
+        this.progressFillEl = document.getElementById('progress-fill');
+        this.btnResetCam = document.getElementById('btn-reset-cam');
+        this.btnTogglePhysics = document.getElementById('btn-toggle-physics');
+
+        this.clock = new THREE.Clock();
+
+        this.sceneManager = new SceneManager(this.container);
+        this.environment = new EnvironmentBuilder(this.sceneManager.scene);
+        this.characterManager = new MMDCharacterManager(
+          this.sceneManager.scene,
+          (msg) => this.updateStatus(msg),
+          (pct) => this.updateProgress(pct)
+        );
+
+        this.bindUIEvents();
+      }
+
+      updateStatus(message) {
+        if (this.statusTextEl) {
+          this.statusTextEl.textContent = message;
+        }
+      }
+
+      updateProgress(percent) {
+        if (this.progressFillEl) {
+          this.progressFillEl.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+        }
+      }
+
+      bindUIEvents() {
+        this.btnResetCam.addEventListener('click', () => {
+          this.sceneManager.resetCamera();
+        });
+
+        this.btnTogglePhysics.addEventListener('click', () => {
+          const isEnabled = this.characterManager.togglePhysics();
+          this.btnTogglePhysics.textContent = `Physics: ${isEnabled ? 'ON' : 'OFF'}`;
+        });
+      }
+
+      async start() {
+        // Start rendering the Arcane Tech environment immediately
+        this.animate();
+
+        try {
+          await this.characterManager.initPhysics();
+          await this.characterManager.loadCharacter(MODEL_URL, MOTION_URL);
+        } catch (err) {
+          console.error('MMD Load Error:', err);
+          this.updateStatus('Asset Load Error: Verify MODEL_URL / MOTION_URL & CORS headers.');
+        }
+      }
+
+      animate() {
+        requestAnimationFrame(() => this.animate());
+
+        // Clamp frame delta to prevent physics instability on tab switches
+        const delta = Math.min(this.clock.getDelta(), 0.1);
+        const elapsedTime = this.clock.getElapsedTime();
+
+        // 1. Update Environment Primitives
+        this.environment.update(elapsedTime, delta);
+
+        // 2. Update MMD Animation & Cloth/Hair Physics
+        this.characterManager.update(delta);
+
+        // 3. Update Camera Controls
+        this.sceneManager.updateControls();
+
+        // 4. Render Frame
+        this.sceneManager.render();
+      }
+    }
+
+    // Boot Application on DOM Ready
+    window.addEventListener('DOMContentLoaded', () => {
+      const app = new Application();
+      app.start();
+    });
+  </script>
+</body>
+</html>
